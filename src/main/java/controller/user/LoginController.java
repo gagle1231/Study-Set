@@ -20,15 +20,11 @@ public class LoginController implements Controller {
 			MemberManager manager = MemberManager.getInstance();
 			Member member = (Member) manager.login(userId, password);
 //	
-//			// 세션에 사용자 이이디 저장
+//			// 세션에 사용자 로그인 한 회원 정보 저장
 			HttpSession session = request.getSession();
-			session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId); 
             session.setAttribute("loginmeber", member); 
             return "redirect:/user/main";			
 		} catch (Exception e) {
-			/* UserNotFoundException이나 PasswordMismatchException 발생 시
-			 * 다시 login form을 사용자에게 전송하고 오류 메세지도 출력
-			 */
             request.setAttribute("loginFailed", true);
 			request.setAttribute("exception", e.getMessage());
             return "/user/login.jsp";			

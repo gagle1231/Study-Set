@@ -22,6 +22,7 @@ public class MemberManager {
 		return memManager;
 	}
 	
+	//아이디로 멤버 찾기
 	public Member findUser(String userId)
 		throws SQLException, UserNotFoundException {
 		Member member = memberDao.findMember(userId);
@@ -32,6 +33,7 @@ public class MemberManager {
 		return member;
 	}
 
+	//로그인 처리
 	public Member login(String userId, String password)
 			throws SQLException, UserNotFoundException, PasswordMismatchException {
 			Member member = findUser(userId);
