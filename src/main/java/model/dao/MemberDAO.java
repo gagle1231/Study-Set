@@ -31,6 +31,7 @@ private JDBCUtil jdbcUtil = null;
 		return 0;			
 	}
 	
+	
 	public Member findMember(String userId) throws SQLException {
         String sql = "SELECT * "
         			+ "FROM MEMBER "
@@ -40,7 +41,7 @@ private JDBCUtil jdbcUtil = null;
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();	
 			if (rs.next()) {					
-				Member member = new Member(		// User 객체를 생성하여 학생 정보를 저장
+				Member member = new Member(		
 						userId,
 						rs.getString("userName"),
 						rs.getString("pwd"),
