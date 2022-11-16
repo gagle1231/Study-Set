@@ -58,28 +58,28 @@ private JDBCUtil jdbcUtil = null;
 		}
 		return null;
 	}
-	
-	public boolean login(String userId, String password) {
-		String sql = "SELECT * FROM MEMBER WHERE userId = ?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});
-		
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
-			if (rs.next()) {						// 학생 정보 발견
-				Member member = new Member(		// User 객체를 생성하여 학생 정보를 저장
-						userId,
-						rs.getString("userName"),
-						rs.getString("pwd"),
-						rs.getString("phone"),
-						rs.getString("birth"),
-						rs.getString("email"));
-				return true;
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();		// resource 반환
-		}
-		return false;
-	}
+//	
+//	public boolean login(String userId, String password) {
+//		String sql = "SELECT * FROM MEMBER WHERE userId = ?";
+//		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});
+//		
+//		try {
+//			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+//			if (rs.next()) {						// 학생 정보 발견
+//				Member member = new Member(		// User 객체를 생성하여 학생 정보를 저장
+//						userId,
+//						rs.getString("userName"),
+//						rs.getString("pwd"),
+//						rs.getString("phone"),
+//						rs.getString("birth"),
+//						rs.getString("email"));
+//				return true;
+//			}
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		} finally {
+//			jdbcUtil.close();		// resource 반환
+//		}
+//		return false;
+//	}
 }

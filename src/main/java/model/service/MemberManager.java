@@ -32,14 +32,15 @@ public class MemberManager {
 		return member;
 	}
 
-	public boolean login(String userId, String password)
+	public Member login(String userId, String password)
 			throws SQLException, UserNotFoundException, PasswordMismatchException {
 			Member member = findUser(userId);
 
 			if (!member.matchPassword(password)) {
 				throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
 			}
-			return true;
+			
+			return member;
 		}
 
 

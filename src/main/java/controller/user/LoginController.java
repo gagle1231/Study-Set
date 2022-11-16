@@ -1,10 +1,12 @@
 package controller.user;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.Member;
 import model.service.MemberManager;
 
 public class LoginController implements Controller {
@@ -16,11 +18,12 @@ public class LoginController implements Controller {
 		try {
 //			// 모델에 로그인 처리를 위임
 			MemberManager manager = MemberManager.getInstance();
-			manager.login(userId, password);
+			Member member = (Member) manager.login(userId, password);
 //	
 //			// 세션에 사용자 이이디 저장
 			HttpSession session = request.getSession();
-            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);      
+			session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId); 
+            session.setAttribute("loginmeber", member); 
             return "redirect:/user/main";			
 		} catch (Exception e) {
 			/* UserNotFoundException이나 PasswordMismatchException 발생 시
