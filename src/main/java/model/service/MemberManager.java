@@ -45,7 +45,14 @@ public class MemberManager {
 			return member;
 		}
 
-
+	//수정 필요
+	public int createMember(Member newMember) throws ExistingUserException, SQLException {
+		if (memberDao.existingUser(newMember.getUserId()) == true) {
+			throw new ExistingUserException(newMember.getUserId() + "는 존재하는 아이디입니다.");
+		}
+		return memberDao.create(newMember);
+	}
+	
 	public MemberDAO getMemberDAO() {
 		return this.memberDao;
 	}

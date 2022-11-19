@@ -13,9 +13,9 @@ private JDBCUtil jdbcUtil = null;
 	}
 		
 
-	public int create(Member user) throws SQLException {
-		String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {};				
+	public int create(Member member) throws SQLException {
+		String sql = "INSERT INTO MEMBER VALUES (?, ?, ?, ?, ?, ?)";		
+		Object[] param = new Object[] {member.getUserId(), member.getUserName(), member.getPwd(), member.getPhone(), member.getBirth(), member.getEmail()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	
 						
 		try {				
@@ -58,28 +58,21 @@ private JDBCUtil jdbcUtil = null;
 		return null;
 	}
 	
-//	
-//	public boolean login(String userId, String password) {
-//		String sql = "SELECT * FROM MEMBER WHERE userId = ?";
-//		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});
-//		
-//		try {
-//			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
-//			if (rs.next()) {						// 학생 정보 발견
-//				Member member = new Member(		// User 객체를 생성하여 학생 정보를 저장
-//						userId,
-//						rs.getString("userName"),
-//						rs.getString("pwd"),
-//						rs.getString("phone"),
-//						rs.getString("birth"),
-//						rs.getString("email"));
-//				return true;
-//			}
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//		} finally {
-//			jdbcUtil.close();		// resource 반환
-//		}
-//		return false;
-//	}
+	public boolean existingUser(String userId) throws SQLException {
+		String sql = "SELECT count(*) FROM MEMBER WHERE userId=?";      
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				return (count == 1 ? true : false);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return false;
+	}
 }
