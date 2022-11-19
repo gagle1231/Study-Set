@@ -3,7 +3,6 @@ package model.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,17 +25,17 @@ public class TaskDAO {
 		String sql = "INSERT INTO TASK VALUES('t'||LPAD(Sequence_taskId.nextval, 7, '0'), ?, ?, ?, ?, ? )";
 
 		Object[] param = new Object[] {task.getName(), task.getStartDate(), task.getEndDate(), task.getDescription(), groupId};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, param);	
 
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
+			int result = jdbcUtil.executeUpdate();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
+			jdbcUtil.close();	
 		}	
 		return 0;
 	}
@@ -44,11 +43,11 @@ public class TaskDAO {
 	//과제 리스트 가져오기
 	public List<Task> getList(String groupId){
 		String sql = "SELECT * FROM TASK WHERE groupId = ? ";                        
-		jdbcUtil.setSqlAndParameters(sql, new Object[]{groupId});	// JDBCUtil에 query문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, new Object[]{groupId});	
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
-			List<Task> taskList = new ArrayList<Task>();	// member들의 리스트 생성
+			ResultSet rs = jdbcUtil.executeQuery();		
+			List<Task> taskList = new ArrayList<Task>();	
 			while (rs.next()) {
 				Task task = new Task(
 						rs.getString("taskId"),
@@ -57,7 +56,7 @@ public class TaskDAO {
 						rs.getString("endDate"),
 						rs.getString("taskDescription")
 						);
-				taskList.add(task);			// List에 Community 객체 저장
+				taskList.add(task);	
 			}		
 			return taskList;					
 
@@ -76,14 +75,14 @@ public class TaskDAO {
 
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {submit.getUserId(), submit.getFilePath(), submit.getSubmitContents(), taskId});	
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
+			int result = jdbcUtil.executeUpdate();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
+			jdbcUtil.close();
 		}		
 		return 0;	
 	}
@@ -94,7 +93,7 @@ public class TaskDAO {
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {submitId});
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			ResultSet rs = jdbcUtil.executeQuery();	
 
 			if (rs.next()) {
 				Submit submit = new Submit(
@@ -106,7 +105,7 @@ public class TaskDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource 반환
+			jdbcUtil.close();		
 		}
 		return null;
 	}
