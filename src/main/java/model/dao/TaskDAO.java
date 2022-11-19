@@ -23,9 +23,9 @@ public class TaskDAO {
 	//새로운 과제 생성
 	public int create(Task task, String groupId) throws SQLException, ParseException {
 
-		String sql = "INSERT INTO TASK VALUES( ?, ?, ?, ?, ?, ? )";
+		String sql = "INSERT INTO TASK VALUES('t'||LPAD(Sequence_taskId.nextval, 7, '0'), ?, ?, ?, ?, ? )";
 
-		Object[] param = new Object[] {task.getTaskId(), task.getName(), task.getStartDate(), task.getEndDate(), task.getDescription(), groupId};				
+		Object[] param = new Object[] {task.getName(), task.getStartDate(), task.getEndDate(), task.getDescription(), groupId};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 
 		try {				
@@ -72,9 +72,9 @@ public class TaskDAO {
 	//과제 제출하기
 	public int submitTask(String taskId, Submit submit) throws SQLException{
 
-		String sql = "INSERT INTO SUBMIT VALUES (?, ?, ?, ?, ?, ?, ?)";  
+		String sql = "INSERT INTO SUBMIT VALUES (?, ?, ?, sysdate , ?, 's'||LPAD(Sequence_submitId.nextval, 7, '0'))";  
 
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {submit.getUserId(), submit.getFilePath(), submit.getSubmitContents(), submit.getSubmitDate(), submit.getTaskId(), submit.getSubmitId()});	
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {submit.getUserId(), submit.getFilePath(), submit.getSubmitContents(), taskId});	
 		try {				
 			int result = jdbcUtil.executeUpdate();	// insert 문 실행
 			return result;
@@ -88,6 +88,7 @@ public class TaskDAO {
 		return 0;	
 	}
 
+	//제출한 과제 보기
 	public Submit getSubmit(String submitId){
 		String sql = "SELECT * FROM SUBMIT WHERE submitId = ? ";                        
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {submitId});
@@ -102,8 +103,6 @@ public class TaskDAO {
 						rs.getString("taskId"), rs.getString("submitId"));
 				return submit;
 			}		
-			return null;					
-
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {

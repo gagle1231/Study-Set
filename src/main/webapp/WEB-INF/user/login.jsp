@@ -36,9 +36,8 @@ function userCreate(targetUri) {
   <table style="width:100%">
 	<tr>
 	  <td align="center">
-	  	<b><img src="<c:url value='/images/studysetlogo.png' />" /></b>
-	    <!-- 로그인이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
-	    <br>	  
+	  	<img src="<c:url value='/images/studysetlogo.png' />" />
+	    <br><br>	  
 	    <table class="tableForm">
 	    <tr height="40"><td></td></tr>
 	  	  <tr height="40">
