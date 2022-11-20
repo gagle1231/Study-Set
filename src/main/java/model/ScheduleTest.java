@@ -13,9 +13,9 @@ public class ScheduleTest {
 		// TODO Auto-generated method stub
 		ScheduleDAO dao = new ScheduleDAO();
 
-//		dao.create(new Schedule("s0000", "1", "임시테스트", "20011231", null, null, null, "d", 'Y'));
+		dao.create(new Schedule("s0000", "1", "임시테스트", "20011231", null, null, null, "d", 'Y'));
 //		ArrayList<Schedule> s = (ArrayList)dao.getList("1");
-//
+
 //		System.out.println(s.get(0).getScheduleId());
 	}
 	//

@@ -18,37 +18,13 @@ public class CommentDAO {
 	}
 
 	// memo댓글 작성
-	public int addMemoComment(MemoComment memoComment, String memoId)
-			throws SQLException, ParseException {
+	public int addMemoComment(MemoComment memoComment, String memoId) throws SQLException, ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("YYYYMMDD");
 
-		String sql = "INSERT INTO MemoComment VALUES( " + "'c'||Sequence_commentId.nextval" + ", ?, ?, ?, ?, ? )";
+		String sql = "INSERT INTO MemoComment VALUES( " + "'c'||LPAD(SEQUENCE_COMMENTID.nextval, 7, '0')" + ", ?, ?, ?, ?, ? )";
 
-		Object[] param = new Object[] { memoComment.getUserId(), memoId, memoComment.getCommentContents(), memoComment.getAnnonymous(),
-				memoComment.getMemoDate() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
-
-		try {
-			int result = jdbcUtil.executeUpdate(); // insert 문 실행
-			return result;
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
-		}
-		return 0;
-	}
-
-	// submit 댓글 작성
-	public int addSubmitComment(SubmitComment submitComment, String submitId)
-			throws SQLException, ParseException {
-		SimpleDateFormat formatter = new SimpleDateFormat("YYYYMMDD");
-		String sql = "INSERT INTO SubmitComment VALUES( " + "'c'||Sequence_commentId.nextval" + ", ?, ?, ?, ?, ? )";
-
-		Object[] param = new Object[] { submitComment.getUserId(), submitComment.getCommentContents(), submitComment.getAnnonymous(),
-				submitId, submitComment.getCommentDate() };
+		Object[] param = new Object[] { memoComment.getUserId(), memoId, memoComment.getCommentContents(),
+				memoComment.getAnnonymous(), memoComment.getMemoDate() };
 		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 
 		try {
@@ -92,6 +68,28 @@ public class CommentDAO {
 		return null;
 	}
 
+	// submit 댓글 작성
+	public int addSubmitComment(SubmitComment submitComment, String submitId) throws SQLException, ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("YYYYMMDD");
+		String sql = "INSERT INTO SubmitComment VALUES( " + "'c'||LPAD(SEQUENCE_COMMENTID.nextval, 7, '0')" + ", ?, ?, ?, ?, ? )";
+
+		Object[] param = new Object[] { submitComment.getUserId(), submitComment.getCommentContents(),
+				submitComment.getAnnonymous(), submitId, submitComment.getCommentDate() };
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+
+		try {
+			int result = jdbcUtil.executeUpdate(); // insert 문 실행
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close(); // resource 반환
+		}
+		return 0;
+	}
+
 	// submit댓글 리스트 가져오기
 	public List<SubmitComment> getSubmitCommentList(String submitId) {
 		String sql = "SELECT * FROM SubmitComment WHERE submitId = ? ";
@@ -101,8 +99,12 @@ public class CommentDAO {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
 			List<SubmitComment> submitCommentList = new ArrayList<SubmitComment>();
 			while (rs.next()) {
-				SubmitComment submitComment = new SubmitComment(rs.getString("commentId"), rs.getString("userId"),
-						rs.getString("commentContents"), rs.getString("annonymous").charAt(0), rs.getString("submitId"),
+				SubmitComment submitComment = new SubmitComment(
+						rs.getString("commentId"), 
+						rs.getString("userId"),
+						rs.getString("commentContents"), 
+						rs.getString("annonymous").charAt(0), 
+						rs.getString("submitId"),
 						rs.getString("commentDate"));
 				submitCommentList.add(submitComment);
 			}

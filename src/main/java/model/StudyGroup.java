@@ -10,6 +10,13 @@ public class StudyGroup implements Serializable{
 	private String groupDescription;
 	private String code;
 	
+	
+	
+	public StudyGroup(String groupName) {
+		super();
+		this.groupName = groupName;
+	}
+
 	public StudyGroup(String groupId, String groupName, int groupCategory, String groupDescription, String code) {
 		super();
 		this.groupId = groupId;
@@ -49,4 +56,11 @@ public class StudyGroup implements Serializable{
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public boolean matchCode(String code) {
+	      if (code == null) {
+	         return false;
+	      }
+	      return this.code.equals(code);
+	   }
 }
