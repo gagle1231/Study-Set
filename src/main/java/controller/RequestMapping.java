@@ -21,10 +21,11 @@ public class RequestMapping {
         mappings.put("/user/join/form", new ForwardController("/user/join.jsp"));
         mappings.put("/user/login", new LoginController());
         mappings.put("/user/main", new ForwardController("/user/main.jsp"));
-//        mappings.put("/user/logout", new LogoutController());
+        mappings.put("/user/register", new RegisterUserController());
+        mappings.put("/group/main", new ForwardController("/group/main.jsp"));
 //        mappings.put("/user/list", new ListUserController());
 //        mappings.put("/user/view", new ViewUserController());
-//        mappings.put("/user/register", new RegisterUserController());
+        
 
         // 사용자 정보 수정 폼 요청과 수정 요청 처리 병합
 //      mappings.put("/user/update/form", new UpdateUserFormController());
