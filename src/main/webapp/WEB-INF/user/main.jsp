@@ -30,11 +30,14 @@
 						<td style="text-align: left;"><b>${loginmeber.getUserName()}님의 스터디</b></td>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button"
 							value="스터디 생성" onClick="login()" class="btn">
+							<form name="form" method="POST" action="<c:url value='/group/main' />"><button></button></form>
 						</td>
+						
 					</tr>
 				</table>
 			</td>
 		</tr>
+		
 	</table>
 
 </body>
