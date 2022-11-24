@@ -6,6 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.*;
+import controller.group.GroupController;
+import controller.group.GroupMemberController;
+import controller.group.ViewGroupController;
 import controller.user.LoginController;
 
 public class RequestMapping {
@@ -20,29 +23,13 @@ public class RequestMapping {
         mappings.put("/main", new ForwardController("/user/login.jsp"));
         mappings.put("/user/join/form", new ForwardController("/user/join.jsp"));
         mappings.put("/user/login", new LoginController());
+        mappings.put("/user/group/list", new ViewGroupController());
         mappings.put("/user/main", new ForwardController("/user/main.jsp"));
         mappings.put("/user/register", new RegisterUserController());
+        mappings.put("/group", new GroupController());
         mappings.put("/group/main", new ForwardController("/group/main.jsp"));
-//        mappings.put("/user/list", new ListUserController());
-//        mappings.put("/user/view", new ViewUserController());
-        
+        mappings.put("/group/member", new GroupMemberController());
 
-        // 사용자 정보 수정 폼 요청과 수정 요청 처리 병합
-//      mappings.put("/user/update/form", new UpdateUserFormController());
-//      mappings.put("/user/update", new UpdateUserController());        
-//       
-//        mappings.put("/user/update", new UpdateUserController());
-//        
-//        mappings.put("/user/delete", new DeleteUserController());
-        
-        // 커뮤니티 관련 request URI 추가
-//        mappings.put("/community/list", new ListCommunityController());
-//        mappings.put("/community/view", new ViewCommunityController());
-//        mappings.put("/community/create/form", new ForwardController("/community/creationForm.jsp"));
-//        mappings.put("/community/create", new CreateCommunityController());
-//        mappings.put("/community/update", new UpdateCommunityController());
-//        
-//        logger.info("Initialized Request Mapping!");
     }
 
     public Controller findController(String uri) {	
