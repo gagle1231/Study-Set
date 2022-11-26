@@ -56,4 +56,10 @@ public class MemberManager {
 	public MemberDAO getMemberDAO() {
 		return this.memberDao;
 	}
+	
+	public List<Member> findMemberByName(String memberName) throws SQLException {
+		
+		return memberDao.findMemberByName(memberName);
+
+	}
 }

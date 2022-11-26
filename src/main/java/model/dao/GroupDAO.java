@@ -138,5 +138,32 @@ public class GroupDAO {
 		}
 		return 0;
 	}
+	
+	public List<Member> searchMemberByName(String memberName, String groupId)throws SQLException {
+		String sql = "SELECT * FROM JOIN j, MEMBER m WHERE j.userId = m.userId and m.userName = ? and j.groupId = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { memberName, groupId }); // JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			List<Member> findMembers = new ArrayList<>();
+			while (rs.next()) { // 학생 정보 발견
+				Member member = new Member(		
+						rs.getString("userId"),
+						rs.getString("userName"),
+						rs.getString("pwd"),
+						rs.getString("phone"),
+						rs.getString("birth"),
+						rs.getString("email"));
+				findMembers.add(member);
+			}
+			return findMembers;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return null;
+	}
+
 
 }

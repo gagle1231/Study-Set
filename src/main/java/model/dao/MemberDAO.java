@@ -2,6 +2,8 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Member;
 
@@ -74,5 +76,33 @@ private JDBCUtil jdbcUtil = null;
 			jdbcUtil.close();		// resource 반환
 		}
 		return false;
+	}
+
+	public List<Member> findMemberByName(String memberName) throws SQLException {
+		List<Member> memberList = new ArrayList<>();
+		 String sql = "SELECT * "
+     			+ "FROM MEMBER "
+     			+ "WHERE userName = ? ";              
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {memberName});	
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();	
+			while (rs.next()) {					
+				Member member = new Member(		
+						rs.getString("userId"),
+						rs.getString("userName"),
+						rs.getString("pwd"),
+						rs.getString("phone"),
+						rs.getString("birth"),
+						rs.getString("email"));
+				memberList.add(member);
+			}
+		return memberList;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
 	}
 }
