@@ -5,8 +5,11 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import controller.group.GroupController;
 import model.dao.ScheduleDAO;
 import model.dao.TimeSlotDAO;
+import model.service.GroupManager;
+import model.dao.GroupDAO;
 import model.dao.MemoDAO;
 
 public class ScheduleTest {
@@ -49,7 +52,11 @@ public class ScheduleTest {
 		// 메모 가져오기
 		// Memo memo = dao.getMemo("m1");
 		// System.out.println("m1의 메모내용은 " + memo.getMemoContents());
-		
+		StudyGroup s = new StudyGroup(null, "스터디그룹", 1, "임시로 생성한 스터디 그룹", "A3r24");
+		 //GroupDAO dao = new GroupDAO();
+		 //dao.create(s);
+		//GroupManager manager = GroupManager.getInstance();
+		//manager.create(s);
 	}
 }
 

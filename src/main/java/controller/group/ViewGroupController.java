@@ -16,7 +16,7 @@ public class ViewGroupController implements Controller{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("loginmeber");
+		Member member = (Member) session.getAttribute("loginmember");
 		GroupManager groupManager = GroupManager.getInstance();
 		List <Join> userJoinList = groupManager.getUserGroupList(member.getUserId());
 		request.setAttribute("joinList", userJoinList);

@@ -9,6 +9,7 @@ import controller.*;
 import controller.group.GroupController;
 import controller.group.GroupMemberController;
 import controller.group.ViewGroupController;
+import controller.group.ViewScheduleController;
 import controller.user.LoginController;
 
 public class RequestMapping {
@@ -27,9 +28,13 @@ public class RequestMapping {
         mappings.put("/user/main", new ForwardController("/user/main.jsp"));
         mappings.put("/user/register", new RegisterUserController());
         mappings.put("/group", new GroupController());
+        mappings.put("/group/register", new GroupController());
         mappings.put("/group/main", new ForwardController("/group/main.jsp"));
         mappings.put("/group/member", new GroupMemberController());
-
+        mappings.put("/schedule/chart", new ForwardController("/group/schedule/chart.jsp"));
+        mappings.put("/schedule/calendar", new ViewScheduleController());
+        mappings.put("/schedule/calendar/detail", new ForwardController("/group/schedule/scheduleForm.jsp"));
+        
     }
 
     public Controller findController(String uri) {	
