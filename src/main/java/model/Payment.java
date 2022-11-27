@@ -48,5 +48,4 @@ public class Payment {
 		this.paymentId = paymentId;
 	}
 	
-	
 }

@@ -2,11 +2,12 @@
 	background-color: #45B2A4;
 	margin: auto;
 	border-radius: 20px;
-	color: white;
+	color: rgb(255, 255, 255);
 	font-family: Arial;
 	font-size: 18px;
 	font-style: bold; 
 }
+
 
 .btn {
 	border:6px;

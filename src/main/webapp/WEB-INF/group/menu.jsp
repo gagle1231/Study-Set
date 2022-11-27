@@ -21,7 +21,7 @@ a{
 <body>
 	<form>
 	<table style="width:130px; background-color:#72C6A5" >
-		<tr class="menu"><td class="menuItem"><a href="<c:url value='/main' />">홈</a></td></tr>
+		<tr class="menu"><td class="menuItem"><a href="<c:url value='/group/main' />">홈</a></td></tr>
 		<tr><td class="menuItem" ><a href="<c:url value='/main' />">일정</a></td></tr>
 		<tr><td class="menuItem"><a href="<c:url value='/main' />">과제</a></td></tr>
 		<tr><td class="menuItem"><a href="<c:url value='/main' />">진행상황</a></td></tr>
