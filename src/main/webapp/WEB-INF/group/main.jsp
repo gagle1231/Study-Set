@@ -17,6 +17,7 @@
     }   
     function offClick() {
         document.querySelector('.modal_wrap').style.display ='none';
+        history.replaceState({}, null, location.pathname);
     }
  
     document.getElementById('modal_btn').addEventListener('click', onClick);
@@ -63,10 +64,10 @@
 					<tr>
 						<td><h4>${studyGroup.groupDescription}</h4></td>
 						<td align="center"><input id="modal_btn" type="button"
-							value="그룹원 검색" /><br></td>
+							value="그룹원 검색" class="btn"/><br></td>
 					</tr>
 					<tr>
-						<td><input type="button" value="가입 코드 보기"
+						<td><input type="button" value="가입 코드 보기" class="btn"
 							onClick="alert('${studyGroup.code}')" /><br></td>
 					</tr>
 					<tr>

@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="java.util.*, model.*"%>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
@@ -51,8 +51,10 @@ table td.highlighted {
 							<h2 style="color: gray">일정</h2>
 						</td>
 					</tr>
-					<tr><td><h2>스캐줄 조정 표</h2></td>
-					<td><form action="<c:url value='/schedule/addchart'/>"><button>추가하기</button></form></td></tr>
+					<tr><td><h2>※안 되는 시간에 색칠해주세요</h2></td>
+					<td><form name="form" action=""><button onClick="addChart()">제출하기</button>
+					
+					</form></td></tr>
 					<tr>
 						<td colspan="2">
 							<table border="1" style="border-collapse: collapse"
@@ -72,7 +74,7 @@ table td.highlighted {
 										<th>${i.index+1} - ${i.index+2}</th>
 										<!-- 안되는 시간만 색칠 -->
 										<c:forEach items="${time}" var="day">
-											<td style="background-color: rgba(0, 0, 0, 0.${day});"></td>
+											<td></td>
 										</c:forEach>
 									</tr>
 								</c:forEach>
@@ -83,6 +85,43 @@ table td.highlighted {
 			</td>
 		</tr>
 	</table>
+	<%!int[][] arr = new int[24][7]; %>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"
+		type="text/javascript"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(function() {
+			var isMouseDown = false;
+			$("#our_table td").mousedown(function() {
+				isMouseDown = true;
+				$(this).toggleClass("highlighted");
+			
+				return false; 
+			}).mouseover(function() {
+				if (isMouseDown) {
+					$(this).toggleClass("highlighted");
+				}
+			}).bind("selectstart", function() {
+				return false; // prevent text selection in IE
+			});
 
+			$(document).mouseup(function() {
+				isMouseDown = false;
+			});
+		});
+		
+		function addChart(){
+			var ent = {[row, col]}
+			$(".highlighted").each(function(index, item){
+				var row = item.cellIndex;
+				var col = item.parentElement.rowIndex;
+				var ent = {row, col}
+				alert(row);
+				form.timeSlot.value+=ent;
+			})
+			
+		}
+	</script>
+	
 </body>
 </html>

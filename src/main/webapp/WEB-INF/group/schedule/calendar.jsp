@@ -11,7 +11,12 @@
 <title>StudySet: ${studyGroup.groupName}</title>
 <script src="<c:url value='/js/main.css' />"></script>
 
-
+<script type="text/javascript">
+function chkChart(target){
+	form.action = target;
+	form.submit();
+}
+</script>
 <style>
 
 </style>
@@ -27,8 +32,8 @@
 				<!-- 왼쪽 사이드(로고, 메뉴) 구성 -->
 				<table>
 					<tr>
-						<td><img src="<c:url value='/images/studysetlogo.png'/>"
-							width="130px" /><br> <br></td>
+						<td><a href="<c:url value='/user/main'/>"><img src="<c:url value='/images/studysetlogo.png'/>"
+							width="130px" /></a><br><br></td>
 					</tr>
 					<tr>
 						<td><jsp:include page="../menu.jsp" flush="false" /></td>
@@ -46,7 +51,7 @@
 					</tr>
 					<tr><td><form name="form" action="<c:url value='/schedule/chart'/>">
 						<input type="button" name="newScheduleButton" value="새 스캐줄 생성" onClick="newSchedule()">
-						<input type="submit" name="time" value="일정 조윮표 확인하기">
+						<button  onClick="chkChart(<c:url value='/schedule/chart'/>)">일정 조율표 확인하기</button>
 					</form></td></tr>
 					<tr>
 						<td colspan="2">
@@ -57,5 +62,4 @@
 			</td>
 		</tr>
 	</table>
-
 </html>

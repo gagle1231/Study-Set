@@ -87,7 +87,8 @@
 		<table style="width: 100%">
 			<tr>
 				<td align="center">
-				<img src="<c:url value='/images/studysetlogo.png' />" /><br> <br>
+				<a href="<c:url value='/main'/>"><img src="<c:url value='/images/studysetlogo.png' />" /></a>		
+				<br><br>
 					<table class="tableForm" style="width: 40%">
 						<tr height="70">
 							<td colspan="2" style="text-align: center"><b>회원가입</b></td>
