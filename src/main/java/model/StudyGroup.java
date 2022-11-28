@@ -10,8 +10,6 @@ public class StudyGroup implements Serializable{
 	private String groupDescription;
 	private String code;
 	
-	
-	
 	public StudyGroup(String groupName) {
 		super();
 		this.groupName = groupName;
@@ -63,4 +61,9 @@ public class StudyGroup implements Serializable{
 	      }
 	      return this.code.equals(code);
 	   }
+	
+	// 그룹 이름으로 그룹 아이디 검색하기 ?
+	public String getMatchGroup(String groupName) {
+		return this.getGroupId();
+	}
 }

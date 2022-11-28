@@ -55,7 +55,7 @@ function gc2(){
 </script>
 </head>
 <body>
-   <form name="form2" method="POST" autocomplete="off" action="/group/member">
+   <form name="form2" method="POST" autocomplete="off" action="<c:url value = '/group/member'/> ">
       <div style="text-align:center;">
             <p>가입할 그룹 이름</p>
             <input type="text" id="formInput" name="groupName"/>
