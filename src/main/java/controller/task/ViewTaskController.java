@@ -18,12 +18,12 @@ public class ViewTaskController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("loginmeber");
-		StudyGroup group = (StudyGroup) session.getAttribute("joinList");
-		TaskManager taskManager = TaskManager.getInstance();
-		List <Task> taskList = taskManager.getList(group.getGroupId());
-		request.setAttribute("taskList", taskList);
-		return "/group/task/list.jsp";
+		//Member member = (Member) session.getAttribute("loginmember");
+		//StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
+		//TaskManager taskManager = TaskManager.getInstance();
+		//List <Task> taskList = taskManager.getList(group.getGroupId());
+		//request.setAttribute("taskList", taskList);
+		return "/group/task/main.jsp";
 	}
 
 }

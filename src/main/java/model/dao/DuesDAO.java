@@ -17,7 +17,7 @@ public class DuesDAO {
 	}
 
 	public List<Dues> getList(String gid){
-		String sql = "SELECT * FROM PAYMENT WHERE groupId = ? ";                        
+		String sql = "SELECT * FROM DUES WHERE groupId = ? ";                        
 		jdbcUtil.setSqlAndParameters(sql, new Object[]{gid});	// JDBCUtil에 query문과 매개 변수 설정
 
 		try {

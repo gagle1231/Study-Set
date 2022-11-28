@@ -1,6 +1,8 @@
 package model;
 
-public class Dues {
+import java.io.Serializable;
+
+public class Dues implements Serializable{
 	
 	private String duesId;
 	private String userId;
