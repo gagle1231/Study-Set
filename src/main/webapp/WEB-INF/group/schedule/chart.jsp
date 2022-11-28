@@ -83,6 +83,5 @@ table td.highlighted {
 			</td>
 		</tr>
 	</table>
-
 </body>
 </html>

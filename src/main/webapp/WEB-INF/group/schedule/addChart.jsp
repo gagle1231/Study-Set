@@ -25,6 +25,14 @@ table td.highlighted {
 	background-color: rgba(0, 0, 0, 0.1);
 }
 </style>
+<script>
+function addChart(){
+	$(".highlighted").each( function(index, item){
+		alert('d');
+	}
+	
+} 
+</script>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
 	<br>
@@ -52,8 +60,9 @@ table td.highlighted {
 						</td>
 					</tr>
 					<tr><td><h2>※안 되는 시간에 색칠해주세요</h2></td>
-					<td><form name="form" action=""><button onClick="addChart()">제출하기</button>
-					
+					<td><form name="form" action="">
+						<button onClick="addChart()">제출하기</button>
+						<input type="hidden" name="editTime">
 					</form></td></tr>
 					<tr>
 						<td colspan="2">
@@ -74,7 +83,7 @@ table td.highlighted {
 										<th>${i.index+1} - ${i.index+2}</th>
 										<!-- 안되는 시간만 색칠 -->
 										<c:forEach items="${time}" var="day">
-											<td></td>
+											<td <c:if test='${day ne 0}'>class = "highlighted"</c:if>></td>
 										</c:forEach>
 									</tr>
 								</c:forEach>
@@ -85,7 +94,6 @@ table td.highlighted {
 			</td>
 		</tr>
 	</table>
-	<%!int[][] arr = new int[24][7]; %>
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"
 		type="text/javascript"></script>
@@ -110,17 +118,6 @@ table td.highlighted {
 			});
 		});
 		
-		function addChart(){
-			var ent = {[row, col]}
-			$(".highlighted").each(function(index, item){
-				var row = item.cellIndex;
-				var col = item.parentElement.rowIndex;
-				var ent = {row, col}
-				alert(row);
-				form.timeSlot.value+=ent;
-			})
-			
-		}
 	</script>
 	
 </body>
