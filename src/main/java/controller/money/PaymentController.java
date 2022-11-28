@@ -17,37 +17,40 @@ public class PaymentController implements Controller{
    @Override
    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
       if (request.getMethod().equals("POST")) {
-    	  HttpSession session = request.getSession();
-    	  StudyGroup group = (StudyGroup) session.getAttribute("studygroup");
-    	  request.setCharacterEncoding("utf-8");
-    	  Payment payment = new Payment(
-    			  group.getGroupId(),
-    			  request.getParameter("paymentDate"),
-    			  Integer.parseInt(request.getParameter("price")),
-    			  request.getParameter("description"),
-    			  null
-    			  );
-    	  try {
-    		  session = request.getSession();
-    		  MoneyManager manager = MoneyManager.getInstance();
-    		  manager.addPayment(payment);
-    		  
-    		  return "redirect:/group/money/payment";
-	      }catch (SQLException se) {
-	    	  se.printStackTrace();
-	    	  return "/group/money/payment";
-	      }catch (Exception e) {
-	          e.printStackTrace();
-	          return "/group/money/payment";
-	      }
+         HttpSession session = request.getSession();
+         StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
+         request.setCharacterEncoding("utf-8");
+         Payment payment = new Payment(
+               group.getGroupId(),
+               request.getParameter("paymentDate"),
+               Integer.parseInt(request.getParameter("price")),
+               request.getParameter("description"),
+               null
+               );
+         try {
+            session = request.getSession();
+            MoneyManager manager = MoneyManager.getInstance();
+            manager.addPayment(payment);
+            
+            return "redirect:/group/money/payment";
+         }catch (SQLException se) {
+            se.printStackTrace();
+            return "/group/money/payment";
+         }catch (Exception e) {
+             e.printStackTrace();
+             return "/group/money/payment";
+         }
       }
-	  HttpSession session = request.getSession();
+      
+      HttpSession session = request.getSession();
       MoneyManager manager = MoneyManager.getInstance();
-      StudyGroup group = (StudyGroup) session.getAttribute("studygroup");
+      StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
       List<Payment> paymentList = manager.getPaymentList(group.getGroupId());
       session.setAttribute("studyGroup", group);
-      request.setAttribute("paymentList", paymentList);
-      return "/group/money/payment";
+      request.setAttribute("list", paymentList);
+      return "/group/money/payment.jsp";
+      
+
    }
 
 }

@@ -20,7 +20,7 @@ public class DuesController implements Controller{
       if (request.getMethod().equals("POST")) {
     	  HttpSession session = request.getSession();
     	  Member member = (Member) session.getAttribute("loginmember");
-    	  StudyGroup group = (StudyGroup) session.getAttribute("studygroup");
+    	  StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
     	  request.setCharacterEncoding("utf-8");
     	  Dues dues = new Dues(
     			  null,
@@ -43,13 +43,17 @@ public class DuesController implements Controller{
 	          return "/group/money/dues";
 	      }
       }
-	  HttpSession session = request.getSession();
+
+	    HttpSession session = request.getSession();
       MoneyManager manager = MoneyManager.getInstance();
-      StudyGroup group = (StudyGroup) session.getAttribute("studygroup");
-      List<Dues> duesList = manager.getDuesList(request.getParameter("groupId"));
-      session.setAttribute("studyGroup", group);
-      request.setAttribute("duesList", duesList);
-      return "/group/money/dues";
+      StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
+      List<Dues> list = manager.getDuesList("1");
+      
+      request.setAttribute("list", list);
+
+	    request.setAttribute("groupId", group.getGroupId());
+      return "/group/money/dues.jsp";
+
    }
 
 }
