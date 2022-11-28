@@ -84,7 +84,7 @@
    <table style="width:100%; border-collapse:collapse">
       <tr>
          <td style="text-align:left; width:130px;" ><img src="<c:url value='/images/studysetlogo.png'/>" width="100%" /></td>
-         <td style="text-align:left"><br><br><br><h2>&nbsp;&nbsp;&nbsp;&nbsp;스터디 이름</h2>
+         <td style="text-align:left"><br><br><br><h2>&nbsp;&nbsp;&nbsp;&nbsp;${studyGroup.groupName}</h2>
          <br><h4>&nbsp;&nbsp;&nbsp;&nbsp;회비 사용 관리</h4>
          <br>&nbsp;&nbsp;&nbsp;&nbsp;<button style="background-color:#8cdbbc" onClick="location.href='dues.jsp'">납부내역 확인하기</button>
          <button class="btn">입력하기</button>
