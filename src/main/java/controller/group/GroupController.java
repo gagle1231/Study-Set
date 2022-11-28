@@ -22,7 +22,7 @@ public class GroupController implements Controller{
          StudyGroup group = new StudyGroup(
         		 null,
                request.getParameter("groupName"),
-               1,
+               Integer.parseInt(request.getParameter("groupCategory")),
                request.getParameter("groupDescription"),
                request.getParameter("code")
                );
