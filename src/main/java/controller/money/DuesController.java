@@ -1,7 +1,6 @@
 package controller.money;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,16 +43,17 @@ public class DuesController implements Controller{
 	          return "/group/money/dues";
 	      }
       }
-      
-	  HttpSession session = request.getSession();
+
+	    HttpSession session = request.getSession();
       MoneyManager manager = MoneyManager.getInstance();
       StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
       List<Dues> list = manager.getDuesList("1");
       
       request.setAttribute("list", list);
 
-	  request.setAttribute("groupId", group.getGroupId());
+	    request.setAttribute("groupId", group.getGroupId());
       return "/group/money/dues.jsp";
+
    }
 
 }

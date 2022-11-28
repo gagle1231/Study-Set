@@ -50,6 +50,7 @@ public class PaymentController implements Controller{
       request.setAttribute("list", paymentList);
       return "/group/money/payment.jsp";
       
+
    }
 
 }
