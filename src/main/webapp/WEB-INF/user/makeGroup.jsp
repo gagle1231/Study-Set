@@ -81,7 +81,7 @@ function gc(){
          <input type="text" id="formInput" style="background-color:#E6E6E6;" name="groupDescription"
          placeholder="간단한 설명을 작성해주세요"/>
          <p>그룹 가입을 위한 코드를 작성해주세요</p>
-         <input type="text" id="formInput" name="code" placeholder="숫자 코드"/>
+         <input type="text" id="formInput" name="code" placeholder="6자리 숫자 코드" maxlength="6"/>
          <br/><br/>
          <input type="button" onClick="gc()" id="submitBtn" value="생성"></input>
       </div>   
