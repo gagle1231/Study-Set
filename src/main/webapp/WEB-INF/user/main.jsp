@@ -10,19 +10,8 @@
 <title>StudySet</title>
 <link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
 <script>
-function gc(){
-   /*if (form1.groupName.value == "") {
-      alert("그룹명을 입력하세요.");
-      form1.groupName.focus();
-      return false;
-   }*/   
-   alert("새로운 그룹이 생성되었습니다.");
-   form1.submit();
-   //form1.close();
-}
-
 window.onload = function() {
-	 
+    
     function onClick() {
         document.querySelector('.modal_wrap').style.display ='block';
     }   
@@ -31,8 +20,7 @@ window.onload = function() {
     }
  
     document.getElementById('modal_btn').addEventListener('click', onClick);
-    document.querySelector('.modal_close').addEventListener('click', offClick);
- 
+    document.querySelector('.modal_close').addEventListener('click', offClick); 
 };
 </script>
 <style>
@@ -81,12 +69,11 @@ window.onload = function() {
                   <td style="text-align: left;"><h2>&nbsp;&nbsp;${loginmember.getUserName()}님의
                         스터디</h2></td>
                   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     <!--  <div style="float: right; width: 20%;">
-                        <p class="btn">
+                     <div style="float: right; width: 20%;">
+                        <p id="modal_btn2" class="btn">
                            <a href="#modal2" rel="modal:open" type="button" style="color:white;">스터디 가입</a>
                         </p>
-                        <jsp:include page="joinGroup.jsp" flush="false" />               
-                     </div>-->
+                     </div>
                      <div style="float: right; width: 20%;">
                         <p id="modal_btn" class="btn">
                            <a href="#modal1" rel="modal:open" type="button" style="color:white;">스터디 생성</a>
@@ -124,14 +111,23 @@ window.onload = function() {
          </td>
       </tr>
    </table>
-<div style="display: none" class="modal_wrap">
-		<!--모달창 영역-->
-		<div class="modal_close">
-			<a href="#">close</a>
-		</div>
-		<div align="center">
-			<jsp:include page="makeGroup.jsp"></jsp:include>
-		</div>
+<div style="display: none; height: 460px;" class="modal_wrap">
+      <!--스터디생성 모달창 영역-->
+      <div class="modal_close">
+         <a href="#">close</a>
+      </div>
+      <div align="center">
+         <jsp:include page="makeGroup.jsp"></jsp:include>
+      </div>
+</div>
+<div style="display: none; height: 460px;" class="modal_wrap2">
+      <!--스터디가입 모달창 영역-->
+      <div class="modal_close2">
+         <a href="#">close</a>
+      </div>
+      <div align="center">
+         <jsp:include page="joinGroup.jsp"></jsp:include>
+      </div>
 </div>
 </body>
 </html>

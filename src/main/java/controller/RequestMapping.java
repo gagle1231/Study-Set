@@ -13,6 +13,7 @@ import controller.group.GroupMemberController;
 import controller.group.ViewGroupController;
 import controller.group.ViewScheduleController;
 import controller.user.LoginController;
+import controller.money.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -46,10 +47,16 @@ public class RequestMapping {
         
         //task mapping
         mappings.put("/group/task/main", new ForwardController("/group/task/list.jsp"));
-        mappings.put("/group/task/list", new ViewTaskController());
+        //mappings.put("/group/task/list", new ViewTaskController());
         mappings.put("/group/task/detail", new ForwardController("/group/task/detail.jsp"));
         mappings.put("/group/task/view", new ForwardController("/group/task/view.jsp"));
         mappings.put("/group/task/submit", new ForwardController("/group/task/submit.jsp"));
+        
+        //회비
+        mappings.put("/group/money/dues", new ForwardController("/group/money/dues.jsp"));
+        mappings.put("/group/money/payment", new ForwardController("/group/money/payment.jsp"));
+        mappings.put("/group/money/addPayment", new PaymentController());
+        mappings.put("/group/money/addDues", new DuesController());
     }
 
     public Controller findController(String uri) {	
