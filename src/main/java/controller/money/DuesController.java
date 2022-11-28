@@ -47,7 +47,7 @@ public class DuesController implements Controller{
 	    HttpSession session = request.getSession();
       MoneyManager manager = MoneyManager.getInstance();
       StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
-      List<Dues> list = manager.getDuesList("1");
+      List<Dues> list = manager.getDuesList(group.getGroupId());
       
       request.setAttribute("list", list);
 

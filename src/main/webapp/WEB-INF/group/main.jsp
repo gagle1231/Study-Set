@@ -57,7 +57,7 @@
 									<c:when test="${studyGroup.groupCategory eq 1}">프로그래밍</c:when>
 									<c:when test="${studyGroup.groupCategory eq 2}">외국어</c:when>
 									<c:when test="${studyGroup.groupCategory eq 3}">디자인</c:when>
-									<c:when test="${studyGroup.groupCategory eq 4}">음악</c:when>
+									<c:when test="${studyGroup.groupCategory eq 4}">취업</c:when>
 									<c:when test="${studyGroup.groupCategory eq 5}">경영</c:when>
 									<c:when test="${studyGroup.groupCategory eq 5}">기타</c:when>
 								</c:choose>
