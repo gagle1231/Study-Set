@@ -55,7 +55,7 @@ function gc2(){
 <title>스터디 가입 모달창</title>
 </head>
 <body>
-   <form name="form2" method="POST" autocomplete="off">
+   <form name="form2" method="POST" autocomplete="off" action="/group/member">
       <div style="text-align:center;">
             <p>가입할 그룹 이름</p>
             <input type="text" id="input" name="groupName"/>
