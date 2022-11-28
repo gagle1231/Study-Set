@@ -1,34 +1,28 @@
-joinGroup.jsp
-
-
 <%@page contentType="text/html; charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link rel="stylesheet"
-   href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script>
-function groupCreate(){
-   if (form.groupName.value == "") {
-      alert("그룹명 입력하십시오.");
-      form.groupName.focus();
+function gc2(){
+   if (form2.groupName.value == "") {
+      alert("그룹명을 입력해주세요.");
+      form2.groupName.focus();
       return false;
    }
-   
-   form.submit();
+
+   if (form2.code.value == "") {
+      alert("코드를 입력해주세요.");
+      form2.code.focus();
+      return false;
+   }
+   alert(form2.groupName.value + "그룹에 가입이 완료되었습니다.");
+   form2.submit();
 }
 </script>
 <style>
-#input {
+#formInput {
    width:250px; 
    height:40px;
    border:0 solid black;
@@ -57,26 +51,18 @@ function groupCreate(){
    border-radius: 20px;
    text-align: center;
 }
-  a {
-      text-decoration: none;
-      <%--버튼 안에 텍스트 정렬 조정 부분.. 브라우저마다 다르게 적용되는 듯--%>
-      line-height: 50px;
-      padding-left: 10px;
-   }
-   a:link a:visited {
-      text-align: center;
-   }
 </style>
 <title>스터디 가입 모달창</title>
 </head>
 <body>
-   <form method="POST" autocomplete="off">
-      <div id="modal2" class="modal" style="text-align:center;">
+   <form name="form2" method="POST" autocomplete="off">
+      <div style="text-align:center;">
             <p>가입할 그룹 이름</p>
-            <input type="text" id="input" name="name"/>
+            <input type="text" id="input" name="groupName"/>
             <p>그룹 코드</p>
             <input type="text" id="input" name="code" style="background-color:#E6E6E6;" placeholder="가입 시 필요한 숫자 코드"/>
-            <br/><br/><input type="submit" id="submitBtn" value="가입"></input>                                                      
+            <br/><br/>
+            <input type="button" onClick="gc2()" id="submitBtn" value="가입"></input>                                                      
       </div>
    </form>   
 </body>

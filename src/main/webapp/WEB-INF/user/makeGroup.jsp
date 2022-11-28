@@ -38,16 +38,32 @@
 </style>
 <script>
 function gc(){
+   if (form1.groupName.value == "") {
+      alert("그룹명을 입력해주세요.");
+      form1.groupName.focus();
+      return false;
+   }
+   
+   if (form1.groupCategory.value == "") {
+      alert("분야를 선택해주세요.");
+      form1.groupCategory.focus();
+      return false;
+   }
+   
+   if (form1.code.value == "") {
+      alert("코드를 입력해주세요.");
+      form1.code.focus();
+      return false;
+   }
    alert("새로운 그룹이 생성되었습니다.");
    form1.submit();
-   //form1.close();
 }
 </script>
 <title>스터디 생성 모달창</title>
 </head>
 <body>
    <form name="form1" method="POST" autocomplete="off" action="<c:url value = '/group/register' /> ">                        
-      <div  style="text-align:center;">
+      <div style="text-align:center;">
          <p>새로운 그룹명을 작성해주세요</p>
          <input type="text" id="formInput" name="groupName"/>
          <p>우리 스터디의 분야는?</p>
