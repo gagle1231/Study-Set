@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>스터디 가입 모달창</title>
 <style>
 #formInput {
    width:250px; 
@@ -52,7 +53,6 @@ function gc2(){
    form2.submit();
 }
 </script>
-<title>스터디 가입 모달창</title>
 </head>
 <body>
    <form name="form2" method="POST" autocomplete="off" action="/group/member">
