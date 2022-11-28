@@ -98,7 +98,7 @@
 	</table>
 	<div
 		style="<c:if test='${findMemberList eq null}'>display: none;</c:if>
-	<c:if test='${findMemberList ne null}'>display: block;</c:if>"
+	<c:if test='${findMemberList ne null}'>display: block;</c:if> height: 300px;"
 		class="modal_wrap">
 		<!--모달창 영역-->
 		<div class="modal_close">
