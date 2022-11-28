@@ -11,16 +11,30 @@
 <link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
 <script>
 window.onload = function() {
-    
+	//나중에 반복문 처리
+	const modal = document.querySelectorAll('.modal_wrap');
+	
     function onClick() {
-        document.querySelector('.modal_wrap').style.display ='block';
-    }   
-    function offClick() {
-        document.querySelector('.modal_wrap').style.display ='none';
+    	const item = modal.item(0);
+    	item.style.display = 'block';
     }
- 
+    function onClick2() {
+		const item = modal.item(1);
+		item.style.display = 'block';
+    }
+    function offClick() {
+		const item = modal.item(0);
+		item.style.display = 'none';
+    }
+    function offClick2() {
+		const item = modal.item(1);
+		item.style.display = 'none';
+    }
+
     document.getElementById('modal_btn').addEventListener('click', onClick);
+    document.getElementById('modal_btn2').addEventListener('click', onClick2);
     document.querySelector('.modal_close').addEventListener('click', offClick); 
+    document.querySelector('.modal_close2').addEventListener('click', offClick2); 
 };
 </script>
 <style>
@@ -71,12 +85,12 @@ window.onload = function() {
                   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      <div style="float: right; width: 20%;">
                         <p id="modal_btn2" class="btn">
-                           <a href="#modal2" rel="modal:open" type="button" style="color:white;">스터디 가입</a>
+                           <a href="#modal" rel="modal:open" type="button" style="color:white;">스터디 가입</a>
                         </p>
                      </div>
                      <div style="float: right; width: 20%;">
                         <p id="modal_btn" class="btn">
-                           <a href="#modal1" rel="modal:open" type="button" style="color:white;">스터디 생성</a>
+                           <a href="#modal" rel="modal:open" type="button" style="color:white;">스터디 생성</a>
                         </p>
                      </div>
                   </td>
@@ -120,7 +134,7 @@ window.onload = function() {
          <jsp:include page="makeGroup.jsp"></jsp:include>
       </div>
 </div>
-<div style="display: none; height: 460px;" class="modal_wrap2">
+<div style="display: none; height: 270px;" class="modal_wrap">
       <!--스터디가입 모달창 영역-->
       <div class="modal_close2">
          <a href="#">close</a>
