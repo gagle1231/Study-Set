@@ -1,7 +1,6 @@
 package controller.money;
 
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,29 +8,48 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
-import model.Payment;
 import model.StudyGroup;
+import model.Payment;
 import model.service.MoneyManager;
-import model.service.GroupManager;
 
 public class PaymentController implements Controller{
 
    @Override
    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+      if (request.getMethod().equals("POST")) {
+         HttpSession session = request.getSession();
+         StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
+         request.setCharacterEncoding("utf-8");
+         Payment payment = new Payment(
+               group.getGroupId(),
+               request.getParameter("paymentDate"),
+               Integer.parseInt(request.getParameter("price")),
+               request.getParameter("description"),
+               null
+               );
+         try {
+            session = request.getSession();
+            MoneyManager manager = MoneyManager.getInstance();
+            manager.addPayment(payment);
+            
+            return "redirect:/group/money/payment";
+         }catch (SQLException se) {
+            se.printStackTrace();
+            return "/group/money/payment";
+         }catch (Exception e) {
+             e.printStackTrace();
+             return "/group/money/payment";
+         }
+      }
+      
       HttpSession session = request.getSession();
       MoneyManager manager = MoneyManager.getInstance();
-      GroupManager groupManager = GroupManager.getInstance();
-      StudyGroup studyGroup = groupManager.getGroup(request.getParameter("groupName"));
-      List<Payment> paymentList = manager.getPaymentList(request.getParameter("groupId"));
-      session.setAttribute("studyGroup", studyGroup);
-      request.setAttribute("paymentList", paymentList);
+      StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
+      List<Payment> paymentList = manager.getPaymentList(group.getGroupId());
+      session.setAttribute("studyGroup", group);
+      request.setAttribute("list", paymentList);
+      return "/group/money/payment.jsp";
       
-      return "redirect:/group/money/payment";
-   }
-   
-   public void addPayment(Payment payment) throws SQLException, ParseException {
-      MoneyManager manager = MoneyManager.getInstance();
-      manager.addPayment(payment);
    }
 
 }

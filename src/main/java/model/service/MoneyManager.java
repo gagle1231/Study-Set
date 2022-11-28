@@ -41,7 +41,7 @@ public class MoneyManager {
       return paymentDao.getList(gid);
    }
    
-   public List<Dues> getDuesList(String gid) {
+   public List<Dues> getDuesList(String gid) throws SQLException{
       return duesDao.getList(gid);
    }
 }

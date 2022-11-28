@@ -54,8 +54,8 @@ public class RequestMapping {
         mappings.put("/group/task/submit", new ForwardController("/group/task/submit.jsp"));
         
         //회비
-        mappings.put("/group/money/dues", new ForwardController("/group/money/dues.jsp"));
-        mappings.put("/group/money/payment", new ForwardController("/group/money/payment.jsp"));
+        mappings.put("/group/money/dues", new DuesController());
+        mappings.put("/group/money/payment", new PaymentController());
         mappings.put("/group/money/addPayment", new PaymentController());
         mappings.put("/group/money/addDues", new DuesController());
     }
