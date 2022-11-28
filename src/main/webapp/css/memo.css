@@ -1,0 +1,88 @@
+.p1 {
+	left: 228px;
+	top: 251px;
+}
+
+.memo_back {
+	position: absolute;
+	width: 1072px;
+	height: 335px;
+	left: 222px;
+	top: 247px;
+	background: #65B5EF;
+	border-radius: 23px;
+}
+
+.comment_td {
+	position: absolute;
+	width: 1072px;
+	height: 59px;
+	left: 222px;
+	top: 810px;
+	background: #EBEBEB;
+	border-radius: 20px;
+}
+
+.comment_input {
+	box-sizing: border-box;
+	position: absolute;
+	width: 833px;
+	height: 31px;
+	left: 40px;
+	top: 17px;
+	background: #FFFFFF;
+	border: 1px solid #000000;
+	background: #FFFFFF;
+}
+
+.comment_submit {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	left: 894px;
+	top: 17px;
+	background: #000000;
+	border-radius: 50%;
+	color: white;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 800;
+	font-size: 30px;
+	line-height: 20px;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.ann_box {
+	position: absolute;
+	width: 31px;
+	height: 28px;
+	left: 35px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 24px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	top: -3px;
+}
+
+.annonymous {
+	position: absolute;
+	width: 31px;
+	height: 28px;
+	left: 960px;
+	top: 17px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: bold;
+	font-size: 15px;
+	line-height: 24px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	top: 17px;
+}

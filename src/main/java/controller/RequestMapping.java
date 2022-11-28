@@ -10,6 +10,7 @@ import controller.group.GroupController;
 import controller.group.GroupMemberController;
 import controller.group.ViewGroupController;
 import controller.user.LoginController;
+import controller.task.ViewTaskController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -29,7 +30,13 @@ public class RequestMapping {
         mappings.put("/group", new GroupController());
         mappings.put("/group/main", new ForwardController("/group/main.jsp"));
         mappings.put("/group/member", new GroupMemberController());
-
+        
+        //task mapping
+        mappings.put("/group/task/main", new ForwardController("/group/task/list.jsp"));
+        mappings.put("/group/task/list", new ViewTaskController());
+        mappings.put("/group/task/detail", new ForwardController("/group/task/detail.jsp"));
+        mappings.put("/group/task/view", new ForwardController("/group/task/view.jsp"));
+        mappings.put("/group/task/submit", new ForwardController("/group/task/submit.jsp"));
     }
 
     public Controller findController(String uri) {	
