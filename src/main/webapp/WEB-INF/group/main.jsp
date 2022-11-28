@@ -7,36 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/group.css' />"
 	type="text/css">
+<link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
 <title>StudySet: ${studyGroup.groupName}</title>
-<style>
-.modal_wrap{
-        display: none;
-        width: 600px;
-        height: 600px;
-        position: absolute;
-        top:50%;
-        left: 50%;
-        margin: -250px 0 0 -250px;
-        background:white;
-        z-index: 2;
-        color:black;  
-		border-radius: 15px;
-    }
- .modal_close{
-        width: 26px;
-        height: 26px;
-        position: absolute;
-        top: -30px;
-        right: 0;
-        }
-    .modal_close> a{
-        display: block;
-        width: 100%;
-        height: 100%;
-        background:url(https://img.icons8.com/metro/26/000000/close-window.png);
-        text-indent: -9999px;
-    }
-</style>
 <script>
     window.onload = function() {
  
@@ -45,6 +17,7 @@
     }   
     function offClick() {
         document.querySelector('.modal_wrap').style.display ='none';
+        history.replaceState({}, null, location.pathname);
     }
  
     document.getElementById('modal_btn').addEventListener('click', onClick);
@@ -52,9 +25,6 @@
  
 };
 </script>
-<%
-
-%>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
 	<br>
@@ -93,25 +63,28 @@
 					</tr>
 					<tr>
 						<td><h4>${studyGroup.groupDescription}</h4></td>
-						<td align="center"><input id="modal_btn" type="button" value="그룹원 검색" /><br></td>
+						<td align="center"><input id="modal_btn" type="button"
+							value="그룹원 검색" class="btn"/><br></td>
 					</tr>
 					<tr>
-						<td><input type="button" value="가입 코드 보기"
+						<td><input type="button" value="가입 코드 보기" class="btn"
 							onClick="alert('${studyGroup.code}')" /><br></td>
 					</tr>
 					<tr>
 						<td width="50%">
 							<table class="tb">
 								<tr>
-									<td style="vertical-align: top;"><h3>&nbsp;&nbsp;주요 전달 사항</h3></td>
-									<td style="vertical-align: top;"><ul>+</ul></td>
+									<td style="vertical-align: top;"><h3>&nbsp;&nbsp;주요
+											전달 사항</h3></td>
+									<td style="vertical-align: top;"></td>
 								</tr>
 							</table>
 						</td>
 						<td>
 							<table class="tb">
 								<tr>
-									<td style="vertical-align: top;"><h3>&nbsp;&nbsp;Quick Notes</h3></td>
+									<td style="vertical-align: top;"><h3>&nbsp;&nbsp;Quick
+											Notes</h3></td>
 								</tr>
 							</table>
 						</td>
@@ -120,14 +93,16 @@
 			</td>
 		</tr>
 	</table>
-	<div style="<c:if test='${findMemberList eq null}'>display: none;</c:if>
+	<div
+		style="<c:if test='${findMemberList eq null}'>display: none;</c:if>
 	<c:if test='${findMemberList ne null}'>display: block;</c:if>"
-	class="modal_wrap"><!--모달창 영역-->
+		class="modal_wrap">
+		<!--모달창 영역-->
 		<div class="modal_close">
 			<a href="#">close</a>
 		</div>
 		<div align="center">
-		<jsp:include page="search.jsp"></jsp:include>
+			<jsp:include page="search.jsp"></jsp:include>
 		</div>
 	</div>
 </body>

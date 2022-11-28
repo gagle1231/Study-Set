@@ -17,24 +17,28 @@ public class GroupDAO {
 		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
 	}
 
-	// 스터디 그룹 생성
-	public int create(StudyGroup studyGroup) throws SQLException {
+	// 스터디 그룹 생성과 그룹 생성자 그룹에 가입 처리 트랜잭션
+	public int create(StudyGroup studyGroup, String userId) throws SQLException {
 		String sql = "INSERT INTO StudyGroup VALUES (" + "'g'||LPAD(Sequence_gId.nextval, 7, '0')" + ", ?, ?, ?, ?)";
-		Object[] param = new Object[] { studyGroup.getGroupName(), studyGroup.getGroupCategory(),
+		Object[] param = new Object[] {studyGroup.getGroupName(), studyGroup.getGroupCategory(),
 				studyGroup.getGroupDescription(), studyGroup.getCode() };
 		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
-
-		try {
-			int result = jdbcUtil.executeUpdate(); // insert 문 실행
+		
+		String sql2 = "INSERT INTO JOIN (userId, groupId, groupName) VALUES(?, 'g'||LPAD(Sequence_gId.currval,  7, '0'), ?)";
+		Object[] param2 = new Object[] { userId, studyGroup.getGroupName() };
+		try {				
+			int result = jdbcUtil.executeUpdate();	// insert 문 실행
+			jdbcUtil.setSqlAndParameters(sql2, param2);
+			result = jdbcUtil.executeUpdate();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
-		} finally {
+		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
-		}
-		return 0;
+			jdbcUtil.close();	// resource 반환
+		}		
+		return 0;	
 	}
 
 	// 그룹이름으로 검색

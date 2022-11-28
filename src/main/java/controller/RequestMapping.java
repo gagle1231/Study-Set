@@ -6,11 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.*;
+import controller.group.AddChartController;
+import controller.group.ChartController;
 import controller.group.GroupController;
 import controller.group.GroupMemberController;
 import controller.group.ViewGroupController;
+import controller.group.ViewScheduleController;
 import controller.user.LoginController;
-import controller.task.ViewTaskController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -19,6 +21,8 @@ public class RequestMapping {
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
+    	
+    	
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/main", new ForwardController("/user/login.jsp"));
@@ -27,9 +31,18 @@ public class RequestMapping {
         mappings.put("/user/group/list", new ViewGroupController());
         mappings.put("/user/main", new ForwardController("/user/main.jsp"));
         mappings.put("/user/register", new RegisterUserController());
+        
+        //그룹
         mappings.put("/group", new GroupController());
+        mappings.put("/group/register", new GroupController());
         mappings.put("/group/main", new ForwardController("/group/main.jsp"));
         mappings.put("/group/member", new GroupMemberController());
+        
+        //스캐줄
+        mappings.put("/schedule/chart", new ChartController());
+        mappings.put("/schedule/addchart", new AddChartController());
+        mappings.put("/schedule/calendar", new ViewScheduleController());
+        mappings.put("/schedule/calendar/detail", new ForwardController("/group/schedule/scheduleForm.jsp"));
         
         //task mapping
         mappings.put("/group/task/main", new ForwardController("/group/task/list.jsp"));

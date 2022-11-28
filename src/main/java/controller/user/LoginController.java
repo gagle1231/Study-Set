@@ -29,7 +29,7 @@ public class LoginController implements Controller {
 //	
 //			// 세션에 사용자 로그인 한 회원 정보 저장
 			HttpSession session = request.getSession();
-            session.setAttribute("loginmeber", member); 
+            session.setAttribute("loginmember", member); 
 //            session.setAttribute("joinList", userJoinList);
             return "redirect:/user/group/list";			
 		} catch (Exception e) {

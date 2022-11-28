@@ -1,6 +1,8 @@
 package model;
 
-public class Schedule {
+import java.io.Serializable;
+
+public class Schedule implements Serializable{
 	private String scheduleId;
 	private String groupId;
 	private String title;
