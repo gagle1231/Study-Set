@@ -21,6 +21,8 @@ public class RequestMapping {
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
+    	
+    	
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
         mappings.put("/", new ForwardController("index.jsp"));
         mappings.put("/main", new ForwardController("/user/login.jsp"));
@@ -29,15 +31,25 @@ public class RequestMapping {
         mappings.put("/user/group/list", new ViewGroupController());
         mappings.put("/user/main", new ForwardController("/user/main.jsp"));
         mappings.put("/user/register", new RegisterUserController());
+        
+        //그룹
         mappings.put("/group", new GroupController());
         mappings.put("/group/register", new GroupController());
         mappings.put("/group/main", new ForwardController("/group/main.jsp"));
         mappings.put("/group/member", new GroupMemberController());
+        
+        //스캐줄
         mappings.put("/schedule/chart", new ChartController());
         mappings.put("/schedule/addchart", new AddChartController());
         mappings.put("/schedule/calendar", new ViewScheduleController());
         mappings.put("/schedule/calendar/detail", new ForwardController("/group/schedule/scheduleForm.jsp"));
         
+        //task mapping
+        mappings.put("/group/task/main", new ForwardController("/group/task/list.jsp"));
+        mappings.put("/group/task/list", new ViewTaskController());
+        mappings.put("/group/task/detail", new ForwardController("/group/task/detail.jsp"));
+        mappings.put("/group/task/view", new ForwardController("/group/task/view.jsp"));
+        mappings.put("/group/task/submit", new ForwardController("/group/task/submit.jsp"));
     }
 
     public Controller findController(String uri) {	

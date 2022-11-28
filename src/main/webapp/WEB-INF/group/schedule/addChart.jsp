@@ -119,6 +119,5 @@ function addChart(){
 		});
 		
 	</script>
-	
 </body>
 </html>
