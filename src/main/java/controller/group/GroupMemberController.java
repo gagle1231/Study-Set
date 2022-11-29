@@ -1,5 +1,6 @@
 package controller.group;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ public class GroupMemberController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+		
 		if (request.getMethod().equals("GET")) {	// GET request: 그룹원 검색
 			GroupManager manager = GroupManager.getInstance();
 			String memberName = request.getParameter("srchMem");
@@ -29,21 +31,24 @@ public class GroupMemberController implements Controller{
 			return "/group/main.jsp";   // 검색한 정보를 update form으로 전송     
 		}	
 
-		String groupName = request.getParameter("name");
-		String code = request.getParameter("code");
-		GroupManager manager = GroupManager.getInstance();
-		StudyGroup newGroup = manager.check(groupName, code);
-		try {
-			if(newGroup!=null) {
-				String userId = (String) session.getAttribute("loginmeber");
-				Join join = new Join(userId, newGroup.getGroupId(), groupName);
-				manager.addMember(join);
-					
+		if (request.getMethod().equals("POST")) {
+			request.setCharacterEncoding("utf-8");
+			String groupName = request.getParameter("groupName");
+			String code = request.getParameter("code");
+			GroupManager manager = GroupManager.getInstance();
+			StudyGroup newGroup = manager.check(groupName, code);
+			try {
+				if(newGroup!=null) {
+					Member m = (Member) session.getAttribute("loginmember");
+					Join join = new Join(m.getUserId(), newGroup.getGroupId(), groupName);
+					manager.addMember(join);
+				}
+				return "redirect:/user/group/list";
+			} catch(Exception e) {
+				e.printStackTrace();
+				return "/user/login";
 			}
-		}catch(Exception e) {
-			
 		}
-		return "redirect:/user/group/list";	
+		return "redirect:/group/main";
 	}
-
 }

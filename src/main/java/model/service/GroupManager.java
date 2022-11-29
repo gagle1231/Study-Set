@@ -59,7 +59,6 @@ public class GroupManager {
 		return group;
 	}
 	
-	
 	//멤버 이름으로 해당 그룹원 검색
 	public List<Member> search(String memberName, String groupId) throws SQLException{
 		List<Member> memberList = new ArrayList<>();
