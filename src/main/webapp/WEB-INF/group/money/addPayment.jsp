@@ -21,15 +21,16 @@
 	}
 	</style>
 	<script>
-	function add {
-		form.method="GET";		
+	function add() {
+		form.method="POST";		
+		alert("입력이 완료되었습니다.");
 		form.submit();
 	}
 	</script>
 </head>
 <body>
 	<h2>사용 내역 입력</h2>
-	<form name="addForm" method="GET" action="<c:url value='/group/money' />">
+	<form name="addForm" method="POST" autocomplete="off" action="<c:url value='/group/money' />">
 		<h4>사용 내역</h4><br>
 		<input name="description" type="text" class="green">
 		<br><br>

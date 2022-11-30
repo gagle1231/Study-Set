@@ -44,14 +44,14 @@ public class DuesController implements Controller{
 	      }
       }
 
-	    HttpSession session = request.getSession();
+	  HttpSession session = request.getSession();
       MoneyManager manager = MoneyManager.getInstance();
       StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
       List<Dues> list = manager.getDuesList(group.getGroupId());
       
       request.setAttribute("list", list);
 
-	    request.setAttribute("groupId", group.getGroupId());
+	  request.setAttribute("groupId", group.getGroupId());
       return "/group/money/dues.jsp";
 
    }
