@@ -33,19 +33,19 @@
 </style>
 <script>
 	function gc() {
-		if (form1.taskTitle.value == "") {
+		if (form1.name.value == "") {
 			alert("과제 제목을 입력해주세요.");
 			form1.taskTitle.focus();
 			return false;
 		}
 
-		if (form1.taskDescription.value == "") {
-			alert("분야를 선택해주세요.");
+		if (form1.description.value == "") {
+			alert("과제 설명을 작성해주세요.");
 			form1.taskDescription.focus();
 			return false;
 		}
 
-		alert("새로운 그룹이 생성되었습니다.");
+		alert("새로운 과제가 생성되었습니다.");
 		form1.submit();
 	}
 </script>
@@ -53,23 +53,23 @@
 </head>
 <body>
 	<form name="form1" method="POST" autocomplete="off"
-		action="<c:url value = '/group/task/create' /> ">
+		action="<c:url value = '/group/task/form' /> ">
 		<div style="text-align: center; background-color: white;">
 			<p>과제 제목:</p>
-			<input type="text" id="formInput" name="taskTitle"
+			<input type="text" id="formInput" name="name"
 				placeholder="과제 이름을 작성해주세요." />
 			<p>과제 설명:</p>
-			<input type="text" name="taskDescription" id="formInput"
+			<input type="text" name="description" id="formInput"
 				style="height: 147px; width: 76%;" placeholder="과제 설명을 작성해주세요.">
 			<br> <br> <br>
 			<p>생성 일자</p>
 			<input type="date" id="formInput" name="startDate"
 				style="background-color: #BEEDCD;"> &nbsp;<input type="time"
-				id=formInput name="startTime" style="background-color: #BEEDCD;">
+				id=formInput name="startDate" style="background-color: #BEEDCD;">
 			<p>마감 일자</p>
 			<input type="date" id="formInput" name="endDate"
 				style="background-color: #BEEDCD;"> &nbsp;<input type="time"
-				id=formInput name="endTime" style="background-color: #BEEDCD;">
+				id=formInput name="endDate" style="background-color: #BEEDCD;">
 			<br /> <br /> <input type="button" onClick="gc()" id="submitBtn"
 				value="생성"></input>
 		</div>

@@ -79,4 +79,16 @@ public class GroupManager {
 		else
 			return null;
 	}
+	
+	//그룹원 리스트->과제 제출 연결
+	public List<Member> getMember(String groupId) throws SQLException {
+		List<Member> memberList = new ArrayList<>();
+		try {
+			memberList = groupDao.getMember(groupId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return memberList;
+	}
 }
