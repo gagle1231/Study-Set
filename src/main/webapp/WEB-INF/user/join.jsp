@@ -7,11 +7,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/user.css' />"
 	type="text/css">
+<style type="text/css">
+.info{
+font-size: 7px;
+color: red;
+}
+
+.checkBtn{
+color:black;
+background-color:#C1BDBD;
+border-radius:5px;
+border:0px;
+width:70px;
+}
+</style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-  
-     
+<script>   
     function setEmailDm(){
         form.email.value+=form.emailDomain.value;
     } 
@@ -69,11 +81,31 @@
 			form.phone.focus();
 			return false;
 		}
+		if(form.phone.value.length != 11){
+			alert("전화번호 형식이 올바르지 않습니다.");
+			form.phone.focus();
+			return false;
+		}
+		
+		if (form.chkbtn.value == false) {
+			alert("개인정보 활용 약관을 확인해주세요.");
+				return false;
+		}
 		form.submit();
 	}
 
 	function userList(targetUri) {
 		form.action = targetUri;
+		form.submit();
+	}
+	
+	function checkId(){
+		if (form.userId.value == "") {
+			alert("사용자 ID를 입력하십시오.");
+			form.userId.focus();
+			return false;
+		}
+		form.method = "GET";
 		form.submit();
 	}
 </script>
@@ -95,51 +127,51 @@
 						</tr>
 						<tr height="50">
 							<td align="center">ID</td>
-							<td style="padding-left: 10"><input type="text"
-								style="width: 70%" name="userId" class="input-field"
-								maxlength="15"> &nbsp;&nbsp;<input type="button"
-								value="중복체크" onClick="checkId()" class="blackbtn"></td>
+							<td style="padding-left: 10">
+							<input type="text" style="width: 70%" name="userId" class="input-field"
+								maxlength="15" value="${param.userId}"> 
+								&nbsp;&nbsp;<input type="button"
+								value="중복체크" onClick="checkId()" class="checkBtn">
+								<c:if test="${ExistId eq true}"><br><span class="info">존재하는 아이디 입니다.</span></c:if>
+								<c:if test="${ExistId ne true}"><br><span class="info">사용 가능한 아이디 입니다.</span></c:if>
+								</td>
 						</tr>
 						<tr height="50">
-							<td align="center">비밀먼호</td>
-							<td style="padding-left: 10"><input type="password"
-								style="width: 70%" name="password" class="input-field"
-								maxlength="20"></td>
+							<td align="center">비밀번호</td>
+							<td style="padding-left: 10">
+							<input type="password"	style="width: 70%" name="password" class="input-field"
+								maxlength="20" value="${param.password}"></td>
 						</tr>
 						<tr height="50">
 							<td align="center">비밀번호 확인</td>
 							<td style="padding-left: 10"><input type="password"
 								style="width: 70%" name="password2" class="input-field"
 								maxlength="20"> &nbsp;&nbsp;<input type="button"
-								value="확인" onClick="checkPwd()" class="blackbtn"></td>
+								value="확인" onClick="checkPwd()" class="checkBtn" value="${password}"></td>
 						</tr>
 						<tr height="50">
 							<td align="center">이름</td>
 							<td style="padding-left: 10"><input type="text"
-								style="width: 70%" name="name"
-								<c:if test="${registerFailed}">value="${user.name}"</c:if>
-								class="input-field" maxlength="20"></td>
+								style="width: 70%" name="name" 
+								class="input-field" maxlength="20" value="${param.name}"></td>
 						</tr>
 						<tr height="50">
 							<td align="center">전화번호</td>
-							<td style="padding-left: 10"><input type="text"
-								style="width: 70%" name="phone"
-								<c:if test="${registerFailed}">value="${user.phone}"</c:if>
-								class="input-field" maxlength="11"> &nbsp;&nbsp;<input
-								type="button" value="중복체크" onClick="checkId()"
-								class="blackbtn"></td>
+							<td style="padding-left: 10"><input type="text" style="width: 70%" name="phone"
+								class="input-field" maxlength="11" value="${param.phone}"> &nbsp;&nbsp;</td>
 						</tr>
 						<tr height="50">
 							<td align="center">생년월일</td>
 							<td style="padding-left: 10"><input name="birth" type="date"
 								style="width: 70%" max="2077-06-20" min="1900-01-01"
-								value="2022-11-17" class="input-field"></td>
+								value="2022-11-17" class="input-field" value="${param.birth}"></td>
 						</tr>
 						<tr height="50">
 							<td align="center">이메일</td>
 							<td style="padding-left: 10"><input type="text"
 								style="width: 70%" name="email" class="input-field"
-								maxlength="50"> <select name="emailDomain" title="이메일 주소 선택" onChange="setEmailDm()">
+								maxlength="50" value="${param.email}">
+								<select name="emailDomain" title="이메일 주소 선택" onChange="setEmailDm()">
 									<option value="">직접입력</option>
 									<option value="@naver.com">naver.com</option>
 									<option value="@nate.com">nate.com</option>
@@ -154,7 +186,7 @@
 					</table> <br>
 					<table style="width: 40%">
 						<tr>
-							<td align="center"><input type="checkbox"> 개인정보 수집 및
+							<td align="center"><input name="chkbtn" type="checkbox"> 개인정보 수집 및
 								이용 동의<br> <br> <input type="button" value="가입"
 								onClick="userCreate()" class="btn"></td>
 						</tr>

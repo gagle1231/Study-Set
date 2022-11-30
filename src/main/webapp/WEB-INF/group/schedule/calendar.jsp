@@ -1,30 +1,70 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@page import="java.util.*, model.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/group.css' />"
 	type="text/css">
-<link rel=stylesheet href="<c:url value='/css/main.css' />"
-	type="text/css">
+<link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
 <title>StudySet: ${studyGroup.groupName}</title>
-<script src="<c:url value='/js/main.css' />"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.2.0/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.2.0/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.min.css" rel="stylesheet"/>
 <script type="text/javascript">
-function chkChart(target){
-	form.action = target;
-	form.submit();
-}
-</script>
-<style>
+function onClick() {
+    document.querySelector('.modal_wrap').style.display ='block';
+}   
 
+function offClick() {
+    document.querySelector('.modal_wrap').style.display ='none';
+    history.replaceState({}, null, location.pathname);
+}
+
+
+var eventsArray = [ 
+	<%
+	List<Schedule> slist = (List<Schedule>)request.getAttribute("scheduleList");
+	for(Schedule s: slist){
+	%>
+	{title: '<%=s.getTitle()%>', date: '<%=s.getDate()%>'},
+	<%}%>
+ ];
+ 
+
+document.addEventListener('DOMContentLoaded', function() {
+   var calendarEl = document.getElementById('calendar');
+
+   var calendar = new FullCalendar.Calendar(calendarEl, {
+       height: 600,
+       plugins: [ 'dayGrid', 'interaction' ],
+       
+       dateClick: function(info) {
+        onClick();
+        calendar.refetchEvents();
+       },
+     
+       eventClick: function(info) {
+         alert(info.event.title)
+       },
+     
+       events: function(info, successCallback, failureCallback) {
+         successCallback(eventsArray);
+       }
+   });
+
+   calendar.render();
+ });
+</script>
+
+<style>
 </style>
-<link
-	href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.min.css"
-	rel="stylesheet" />
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
+<form name="dateForm" action="#"><input type="hidden" name="date"></form>
 	<br>
 	<table style="width: 100%; border-collapse: collapse">
 		<tr>
@@ -32,8 +72,8 @@ function chkChart(target){
 				<!-- 왼쪽 사이드(로고, 메뉴) 구성 -->
 				<table>
 					<tr>
-						<td><img src="<c:url value='/images/studysetlogo.png'/>"
-							width="130px" /><br><br></td>
+						<td><a href="<c:url value='http://localhost:8080/StudySet/user/group/list' />"><img src="<c:url value='/images/studysetlogo.png'/>"
+							width="130px" /></a><br><br></td>
 					</tr>
 					<tr>
 						<td><jsp:include page="../menu.jsp" flush="false" /></td>
@@ -50,7 +90,7 @@ function chkChart(target){
 						</td>
 					</tr>
 					<tr><td><form name="form" action="<c:url value='/schedule/chart'/>">
-						<input type="button" name="newScheduleButton" value="새 스캐줄 생성" onClick="newSchedule()">
+						<input type="button" name="newScheduleButton" value="새 스캐줄 생성" onClick="onClick()">
 						<button  onClick="chkChart(<c:url value='/schedule/chart'/>)">일정 조율표 확인하기</button>
 					</form></td></tr>
 					<tr>
@@ -62,4 +102,12 @@ function chkChart(target){
 			</td>
 		</tr>
 	</table>
+	<div style="display: none; height: 600px;" class="modal_wrap">
+		<div class="modal_close" onclick="offClick()">
+			<a href="#" onClick="offClick()">close</a>
+		</div>
+		<div align="center">
+			<jsp:include page="addSchedule.jsp"></jsp:include>
+		</div>
+	</div>
 </html>

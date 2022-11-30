@@ -9,6 +9,7 @@ import controller.group.GroupController;
 import model.dao.ScheduleDAO;
 import model.dao.TimeSlotDAO;
 import model.service.GroupManager;
+import model.service.ScheduleManager;
 import model.dao.GroupDAO;
 import model.dao.MemoDAO;
 
@@ -16,9 +17,14 @@ public class ScheduleTest {
 
 	public static void main(String[] args) throws SQLException, ParseException {
 		// TODO Auto-generated method stub
-		//ScheduleDAO dao = new ScheduleDAO();
+		ScheduleDAO dao = new ScheduleDAO();
 
-		// dao.create(new Schedule("s0000", "1", "임시테스트", "20011231", null, null, null, "d", 'Y'));
+		//dao.create(new Schedule(null, "1", "스캐줄1", "20221231", "2000", null, null, "d", 'Y'));
+		ScheduleManager manager = ScheduleManager.getInstance();
+		//manager.create(new Schedule(null, "1", "스캐줄2", "20221231", "1000", null, null, "d", 'Y'));
+		for(Schedule s: manager.find("1")) {
+			System.out.println(s.toString());
+		}
 		// ArrayList<Schedule> s = (ArrayList)dao.getList("1");
 
 		//System.out.println(s.get(0).getScheduleId());

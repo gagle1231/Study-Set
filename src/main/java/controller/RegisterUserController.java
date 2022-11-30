@@ -19,7 +19,24 @@ public class RegisterUserController implements Controller {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-       	Member member = new Member(
+    	if (request.getMethod().equals("GET")) {	
+    		try {
+    			MemberManager manager = MemberManager.getInstance();
+    			String id = request.getParameter("userId");
+    			if(manager.existMember(id)) {
+                    request.setAttribute("ExistId", false);
+                    request.setAttribute("id", id);
+    			}
+    			return "/user/join.jsp";
+    	        
+    		} catch (ExistingUserException e) {
+                request.setAttribute("registerFailed", true);
+                request.setAttribute("ExistId", true);
+    			return "/user/join.jsp";
+    		}
+	    }	
+    	
+    	Member member = new Member(
 			request.getParameter("userId"),
 			request.getParameter("name"),
 			request.getParameter("password"),

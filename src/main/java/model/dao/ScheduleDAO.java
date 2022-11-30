@@ -34,7 +34,7 @@ public class ScheduleDAO {
 						rs.getString("startTime"),
 						rs.getString("endTime"),					
 						rs.getString("scheduleLocation"),
-						rs.getString("scheduleDescription"),
+						null,
 						rs.getString("important").charAt(0));
 				scheduleList.add(schedule);			// List에 Community 객체 저장
 			}		

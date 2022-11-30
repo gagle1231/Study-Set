@@ -29,6 +29,11 @@ public class Schedule implements Serializable{
 		this.important = important;
 	}
 	
+	public Schedule() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public String getTitle() {
 		return title;
 	}

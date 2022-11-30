@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .tb{
 	background-color: #c0c0c0;
 	border-radius: 20px;
@@ -6,10 +7,28 @@
 	text-align: top;
 }
 
-.btn{
+.btn2{
 background-color: #FFFFFF;
 color: black;
 font-family: Arial;
 font-size: 13px;
 font-style: bold;
+width:120px;
+border:0px;
+border-radius:5px;
+}
+
+.inputField{
+background-color: rgb(187, 244, 227);
+color: black;
+font-size: 13px;
+border:0px;
+border-radius:5px;
+}
+#title{
+background-color: gray;
+color: black;
+font-size: 22px;
+border:0px;
+border-radius:5px;
 }

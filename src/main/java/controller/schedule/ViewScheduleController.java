@@ -1,4 +1,4 @@
-package controller.group;
+package controller.schedule;
 
 import java.util.List;
 
@@ -22,15 +22,12 @@ public class ViewScheduleController implements Controller{
 				ScheduleManager manager = ScheduleManager.getInstance();
 				List<Schedule> scheduleList = manager.find(studyGroup.getGroupId());
 				request.setAttribute("scheduleList", scheduleList);
-		    	//log.debug("Create Community : {}", comm);
 		        return "/group/schedule/calendar.jsp";	// 성공 시 커뮤니티 리스트 화면으로 redirect
 		        
 			} catch (Exception e) {		// 예외 발생 시 입력 form으로 forwarding
-	            request.setAttribute("creationFailed", true);
-				request.setAttribute("exception", e);
-				//request.setAttribute("comm", comm);
-				return "/community/creationForm.jsp";
+	            
 			}
+			return null;
 	}
 
 }

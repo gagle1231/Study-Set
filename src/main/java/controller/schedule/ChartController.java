@@ -1,4 +1,4 @@
-package controller.group;
+package controller.schedule;
 
 import java.util.ArrayList;
 import java.util.List;
