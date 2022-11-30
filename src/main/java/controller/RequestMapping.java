@@ -14,7 +14,7 @@ import controller.group.ViewGroupController;
 import controller.group.ViewScheduleController;
 import controller.user.LoginController;
 import controller.money.*;
-import controller.task.ViewTaskController;
+import controller.task.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -46,11 +46,11 @@ public class RequestMapping {
         mappings.put("/schedule/calendar", new ViewScheduleController());
         mappings.put("/schedule/calendar/detail", new ForwardController("/group/schedule/scheduleForm.jsp"));
         
-        //task mapping
-        mappings.put("/group/task/main", new ForwardController("/group/task/list.jsp"));
-        mappings.put("/group/task/list", new ViewTaskController());
-        mappings.put("/group/task/detail", new ForwardController("/group/task/detail.jsp"));
-        mappings.put("/group/task/view", new ForwardController("/group/task/view.jsp"));
+        //과제
+        mappings.put("/group/task/main", new ViewTaskController());
+        mappings.put("/group/task/form", new TaskController());
+        mappings.put("/group/task/detail", new TaskDetailController());
+        mappings.put("/group/task/view", new SubmitController());
         mappings.put("/group/task/submit", new ForwardController("/group/task/submit.jsp"));
         
         //회비

@@ -67,7 +67,30 @@ public class TaskDAO {
 		}
 		return null;
 	}
+	
+	public Task getTask(String taskId){
+		String sql = "SELECT * FROM TASK WHERE taskId = ?";                        
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { taskId });
 
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();	
+
+			if (rs.next()) {
+				Task task = new Task(
+						taskId, 
+						rs.getString("taskName"), 
+						rs.getString("startDate"), rs.getString("endDate"), 
+						rs.getString("taskDescription"));
+				return task;
+			}		
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}
+	
 	//과제 제출하기
 	public int submitTask(String taskId, Submit submit) throws SQLException{
 
