@@ -18,6 +18,7 @@ public class GroupController implements Controller{
    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
       //그룹 메인 컨트롤러
       if (request.getMethod().equals("POST")) {
+    	  //새로운 그룹 생성
     	  request.setCharacterEncoding("utf-8");
          StudyGroup group = new StudyGroup(
         		 null,
@@ -44,12 +45,12 @@ public class GroupController implements Controller{
             return "/user/login";
          }
       }
-      
+      //그룹 선택 후 그룹 메인으로 리다이렉트
       HttpSession session = request.getSession();
       GroupManager manager = GroupManager.getInstance();
       StudyGroup studyGroup = manager.getGroup(request.getParameter("groupName"));
       session.setAttribute("studyGroup", studyGroup);
-      //List<Member> groupMembers = manager.g
+      
       return "redirect:/group/main";
    }
 }

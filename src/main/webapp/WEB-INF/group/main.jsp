@@ -1,14 +1,25 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="<c:url value='/css/group.css' />"
-	type="text/css">
-<link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
+<link rel=stylesheet href="<c:url value='/css/group.css'/>" type="text/css">
+<link rel=stylesheet href="<c:url value='/css/modal.css'/>" type="text/css">
 <title>StudySet: ${studyGroup.groupName}</title>
+<style>
+.btn1{
+background-color: #FFFFFF;
+color: black;
+font-family: Arial;
+font-size: 16px;
+font-style: bold;
+height:30px;
+width:120px;
+border:1;
+border-radius:5px;
+}
+</style>
 <script>
     window.onload = function() {
  
@@ -18,12 +29,14 @@
     function offClick() {
         document.querySelector('.modal_wrap').style.display ='none';
         history.replaceState({}, null, location.pathname);
+        
     }
  
     document.getElementById('modal_btn').addEventListener('click', onClick);
     document.querySelector('.modal_close').addEventListener('click', offClick);
  
 };
+
 </script>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
@@ -67,10 +80,10 @@
 					<tr>
 						<td><h4>${studyGroup.groupDescription}</h4></td>
 						<td align="center"><input id="modal_btn" type="button"
-							value="그룹원 검색" class="btn"/><br></td>
+							value="그룹원 검색" class="btn1" style="font-size:15px;"/><br></td>
 					</tr>
 					<tr>
-						<td><input type="button" value="가입 코드 보기" class="btn"
+						<td><input type="button" value="가입 코드 보기" class="btn1"
 							onClick="alert('${studyGroup.code}')" /><br></td>
 					</tr>
 					<tr>
@@ -86,8 +99,10 @@
 						<td>
 							<table class="tb">
 								<tr>
-									<td style="vertical-align: top;"><h3>&nbsp;&nbsp;Quick
-											Notes</h3></td>
+									<td style="vertical-align: top;"><h3>&nbsp;&nbsp;Quick Notes</h3></td>
+								</tr>
+								<tr>
+									<td></td>					
 								</tr>
 							</table>
 						</td>
@@ -97,8 +112,8 @@
 		</tr>
 	</table>
 	<div
-		style="<c:if test='${findMemberList eq null}'>display: none;</c:if>
-	<c:if test='${findMemberList ne null}'>display: block;</c:if> height: 300px;"
+		style="<c:if test='${searching eq null}'>display: none;</c:if>
+	<c:if test='${searching eq true}'>display: block;</c:if> height: 300px;"
 		class="modal_wrap">
 		<!--모달창 영역-->
 		<div class="modal_close">

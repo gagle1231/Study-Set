@@ -6,14 +6,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.*;
-import controller.group.AddChartController;
-import controller.group.ChartController;
 import controller.group.GroupController;
 import controller.group.GroupMemberController;
 import controller.group.ViewGroupController;
-import controller.group.ViewScheduleController;
 import controller.user.LoginController;
 import controller.money.*;
+import controller.schedule.AddChartController;
+import controller.schedule.ChartController;
+import controller.schedule.ScheduleController;
+import controller.schedule.ViewScheduleController;
 import controller.task.ViewTaskController;
 
 public class RequestMapping {
@@ -44,8 +45,8 @@ public class RequestMapping {
         mappings.put("/schedule/chart", new ChartController());
         mappings.put("/schedule/addchart", new AddChartController());
         mappings.put("/schedule/calendar", new ViewScheduleController());
-        mappings.put("/schedule/calendar/detail", new ForwardController("/group/schedule/scheduleForm.jsp"));
-        
+       // mappings.put("/schedule/calendar/detail", new ForwardController("/group/schedule/scheduleForm.jsp"));
+        mappings.put("/schedule/calendar/detail", new ScheduleController());
         //task mapping
         mappings.put("/group/task/main", new ForwardController("/group/task/list.jsp"));
         mappings.put("/group/task/list", new ViewTaskController());

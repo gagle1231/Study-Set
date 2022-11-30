@@ -147,11 +147,8 @@ a {
 }
 
 .back {
-	position: absolute;
 	width: 1020px;
 	height: 620px;
-	left: calc(50% - 1043px/ 2 + 10px);
-	bottom: -154px;
 	background: #CBD1CA;
 	border-radius: 20px;
 }
