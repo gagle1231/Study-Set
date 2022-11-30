@@ -4,68 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="<c:url value='/css/group.css' />"
+<link rel=stylesheet href="<c:url value='/css/money.css' />"
 	type="text/css">
 <link rel=stylesheet href="<c:url value='/css/modal.css' />"
 	type="text/css">
 <title>StudySet: ${studyGroup.groupName}</title>
-<style>
-.btn {
-	border: 6px;
-	background-color: #F2673B;
-	color: white;
-	border-radius: 10px;
-	font-size: 25px;
-	width: 132px;
-	height: 45px;
-	left: 1100px;;
-	top: 200px;
-}
-
-.btn2 {
-	border: 0px;
-	width: 170px;
-	height: 35px;
-	font-size: 17px;
-	background-color: #8cdbbc;
-	border-radius: 20px;
-	border: 0px;
-}
-
-.back {
-	width: 97%;
-	height: 600px;
-	left: calc(50% - 1043px/ 2 + 10px);
-	bottom: -154px;
-	background: #CBD1CA;
-	border-radius: 20px;
-	border-collapse: collapse;
-	text-align:center;
-}
-
-.individualBack {
-	width: 960px;
-	height: 30px;
-	background: white;
-	color: black;
-	border-radius: 20px;
-	border-collapse: collapse;
-	font-family:궁서체;
-	font-weight:bold;
-}
-
-.individualBack td:first-child {
-	border-left-style: solid 0px;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-}
-
-.individualBack td:last-child {
-	border-right-style: solid 0px;
-	border-bottom-right-radius: 10px;
-	border-top-right-radius: 10px;
-}
-</style>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
 	<br>
