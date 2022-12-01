@@ -49,7 +49,7 @@ public class GroupDAO {
 		try {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
 			if (rs.next()) { // 학생 정보 발견
-				StudyGroup group = new StudyGroup( // User 객체를 생성하여 학생 정보를 저장
+				StudyGroup group = new StudyGroup( 
 						rs.getString("groupId"), groupName, rs.getInt("groupCategory"),
 						rs.getString("groupDescription"), rs.getString("code"));
 				return group;

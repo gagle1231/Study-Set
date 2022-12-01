@@ -30,7 +30,7 @@ var eventsArray = [
 	List<Schedule> slist = (List<Schedule>)request.getAttribute("scheduleList");
 	for(Schedule s: slist){
 	%>
-	{title: '<%=s.getTitle()%>', date: '<%=s.getDate()%>'},
+	{ date: '<%=s.getDate()%>', title: '<%=s.getTitle()%>', id: '<%=s.getScheduleId()%>'},
 	<%}%>
  ];
  
@@ -39,9 +39,18 @@ document.addEventListener('DOMContentLoaded', function() {
    var calendarEl = document.getElementById('calendar');
 
    var calendar = new FullCalendar.Calendar(calendarEl, {
-       height: 600,
+       height: 700,
        plugins: [ 'dayGrid', 'interaction' ],
-       
+       titleFormat: function (date) {
+    	      year = date.date.year;
+    	      month = date.date.month + 1;
+
+    	      return year + "년 " + month + "월";
+    	    },
+    	    lang: 'ko',
+    	    firstDay: 1,
+    	    navLinks: true,
+    	    
        dateClick: function(info) {
         onClick();
         calendar.refetchEvents();
@@ -61,6 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
+.fc-day-number.fc-sat.fc-past { color:#0000FF; }
+    .fc-day-number.fc-sun.fc-past { color:#FF0000; }
 </style>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">

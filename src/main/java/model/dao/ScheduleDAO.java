@@ -50,7 +50,6 @@ public class ScheduleDAO {
 
 	//새로운 스캐줄 생성
 	public int create(Schedule schedule) throws SQLException, ParseException {
-		SimpleDateFormat formatter = new SimpleDateFormat("YYYYMMDD");
 		
 		// String sql = "insert into schedule values('1', 'tmp', '20011231', null, null, null,null, 'Y','s'||Sequence_scheduleId.nextval)";
 		String sql = "insert into schedule values(?, ?, ?, ?, ?, ?, ?, ?,"

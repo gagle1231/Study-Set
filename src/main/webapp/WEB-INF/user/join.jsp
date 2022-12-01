@@ -133,7 +133,7 @@ width:70px;
 								&nbsp;&nbsp;<input type="button"
 								value="중복체크" onClick="checkId()" class="checkBtn">
 								<c:if test="${ExistId eq true}"><br><span class="info">존재하는 아이디 입니다.</span></c:if>
-								<c:if test="${ExistId ne true}"><br><span class="info">사용 가능한 아이디 입니다.</span></c:if>
+								<c:if test="${ExistId eq false}"><br><span class="info">사용 가능한 아이디 입니다.</span></c:if>
 								</td>
 						</tr>
 						<tr height="50">

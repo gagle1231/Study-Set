@@ -25,8 +25,8 @@ public class ScheduleController implements Controller {
 			String description = request.getParameter("description");
 
 			String i = request.getParameter("importance");
-			char imp = i==null ? '0' : '1';
-			Schedule newSchedule = new Schedule(null, group.getGroupId(), title, date, startTime, endTime, location, description, 'Y');
+			char imp = i==null ? 'N' : 'Y';
+			Schedule newSchedule = new Schedule(null, group.getGroupId(), title, date, startTime, endTime, location, description, imp);
 			
 			ScheduleManager manager = ScheduleManager.getInstance();
 			try{

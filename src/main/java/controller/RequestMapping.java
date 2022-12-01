@@ -10,6 +10,7 @@ import controller.group.GroupController;
 import controller.group.GroupMemberController;
 import controller.group.ViewGroupController;
 import controller.user.LoginController;
+import controller.user.RegisterUserController;
 import controller.money.*;
 import controller.schedule.AddChartController;
 import controller.schedule.ChartController;
