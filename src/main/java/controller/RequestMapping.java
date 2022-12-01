@@ -45,8 +45,6 @@ public class RequestMapping {
 		mappings.put("/schedule/chart", new ChartController());
 		mappings.put("/schedule/addchart", new AddChartController());
 		mappings.put("/schedule/calendar", new ViewScheduleController());
-		// mappings.put("/schedule/calendar/detail", new
-		// ForwardController("/group/schedule/scheduleForm.jsp"));
 		mappings.put("/schedule/calendar/detail", new ScheduleController());
 
 		// 과제
