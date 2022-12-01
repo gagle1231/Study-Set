@@ -7,9 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/task.css' />"
 	type="text/css">
-<title>StudySet: ${studyGroup.groupName}_과제 홈</title>
 <link rel=stylesheet href="<c:url value='/css/modal.css' />"
 	type="text/css">
+<title>StudySet: ${studyGroup.groupName}_과제 홈</title>
 <script>
 	window.onload = function() {
 
@@ -30,52 +30,43 @@
 	<br>
 	<table style="width: 100%; border-collapse: collapse">
 		<tr>
-			<td style="vertical-align: top; text-align: left; width: 130px;">
-				<!-- 왼쪽 사이드(로고, 메뉴) 구성 -->
-				<table>
-					<tr>
-						<td><a
-							href="<c:url value='http://localhost:8080/StudySet/user/group/list' />">
-								<img src="<c:url value='/images/studysetlogo.png'/>"
-								width="130px" />
-						</a> <br> <br></td>
-					</tr>
-					<tr>
-						<td><jsp:include page="../menu.jsp" flush="false" /></td>
-					</tr>
-				</table>
+			<td rowspan='2' style="text-align: left; width: 130px;"><a
+				href="<c:url value='http://localhost:8080/StudySet/user/group/list' />">
+					<img src="<c:url value='/images/studysetlogo.png'/>" width="130px" />
+			</a></td>
+			<td class="title" style="text-align: left; vertical-align: top;"><br>
+				<br> <br> &nbsp;&nbsp;&nbsp;&nbsp;${studyGroup.groupName}
+				스터디</td>
+		</tr>
+		<tr>
+			<td class="title">&nbsp;&nbsp;&nbsp;&nbsp;과제</td>
+			<td>
+				<p id="modal_btn" class="btn">
+					<a href="#modal1" rel="modal:open" type="button"
+						style="color: white;">과제 생성</a>
+				</p>
 			</td>
-			<td style="vertical-align: top">
-				<table style="width: 100%; padding: 20px;">
-					<!-- 이 테이블 안에 메인 화면 구성하면 될듯 -->
-					<tr>
-						<td colspan="2">
-							<h2>&nbsp;&nbsp;${studyGroup.groupName}</h2>
-							<h2 style="color: gray">&nbsp; 과제</h2>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><div style="float: right; width: 20%;">
-								<p id="modal_btn" class="btn">
-									<a href="#modal1" rel="modal:open" type="button"
-										style="color: white;">과제 생성</a>
-								</p>
-							</div></td>
-					</tr>
-					<tr text-align="ceneter">
-						<td class="back">
-							<table>
-								<c:forEach var="task" items="${taskList}">
-									<tr>
-										<td style="height: 10px" class="contents"><a href="<c:url value='/group/task/detail'>
-											<c:param name="groupId" value="${studyGroup.groupId}"/></c:url>">&nbsp;&nbsp;${task.taskName}</a>
-										</td>
-									</tr>
-								</c:forEach>
-							</table>
-						</td>
-					</tr>
+		</tr>
+		<tr>
+			<td style="height: 30px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="3"><jsp:include page="../menu.jsp" flush="false" /></td>
+		</tr>
+		<tr>
+			<td class="back">
+				<table style="border-collapse : collapse; border-spacing : 0; width:90%; margin-left:58px; margin-top:15px;">
+					<c:forEach var="task" items="${list}">
+						<tr valign="top">
+							<td colspan="4" class="contents" style="margin-bottom:10px;"><a
+								href="<c:url value='/group/task/detail'>
+								<c:param name="taskId" value="${task.taskId}" />
+								</c:url>">${task.name}</a></td>
+							<td class="contentsTime">${task.startDate}</td>
+							<td class="contentsTime2">${task.endDate}</td>
+						</tr>
+						<tr style="height:10px;"><td></td></tr>
+					</c:forEach>
 				</table>
 			</td>
 		</tr>

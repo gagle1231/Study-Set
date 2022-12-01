@@ -1,22 +1,32 @@
 package controller.task;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.Member;
 import model.StudyGroup;
+import model.Task;
 import model.service.GroupManager;
+import model.service.TaskManager;
 
 public class TaskDetailController implements Controller{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		GroupManager manager = GroupManager.getInstance();
-		StudyGroup studyGroup = manager.getGroup(request.getParameter("groupName"));
-		session.setAttribute("studyGroup", studyGroup);
-		return "redirect:/group/task/main";
+		StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
+		TaskManager manager = TaskManager.getInstance();
+		GroupManager gmanager = GroupManager.getInstance();
+		Task task = manager.getTask(request.getParameter("taskId"));
+		List<Member> list = gmanager.getMember(group.getGroupId());
+		request.setAttribute("group", group);
+		session.setAttribute("task", task);
+		request.setAttribute("list", list);
+		return "/group/task/detail.jsp";
 	}
 	
 }

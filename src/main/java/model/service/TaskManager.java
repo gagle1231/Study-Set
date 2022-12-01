@@ -2,8 +2,11 @@ package model.service;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
+import model.Join;
+import model.StudyGroup;
 import model.Submit;
 import model.Task;
 import model.dao.*;
@@ -32,12 +35,18 @@ public class TaskManager {
 		List<Task> taskList = taskDao.getList(groupId);
 		return taskList;
 	}
-//	public getTask() {
-//		
-//	}
-//	public getSubmitList() {
-//		
-//	}	
+
+	//task DAO수정하기
+	public Task getTask(String taskId) throws SQLException {
+		Task task = taskDao.getTask(taskId);
+		return task;
+	}
+
+	public int submitTask(String taskId, Submit submit) throws SQLException, ParseException {
+		return taskDao.submitTask(taskId, submit);
+		
+	}
+	
 	public int submit(String taskId, Submit submit) throws SQLException{
 		return taskDao.submitTask(taskId, submit);		
 	}
