@@ -58,7 +58,11 @@ public class GroupManager {
 			userGroupList = groupDao.getMyGroup(userId);
 			return userGroupList;
 	}
-	
+	public List<Join> getGroupList(String groupName, String userId) throws SQLException {
+		List<Join> joinList = new ArrayList<>();
+		joinList = groupDao.getGroupList(groupName, userId);
+		return joinList;
+	}
 	//그룹 이름으로 그룹 검색
 	public StudyGroup getGroup(String groupName) throws SQLException{
 		StudyGroup group = groupDao.search(groupName);
@@ -67,7 +71,7 @@ public class GroupManager {
 	
 	//그룹 아이디로 그룹 검색
 	public StudyGroup getGroupById(String groupId) throws SQLException{
-		StudyGroup group = groupDao.search(groupId);
+		StudyGroup group = groupDao.searchById(groupId);
 		return group;
 	}
 	

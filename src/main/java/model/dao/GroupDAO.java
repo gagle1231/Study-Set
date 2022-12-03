@@ -220,4 +220,25 @@ public class GroupDAO {
 		return null;
 	}
 
+	// 이름에 해당하는 모든 그룹 리스트 가져오기
+	public List<Join> getGroupList(String groupName, String userId) {
+		String sql = "SELECT * FROM Join where groupName = ? and userId = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {groupName,  userId}); // JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			List<Join> joinList = new ArrayList<Join>();
+			while (rs.next()) {
+				Join join = new Join(rs.getString("userID"), rs.getString("groupId"), rs.getString("groupName"));
+				joinList.add(join);
+			}
+			return joinList;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return null;
+	}
 }

@@ -45,7 +45,7 @@ public class GroupController implements Controller{
       //그룹 선택 후 그룹 메인으로 리다이렉트
       HttpSession session = request.getSession();
       GroupManager manager = GroupManager.getInstance();
-      StudyGroup studyGroup = manager.getGroup(request.getParameter("groupName"));
+      StudyGroup studyGroup = manager.getGroupById(request.getParameter("groupId"));
       session.setAttribute("studyGroup", studyGroup);
       
       return "redirect:/group/main";
