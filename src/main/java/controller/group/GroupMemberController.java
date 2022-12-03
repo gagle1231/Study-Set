@@ -30,7 +30,7 @@ public class GroupMemberController implements Controller{
 				request.setAttribute("findMemberList", findMemberList); //request 객체에 저장			
 				
 			}
-			return "/group/main.jsp";   // 검색한 정보를 update form으로 전송     
+			return "/group/main.jsp";   
 		}	
 
 		if (request.getMethod().equals("POST")) {
@@ -44,11 +44,13 @@ public class GroupMemberController implements Controller{
 					Member m = (Member) session.getAttribute("loginmember");
 					Join join = new Join(m.getUserId(), newGroup.getGroupId(), groupName);
 					manager.addMember(join);
-				}
-				return "redirect:/user/group/list";
+					return "redirect:/user/group/list?joinGroupSuccess=true&joinGroup="+groupName;
+				}else
+					return "redirect:/user/group/list?joinGroupSuccess=false";
+				
 			} catch(Exception e) {
 				e.printStackTrace();
-				return "/user/login";
+				return "/user/main.jsp";
 			}
 		}
 		return "redirect:/group/main";

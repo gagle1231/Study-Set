@@ -10,6 +10,7 @@ import controller.Controller;
 import model.Join;
 import model.Member;
 import model.StudyGroup;
+import model.service.ExistingGroupException;
 import model.service.GroupManager;
 
 public class GroupController implements Controller{
@@ -30,20 +31,16 @@ public class GroupController implements Controller{
          try {
         	 HttpSession session = request.getSession();
         	 Member m = (Member) session.getAttribute("loginmember");
-            GroupManager gManager = GroupManager.getInstance();
-            gManager.create(group, m.getUserId());
-            
-           
-            return "redirect:/user/group/list";
-         }catch(SQLException se) {
-        	 se.printStackTrace();
-             return "/user/login";
+             GroupManager gManager = GroupManager.getInstance();
+             int result = gManager.create(group, m.getUserId());
+             if(result==0) //create 실패하면
+            	 return "redirect:/user/group/list";
+            return "redirect:/user/group/list?registerSuccess=true";
+         }catch(ExistingGroupException e) {
+             return "redirect:/user/group/list?registerSuccess=false";
          }
          
-         catch (Exception e) {
-            e.printStackTrace();
-            return "/user/login";
-         }
+        
       }
       //그룹 선택 후 그룹 메인으로 리다이렉트
       HttpSession session = request.getSession();
