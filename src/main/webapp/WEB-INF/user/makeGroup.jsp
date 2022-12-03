@@ -55,7 +55,6 @@ function gc(){
       form1.code.focus();
       return false;
    }
-   alert("새로운 그룹이 생성되었습니다.");
    form1.submit();
 }
 </script>
@@ -65,7 +64,7 @@ function gc(){
    <form name="form1" method="POST" autocomplete="off" action="<c:url value = '/group/register' /> ">                        
       <div style="text-align:center;">
          <p>새로운 그룹명을 작성해주세요</p>
-         <input type="text" id="formInput" name="groupName"/>
+         <input type="text" id="formInput" name="groupName" maxlength="20"/>
          <p>우리 스터디의 분야는?</p>
             <select name="groupCategory" id="formInput" style="background-color:#E6E6E6;">
                  <option value="" style="font-color:#424242;">- 분야 -</option>

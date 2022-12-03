@@ -31,9 +31,15 @@ public class GroupManager {
 	}
 	
 	//그룹 생성이랑 그룹 생성한 사람 그 그룹에 가입시키는 트랜잭션
-	public int create(StudyGroup newGroup, String userId) throws  Exception, SQLException {
+	public int create(StudyGroup newGroup, String userId) throws SQLException, ExistingGroupException {
+		StudyGroup studyGroup = null;
+		
+		studyGroup = check(newGroup.getGroupName(), newGroup.getCode());
+		if(studyGroup != null)
+			throw new ExistingGroupException();
 		return groupDao.create(newGroup, userId);
 	}
+	
 	
 	public void addMember(Join join) {
 		try {
@@ -56,6 +62,12 @@ public class GroupManager {
 	//그룹 이름으로 그룹 검색
 	public StudyGroup getGroup(String groupName) throws SQLException{
 		StudyGroup group = groupDao.search(groupName);
+		return group;
+	}
+	
+	//그룹 아이디로 그룹 검색
+	public StudyGroup getGroupById(String groupId) throws SQLException{
+		StudyGroup group = groupDao.search(groupId);
 		return group;
 	}
 	
