@@ -51,9 +51,11 @@ public class RequestMapping {
 		mappings.put("/group/task/main", new ViewTaskController());
 		mappings.put("/group/task/form", new TaskController());
 		mappings.put("/group/task/detail", new TaskDetailController());
-		mappings.put("/group/task/view", new SubmitController());
-		mappings.put("/group/task/submit", new ForwardController("/group/task/submit.jsp"));
-
+		mappings.put("/group/task/submit", new ViewSubmitController());
+		mappings.put("/group/task/submit/form", new SubmitController());
+		//댓글
+		mappings.put("/group/task/submit/comment", new CommentController());
+		
 		// 회비
 		mappings.put("/group/money/dues", new DuesController());
 		mappings.put("/group/money/payment", new PaymentController());

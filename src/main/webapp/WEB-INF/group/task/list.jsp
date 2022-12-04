@@ -1,6 +1,7 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@page import="java.util.*, model.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,17 +56,29 @@
 		</tr>
 		<tr>
 			<td class="back">
-				<table style="border-collapse : collapse; border-spacing : 0; width:90%; margin-left:58px; margin-top:15px;">
+				<table
+					style="border-collapse: collapse; border-spacing: 0; width: 90%; margin-left: 58px; margin-top: 15px;">
 					<c:forEach var="task" items="${list}">
 						<tr valign="top">
-							<td colspan="4" class="contents" style="margin-bottom:10px;"><a
+							<td colspan="4" class="contents"
+								style="margin-bottom: 10px; vertical-align: middle"><a
 								href="<c:url value='/group/task/detail'>
 								<c:param name="taskId" value="${task.taskId}" />
-								</c:url>">${task.name}</a></td>
-							<td class="contentsTime">${task.startDate}</td>
-							<td class="contentsTime2">${task.endDate}</td>
+								</c:url>">&nbsp;&nbsp;&nbsp;&nbsp;${task.name}</a></td>
+							<td class="contentsTime2"
+								style="vertical-align: middle; text-align: -webkit-center;">
+								&nbsp;&nbsp;&nbsp;&nbsp;제출기한:&nbsp;&nbsp;<fmt:parseDate
+									value="${task.startDate}" pattern="yyyy-MM-dd"
+									var="parsedRegDate" type="date" /> <fmt:formatDate
+									value="${parsedRegDate}" pattern="yyyy/MM/dd" />&nbsp;&nbsp;~&nbsp;&nbsp;
+								<fmt:parseDate value="${task.endDate}" pattern="yyyy-MM-dd"
+									var="parsedRegDate" type="date" /> <fmt:formatDate
+									value="${parsedRegDate}" pattern="yyyy/MM/dd" />
+							</td>
 						</tr>
-						<tr style="height:10px;"><td></td></tr>
+						<tr style="height: 10px;">
+							<td></td>
+						</tr>
 					</c:forEach>
 				</table>
 			</td>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import model.Member;
 import model.StudyGroup;
+import model.Submit;
 import model.Task;
 import model.service.GroupManager;
 import model.service.TaskManager;
@@ -23,9 +24,11 @@ public class TaskDetailController implements Controller{
 		GroupManager gmanager = GroupManager.getInstance();
 		Task task = manager.getTask(request.getParameter("taskId"));
 		List<Member> list = gmanager.getMember(group.getGroupId());
+		//List<Submit> list = manager.getSubmitList(task.getTaskId());
 		request.setAttribute("group", group);
 		session.setAttribute("task", task);
-		request.setAttribute("list", list);
+		//session.setAttribute("list", list);
+		session.setAttribute("list", list);
 		return "/group/task/detail.jsp";
 	}
 	

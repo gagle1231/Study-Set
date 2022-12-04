@@ -47,9 +47,15 @@ public class TaskManager {
 		
 	}
 	
-	public int submit(String taskId, Submit submit) throws SQLException{
-		return taskDao.submitTask(taskId, submit);		
+//	public Submit getSubmit(String submitId)  throws SQLException {
+//		Submit submit = taskDao.getSubmit(submitId);
+//		return submit;
+//	}
+	public Submit getSubmit(String taskId, String userId)  throws SQLException {
+		Submit submit = taskDao.getSubmit(taskId, userId);
+		return submit;
 	}
-//	public Submit getSubmit(String submitId) {
+//	public List<Submit> getSubmitList(String taskId) throws SQLException {
+//		return taskDao.getSubmitList(taskId);
 //	}
 }
