@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
-<form name="dateForm" action="#"><input type="hidden" name="date"></form>
 	<br>
 	<table style="width: 100%; border-collapse: collapse">
 		<tr>
@@ -83,8 +82,11 @@ document.addEventListener('DOMContentLoaded', function() {
 				<!-- 왼쪽 사이드(로고, 메뉴) 구성 -->
 				<table>
 					<tr>
-						<td><a href="<c:url value='http://localhost:8080/StudySet/user/group/list' />"><img src="<c:url value='/images/studysetlogo.png'/>"
-							width="130px" /></a><br><br></td>
+						<td>
+							<a href="<c:url value='http://localhost:8080/StudySet/user/group/list' />">
+							<img src="<c:url value='/images/studysetlogo.png'/>" width="130px" /></a>
+                     		<br><br>
+                     	</td>
 					</tr>
 					<tr>
 						<td><jsp:include page="../menu.jsp" flush="false" /></td>
@@ -97,13 +99,17 @@ document.addEventListener('DOMContentLoaded', function() {
 					<tr>
 						<td colspan="2">
 							<h2>&nbsp;&nbsp;${studyGroup.groupName}</h2>
-							<h2 style="color: gray">일정</h2>
+							<h4 style="color: gray">
+								일정
+							</h4>
 						</td>
 					</tr>
-					<tr><td><form name="form" action="<c:url value='/schedule/chart'/>">
+					<tr>
+						<td><form name="form" action="<c:url value='/schedule/chart'/>">
 						<input type="button" name="newScheduleButton" value="새 스캐줄 생성" onClick="onClick()">
 						<button  onClick="chkChart(<c:url value='/schedule/chart'/>)">일정 조율표 확인하기</button>
-					</form></td></tr>
+					</form></td>
+					</tr>
 					<tr>
 						<td colspan="2">
 							<div id="calendar"></div>
@@ -113,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			</td>
 		</tr>
 	</table>
-	<div style="display: none; height: 600px;" class="modal_wrap">
+<div style="display: none; height: 600px;" class="modal_wrap">
 		<div class="modal_close" onclick="offClick()">
 			<a href="#" onClick="offClick()">close</a>
 		</div>
@@ -121,4 +127,5 @@ document.addEventListener('DOMContentLoaded', function() {
 			<jsp:include page="addSchedule.jsp"></jsp:include>
 		</div>
 	</div>
+</body>
 </html>

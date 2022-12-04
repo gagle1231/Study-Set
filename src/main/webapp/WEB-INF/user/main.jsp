@@ -7,95 +7,79 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/user.css' />"
 	type="text/css">
-<title>StudySet</title>
 <link rel=stylesheet href="<c:url value='/css/modal.css' />"
 	type="text/css">
+<title>StudySet</title>
 <script>
-window.onload = function() {
-	//나중에 반복문 처리
-	const modal = document.querySelectorAll('.modal_wrap');
-	
-    function onClick() {
-    	const item = modal.item(0);
-    	item.style.display = 'block';
-    }
-    function onClick2() {
-		const item = modal.item(1);
-		item.style.display = 'block';
-    }
-    function offClick() {
-		const item = modal.item(0);
-		item.style.display = 'none';
-    }
-    function offClick2() {
-		const item = modal.item(1);
-		item.style.display = 'none';
-    }
+	window.onload = function() {
+		//나중에 반복문 처리
+		const modal = document.querySelectorAll('.modal_wrap');
 
-    document.getElementById('modal_btn').addEventListener('click', onClick);
-    document.getElementById('modal_btn2').addEventListener('click', onClick2);
-    document.querySelector('.modal_close').addEventListener('click', offClick); 
-    document.querySelector('.modal_close2').addEventListener('click', offClick2); 
-};
+		function onClick() {
+			const item = modal.item(0);
+			item.style.display = 'block';
+		}
+		function onClick2() {
+			const item = modal.item(1);
+			item.style.display = 'block';
+		}
+		function offClick() {
+			const item = modal.item(0);
+			item.style.display = 'none';
+		}
+		function offClick2() {
+			const item = modal.item(1);
+			item.style.display = 'none';
+		}
 
-function search(){
-	if(event.keyCode==13){
-		searchForm.submit();
+		document.getElementById('modal_btn').addEventListener('click', onClick);
+		document.getElementById('modal_btn2').addEventListener('click',
+				onClick2);
+		document.querySelector('.modal_close').addEventListener('click',
+				offClick);
+		document.querySelector('.modal_close2').addEventListener('click',
+				offClick2);
+	};
+
+	function search() {
+		if (event.keyCode == 13) {
+			searchForm.submit();
+		}
 	}
-}
 </script>
 <style>
-.item {
-	height: 10px;
-	background-color: #FFFFFF;
-	margin: auto;
-	border-radius: 20px;
-	color: black;
-}
-
-.searchField {
-	width: 90%;
-	font-size: 23px;
-	border: 1;
-	border-radius: 20px;
-	text-align: center;
-}
-
-a {
-	text-decoration: none; 
-	line-height : 50px;
-	padding-left: 10px;
-}
-
-a:link a:visited {
-	text-align: center;
-}
 </style>
 </head>
 <body bgcolor="099987">
 	<c:if test="${ param.registerSuccess eq false}">
 		<script>
-	alert('이미 존재하는 그룹입니다.');
-	history.replaceState({}, null, location.pathname);
-</script>
+			alert('이미 존재하는 그룹입니다.');
+			history.replaceState({}, null, location.pathname);
+		</script>
 	</c:if>
 	<c:if test="${ param.registerSuccess eq true}">
 		<script>
-	alert('새로운 그룹이 생성되었습니다.');
-	history.replaceState({}, null, location.pathname);
-</script>
+			alert('새로운 그룹이 생성되었습니다.');
+			history.replaceState({}, null, location.pathname);
+		</script>
 	</c:if>
 	<c:if test="${ param.joinGroupSuccess eq false}">
 		<script>
-	alert('존재하지 않는 그룹입니다.');
-	history.replaceState({}, null, location.pathname);
-</script>
+			alert('존재하지 않는 그룹입니다.');
+			history.replaceState({}, null, location.pathname);
+		</script>
 	</c:if>
 	<c:if test="${ param.joinGroupSuccess eq true}">
 		<script>
-	alert(${param.joinGroup}+'그룹에 가입이 완료되었습니다.');
-	history.replaceState({}, null, location.pathname);
-</script>
+			alert('그룹 가입이 완료되었습니다.');
+			history.replaceState({}, null, location.pathname);
+		</script>
+	</c:if>
+	<c:if test="${ param.alreadyJoinGroup eq true}">
+		<script>
+			alert('이미 가입한 그룹입니다.');
+			history.replaceState({}, null, location.pathname);
+		</script>
 	</c:if>
 	<table style="width: 100%">
 		<tr>
@@ -144,31 +128,31 @@ a:link a:visited {
 											class="searchField" onkeypress="search();" /></td>
 									</tr>
 									<tr>
+										<td valign="top">
+											<div style="overflow: auto; height: 600px;" class="scroll">
+												<table width="100%">
+															<c:forEach var="group" items="${joinList}">
+																<tr>
+																	<td style="height: 10px" class="item"><a
+																		href="<c:url value='/group'><c:param name="groupId" value="${group.groupId}" />
+                                          </c:url>">&nbsp;●&nbsp;${group.groupName}</a>
+																	</td>
+																</tr>
+															</c:forEach>
+														
+												</table>
+											</div>
+										</td>
 										<td valign="top"><table width="100%">
-												<c:choose>
-													<c:when test="${ joinList ne null}">
-														<c:forEach var="group" items="${joinList}">
+													<c:forEach var="mem" items="${srchMemberList}">
 															<tr>
-																<td style="height: 10px" class="item"><a
-																	href="<c:url value='/group'><c:param name="groupId" value="${group.groupId}" />
-                                          </c:url>">&nbsp;●&nbsp;${group.groupName}</a>
+																<td style="height: 10px" class="item">
+																&nbsp;&nbsp;${mem.userName}&nbsp;&nbsp; 전화번호: ${mem.phone}&nbsp;&nbsp; 이메일:${mem.email}
 																</td>
 															</tr>
 														</c:forEach>
-													</c:when>
-													<c:when test="${ srcGroupList ne null}">
-														<c:forEach var="group" items="${srcGroupList}">
-															<tr>
-																<td style="height: 10px" class="item"><a
-																	href="<c:url value='/group'><c:param name="groupId" value="${group.groupId}" />
-                                          </c:url>">&nbsp;●&nbsp;${group.groupName}</a>
-																</td>
-															</tr>
-														</c:forEach>
-													</c:when>
-												</c:choose>
 											</table></td>
-									<tr>
+									</tr>
 								</table>
 							</form></td>
 					</tr>

@@ -4,21 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="<c:url value='/css/group.css'/>" type="text/css">
-<link rel=stylesheet href="<c:url value='/css/modal.css'/>" type="text/css">
+<link rel=stylesheet href="<c:url value='/css/group.css'/>"
+	type="text/css">
+<link rel=stylesheet href="<c:url value='/css/modal.css'/>"
+	type="text/css">
 <title>StudySet: ${studyGroup.groupName}</title>
 <style>
-.btn1{
-background-color: #FFFFFF;
-color: black;
-font-family: Arial;
-font-size: 16px;
-font-style: bold;
-height:30px;
-width:120px;
-border:1;
-border-radius:5px;
-}
 </style>
 <script>
     window.onload = function() {
@@ -47,11 +38,12 @@ border-radius:5px;
 				<!-- 왼쪽 사이드(로고, 메뉴) 구성 -->
 				<table>
 					<tr>
-						<td>
-							<a href="<c:url value='http://localhost:8080/StudySet/user/group/list' />">
-							<img src="<c:url value='/images/studysetlogo.png'/>" width="130px" /></a>
-                     		<br><br>
-                     	</td>
+						<td><a
+							href="<c:url value='http://localhost:8080/StudySet/user/group/list' />">
+								<img src="<c:url value='/images/studysetlogo.png'/>"
+								width="130px" />
+						</a> <br>
+						<br></td>
 					</tr>
 					<tr>
 						<td><jsp:include page="menu.jsp" flush="false" /></td>
@@ -80,7 +72,7 @@ border-radius:5px;
 					<tr>
 						<td><h4>${studyGroup.groupDescription}</h4></td>
 						<td align="center"><input id="modal_btn" type="button"
-							value="그룹원 검색" class="btn1" style="font-size:15px;"/><br></td>
+							value="그룹원 검색" class="btn1" style="font-size: 15px;" /><br></td>
 					</tr>
 					<tr>
 						<td><input type="button" value="가입 코드 보기" class="btn1"
@@ -89,20 +81,37 @@ border-radius:5px;
 					<tr>
 						<td width="50%">
 							<table class="tb">
+								<tr style="height: 30px;">
+									<td style="vertical-align: top;">
+										<h3>&nbsp;&nbsp;주요 전달 사항</h3>
+									</td>
+								</tr>
 								<tr>
-									<td style="vertical-align: top;"><h3>&nbsp;&nbsp;주요
-											전달 사항</h3></td>
-									<td style="vertical-align: top;"></td>
+									<td style="vertical-align: top; padding: 20px;">
+										<table style="width:80%; border-spacing:5px;">
+											<tr>
+												<td class="notice"><b>3일 회의 13시로 미뤄졌습니다.</b><br><br>
+													<name style="color:#696969">김가은</name></td>
+											</tr>
+											<tr>
+												<td class="notice" style="background-color:orange">
+													<b>회비 납부 토요일까지 해주세요</b><br><br>
+													<name style="color:#696969">곽채원</name>
+												</td>
+											</tr>
+										</table>
+									</td>
 								</tr>
 							</table>
 						</td>
 						<td>
 							<table class="tb">
 								<tr>
-									<td style="vertical-align: top;"><h3>&nbsp;&nbsp;Quick Notes</h3></td>
+									<td style="vertical-align: top;"><h3>&nbsp;&nbsp;Quick
+											Notes</h3></td>
 								</tr>
 								<tr>
-									<td></td>					
+									<td></td>
 								</tr>
 							</table>
 						</td>
