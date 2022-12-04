@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import model.dao.CommentDAO;
 import model.dao.GroupDAO;
 import model.dao.MemberDAO;
+import model.dao.TaskDAO;
 
 public class GroupTest {
 
@@ -15,13 +16,17 @@ public class GroupTest {
 		GroupDAO dao = new GroupDAO();
 		MemberDAO mdao = new MemberDAO();
 		CommentDAO cdao = new CommentDAO();
-
+		TaskDAO tdao = new TaskDAO();
+		
+		Task task = tdao.getTask("t0000004");
+		Submit submit = tdao.getSubmit(task.getTaskId(), "zzimnii");
+		System.out.println(submit.getSubmitContents());
 		//cdao.addMemoComment(new MemoComment(null, "zzimnii", null, "굳굳", 'N', "20221120"), "m2");
-		//cdao.addSubmitComment(new SubmitComment(null, "zzimnii", "대박", 'N', null, "20221120"), "s0000001");
-		ArrayList<MemoComment> mc = (ArrayList) cdao.getMemoCommentList("m2");
-		ArrayList<SubmitComment> sc = (ArrayList) cdao.getSubmitCommentList("s0000001");
+		cdao.addSubmitComment(new SubmitComment(null, "gagle1231", "다음주에 시험이래", 'N', null, "20221220"), "s0000003");
+//		ArrayList<MemoComment> mc = (ArrayList) cdao.getMemoCommentList("m2");
+		ArrayList<SubmitComment> sc = (ArrayList) cdao.getSubmitCommentList("s0000003");
 
-		System.out.println(mc.get(0).getCommentContents());
+		//System.out.println(mc.get(0).getCommentContents());
 		System.out.println(sc.get(0).getCommentContents());
 		
 		//dao.create(new StudyGroup(null, "모바일응용", 2, "모응 스터디", "09876"));
@@ -48,7 +53,7 @@ public class GroupTest {
 		Member user = mdao.findMember("zzimnii");
 		
 		//그룹 가입
-		dao.addMember(new Join(user.getUserId(), group.getGroupId(), group.getGroupName()));
+		//dao.addMember(new Join(user.getUserId(), group.getGroupId(), group.getGroupName()));
 		//ArrayList<Join> g = (ArrayList) dao.getMyGroup("zzimnii");
 		//System.out.println(g.get(0).getGroupName() + g.get(1).getGroupName());
 		
