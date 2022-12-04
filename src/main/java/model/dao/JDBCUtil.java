@@ -110,7 +110,6 @@ public class JDBCUtil {
 		}
 		if (pstmt != null) pstmt.close();
 		pstmt = conn.prepareStatement(sql);
-		// JDBCUtil.printDataSourceStats(ds);
 		return pstmt;
 	}
 

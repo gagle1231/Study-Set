@@ -64,6 +64,30 @@ window.onload = function() {
 </style>
 </head>
 <body bgcolor="099987">
+<c:if test="${ param.registerSuccess eq false}">
+<script>
+	alert('이미 존재하는 그룹입니다.');
+	history.replaceState({}, null, location.pathname);
+</script>
+</c:if>
+<c:if test="${ param.registerSuccess eq true}">
+<script>
+	alert('새로운 그룹이 생성되었습니다.');
+	history.replaceState({}, null, location.pathname);
+</script>
+</c:if>
+<c:if test="${ param.joinGroupSuccess eq false}">
+<script>
+	alert('존재하지 않는 그룹입니다.');
+	history.replaceState({}, null, location.pathname);
+</script>
+</c:if>
+<c:if test="${ param.joinGroupSuccess eq true}">
+<script>
+	alert(${param.joinGroup}+'그룹에 가입이 완료되었습니다.');
+	history.replaceState({}, null, location.pathname);
+</script>
+</c:if>
    <table style="width: 100%">
       <tr>
          <td>

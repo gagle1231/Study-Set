@@ -17,26 +17,31 @@ public class GroupDAO {
 		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
 	}
 
+	
 	// 스터디 그룹 생성과 그룹 생성자 그룹에 가입 처리 트랜잭션
 	public int create(StudyGroup studyGroup, String userId) throws SQLException {
+		
 		String sql = "INSERT INTO StudyGroup VALUES (" + "'g'||LPAD(Sequence_gId.nextval, 7, '0')" + ", ?, ?, ?, ?)";
 		Object[] param = new Object[] {studyGroup.getGroupName(), studyGroup.getGroupCategory(),
 				studyGroup.getGroupDescription(), studyGroup.getCode() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
 		
 		String sql2 = "INSERT INTO JOIN (userId, groupId, groupName) VALUES(?, 'g'||LPAD(Sequence_gId.currval,  7, '0'), ?)";
 		Object[] param2 = new Object[] { userId, studyGroup.getGroupName() };
-		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
-			jdbcUtil.setSqlAndParameters(sql2, param2);
+		
+		try {	
+			jdbcUtil.setSqlAndParameters(sql, param); 
+			int result = jdbcUtil.executeUpdate();	//Study Group 테이블에 insert 
+		
+			jdbcUtil.setSqlAndParameters(sql2, param2);	//Join 테이블에 insert
 			result = jdbcUtil.executeUpdate();
 			return result;
+			
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
+			jdbcUtil.close();
 		}		
 		return 0;	
 	}
@@ -51,6 +56,26 @@ public class GroupDAO {
 			if (rs.next()) { // 학생 정보 발견
 				StudyGroup group = new StudyGroup( 
 						rs.getString("groupId"), groupName, rs.getInt("groupCategory"),
+						rs.getString("groupDescription"), rs.getString("code"));
+				return group;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return null;
+	}
+	
+	public StudyGroup searchById(String groupId) throws SQLException {
+		String sql = "SELECT * " + "FROM STUDYGROUP " + "WHERE groupId = ? ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId }); // JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			if (rs.next()) { 
+				StudyGroup group = new StudyGroup( // User 객체를 생성하여 학생 정보를 저장
+						groupId, rs.getString("groupName"), rs.getInt("groupCategory"),
 						rs.getString("groupDescription"), rs.getString("code"));
 				return group;
 			}
