@@ -156,11 +156,9 @@ a {
 }
 
 .contents {
-	width: 937px;
-	height: 71px;
-	left: 40px;
-	background: #F3F5F2;
-	border-radius: 20px 0px 0px 20px;
+    height: 71px;
+    background: #F3F5F2;
+    border-radius: 20px 0px 0px 20px;
 }
 
 .contents2 {
@@ -180,8 +178,6 @@ a {
 	height: 71px;
 	background: #F3F5F2;
 	border-radius: 0px 20px 20px 0px;
-	display: flex;
-	text-align: center;
 }
 
 .descript_back {
@@ -215,15 +211,13 @@ a {
 	margin-inline: auto;
 }
 
-.submitBtn {
+/*.submitBtn {
 	background-color: #79D997;
-	width: 78px;
-	height: 47px;
-	left: 1151px;
-	border-radius: 20px;
-	text-align: center;
-	top: 401px;
-}
+    width: 81%;
+    height: 40%;
+    align-self: center;
+    border-radius: 20px;
+}*/
 
 .task_back {
 	position: absolute;
@@ -240,7 +234,7 @@ a {
 	width: 1072px;
 	height: 59px;
 	left: 222px;
-	top: 810px;
+	top: 108%;
 	background: #EBEBEB;
 	border-radius: 20px;
 }
@@ -328,7 +322,7 @@ a {
 	width: 1072px;
 	height: 670px;
 	left: 222px;
-	top: 217px;
+	top: 165px;
 	background: rgba(179, 224, 143, 0.72);
 	border-radius: 20px;
 	line-height: 30px;
@@ -345,25 +339,4 @@ a {
 	line-height: 30px;
 	border: none;
 	resize: none;
-}
-
-.file_btn {
-	box-sizing: border-box;
-	position: absolute;
-	width: 1031px;
-	height: 111px;
-	left: 242px;
-	top: 752px;
-	background: #FFFFFF;
-	border: 1px solid #000000;
-	border-radius: 20px;
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 25px;
-	line-height: 30px;
-	color: #000000;
-	border: 1px solid #000000;
-	border-radius: 20px;
-	z-index: 2
 }
