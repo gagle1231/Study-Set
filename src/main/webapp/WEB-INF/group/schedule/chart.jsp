@@ -34,7 +34,9 @@ table td.highlighted {
 				<!-- 왼쪽 사이드(로고, 메뉴) 구성 -->
 				<table>
 					<tr>
-						<td><img src="<c:url value='/images/studysetlogo.png'/>"
+						<td>
+							<a href="<c:url value='http://localhost:8080/StudySet/user/group/list' />">
+							<img src="<c:url value='/images/studysetlogo.png'/>"
 							width="130px" /><br> <br></td>
 					</tr>
 					<tr>

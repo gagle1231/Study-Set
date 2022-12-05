@@ -33,14 +33,17 @@
 		function offClick() {
 			const item = modal.item(0);
 			item.style.display = 'none';
+			document.querySelector('.black_bg').style.display ='none';
 		}
 		function offClick2() {
 			const item = modal.item(1);
 			item.style.display = 'none';
+			document.querySelector('.black_bg').style.display ='none';
 		}
 		function offClick3() {
 			const item = modal.item(2);
 			item.style.display = 'none';
+			document.querySelector('.black_bg').style.display ='none';
 		}
 
 		document.getElementById('modal_btn').addEventListener('click', onClick);
