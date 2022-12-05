@@ -5,10 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="<c:url value='/css/user.css' />"
-   type="text/css">
-<title>StudySet</title>
+<link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">
 <link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
+<title>StudySet</title>
 <script>
 window.onload = function() {
 	//나중에 반복문 처리
@@ -17,25 +16,45 @@ window.onload = function() {
     function onClick() {
     	const item = modal.item(0);
     	item.style.display = 'block';
+    	document.querySelector('.black_bg').style.display ='block';
     }
     function onClick2() {
 		const item = modal.item(1);
 		item.style.display = 'block';
+    	document.querySelector('.black_bg').style.display ='block';
+    }
+    function onClick3() {
+		const item = modal.item(2);
+		item.style.display = 'block';
+    	document.querySelector('.black_bg').style.display ='block';
     }
     function offClick() {
 		const item = modal.item(0);
 		item.style.display = 'none';
+		document.querySelector('.black_bg').style.display ='none';
     }
     function offClick2() {
 		const item = modal.item(1);
 		item.style.display = 'none';
+		document.querySelector('.black_bg').style.display ='none';
+    }
+    function offClick3() {
+		const item = modal.item(2);
+		item.style.display = 'none';
+		document.querySelector('.black_bg').style.display ='none';
     }
 
     document.getElementById('modal_btn').addEventListener('click', onClick);
     document.getElementById('modal_btn2').addEventListener('click', onClick2);
+    document.getElementById('modal_btn3').addEventListener('click', onClick3);
     document.querySelector('.modal_close').addEventListener('click', offClick); 
     document.querySelector('.modal_close2').addEventListener('click', offClick2); 
+    document.querySelector('.modal_close3').addEventListener('click', offClick3); 
 };
+
+function searchGroup(){
+	
+}
 </script>
 <style>
 .item {
@@ -110,11 +129,13 @@ window.onload = function() {
                      <div style="float: right; width: 20%;">
                         <p id="modal_btn2" class="btn">
                            <a href="#modal" rel="modal:open" type="button" style="color:white;">스터디 가입</a>
+                           <div class= "black_bg"></div>
                         </p>
                      </div>
                      <div style="float: right; width: 20%;">
                         <p id="modal_btn" class="btn">
                            <a href="#modal" rel="modal:open" type="button" style="color:white;">스터디 생성</a>
+                           <div class= "black_bg"></div>
                         </p>
                      </div>
                   </td>
@@ -123,12 +144,16 @@ window.onload = function() {
                   <td colspan="2"><form name="searchForm" action="search()">
                      <table style="width: 100%; height: 650px; background-color: #C8E8E4; border-radius: 20px;">
                         <tr>
-                           <td style="text-align: center; height: 100px;"><input
-                              type="text" placeholder="스터디를 검색해주세요" name="studyName"
-                              class="searchField" onkeypress="return search(event);"/></td>
-                           <td style="text-align: center; height: 100px;"><input
-                              type="text" placeholder="그룹원을 검색해주세요" name="memberName"
-                              class="searchField" /></td>
+                           <td style="text-align: center; height: 100px;">
+                           	<input type="text" placeholder="스터디를 검색해주세요" name="studyName"
+                              class="searchField" onkeypress="if(event.keyCode=='13'){event.preventDefault(); searchGroup();}"/>   
+                           </td>
+                           <td style="text-align: center; height: 100px;">
+                           	<p id="modal_btn3">
+                           	<input type="text" placeholder="그룹원을 검색해주세요" name="memberName" class="searchField" href="#modal" rel="modal:open" readonly/>
+	                        	<div class= "black_bg"></div>
+	                        </p> 
+                           </td>
                         </tr>
                         <tr>
                            <td valign="top"><table width="100%">
@@ -165,6 +190,16 @@ window.onload = function() {
       </div>
       <div align="center">
          <jsp:include page="joinGroup.jsp"></jsp:include>
+      </div>
+</div>
+<div style="<c:if test='${searching eq null}'>display: none;</c:if>
+	<c:if test='${searching eq true}'>display: block;</c:if> height: 500px;" class="modal_wrap">
+      <!--그룹원 검색 모달창 영역-->
+      <div class="modal_close3">
+         <a href="#">close</a>
+      </div>
+      <div align="center">
+         <jsp:include page="searchMember.jsp"></jsp:include> 
       </div>
 </div>
 </body>

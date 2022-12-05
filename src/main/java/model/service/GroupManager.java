@@ -40,7 +40,7 @@ public class GroupManager {
 		return groupDao.create(newGroup, userId);
 	}
 	
-	
+	//그룹 가입
 	public void addMember(Join join) {
 		try {
 			groupDao.addMember(join);
@@ -52,11 +52,18 @@ public class GroupManager {
 			e.printStackTrace();
 		}
 	}
+	
 	//회원이 가입한 그룹 리스트
 	public List<Join> getUserGroupList(String userId) throws SQLException {
 			List<Join> userGroupList = new ArrayList<>();
 			userGroupList = groupDao.getMyGroup(userId);
 			return userGroupList;
+	}
+	
+	public List<Join> getGroupList(String groupName, String userId) throws SQLException {
+		List<Join> joinList = new ArrayList<>();
+		joinList = groupDao.getGroupList(groupName, userId);
+		return joinList;
 	}
 	
 	//그룹 이름으로 그룹 검색
@@ -67,7 +74,7 @@ public class GroupManager {
 	
 	//그룹 아이디로 그룹 검색
 	public StudyGroup getGroupById(String groupId) throws SQLException{
-		StudyGroup group = groupDao.search(groupId);
+		StudyGroup group = groupDao.searchById(groupId);
 		return group;
 	}
 	

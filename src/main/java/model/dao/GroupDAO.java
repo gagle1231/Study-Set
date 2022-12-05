@@ -17,7 +17,6 @@ public class GroupDAO {
 		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
 	}
 
-	
 	// 스터디 그룹 생성과 그룹 생성자 그룹에 가입 처리 트랜잭션
 	public int create(StudyGroup studyGroup, String userId) throws SQLException {
 		
@@ -67,6 +66,7 @@ public class GroupDAO {
 		return null;
 	}
 	
+	// 그룹 아이디로 검색
 	public StudyGroup searchById(String groupId) throws SQLException {
 		String sql = "SELECT * " + "FROM STUDYGROUP " + "WHERE groupId = ? ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId }); // JDBCUtil에 query문과 매개 변수 설정
@@ -168,6 +168,7 @@ public class GroupDAO {
 		return 0;
 	}
 	
+	// 이름으로 멤버 검색하기
 	public List<Member> searchMemberByName(String memberName, String groupId)throws SQLException {
 		String sql = "SELECT * FROM JOIN j, MEMBER m WHERE j.userId = m.userId and m.userName = ? and j.groupId = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { memberName, groupId }); // JDBCUtil에 query문과 매개 변수 설정
@@ -194,6 +195,7 @@ public class GroupDAO {
 		return null;
 	}
 
+	// 해당하는 그룹아이디의 모든 멤버 리스트 가져오기
 	public List<Member> getMember(String groupId)throws SQLException {
 		String sql = "SELECT * FROM JOIN j, MEMBER m WHERE j.userId = m.userId and j.groupId = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId }); // JDBCUtil에 query문과 매개 변수 설정
@@ -220,4 +222,25 @@ public class GroupDAO {
 		return null;
 	}
 
+	// 이름에 해당하는 모든 그룹 리스트 가져오기
+	public List<Join> getGroupList(String groupName, String userId) {
+		String sql = "SELECT * FROM Join where groupName = ? and userId = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {groupName,  userId}); // JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			List<Join> joinList = new ArrayList<Join>();
+			while (rs.next()) {
+				Join join = new Join(rs.getString("userID"), rs.getString("groupId"), rs.getString("groupName"));
+				joinList.add(join);
+			}
+			return joinList;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return null;
+	}
 }
