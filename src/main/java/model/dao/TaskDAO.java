@@ -111,9 +111,30 @@ public class TaskDAO {
 	}
 
 	//제출한 과제 보기
-	public Submit getSubmit(String submitId){
-		String sql = "SELECT * FROM SUBMIT WHERE submitId = ? ";                        
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {submitId});
+//	public Submit getSubmit(String submitId){
+//		String sql = "SELECT * FROM SUBMIT WHERE submitId = ? ";                        
+//		jdbcUtil.setSqlAndParameters(sql, new Object[] {submitId});
+//
+//		try {
+//			ResultSet rs = jdbcUtil.executeQuery();	
+//
+//			if (rs.next()) {
+//				Submit submit = new Submit(
+//						rs.getString("userId"), rs.getString("filePath"), 
+//						rs.getString("submitContents"), rs.getString("submitDate"), 
+//						rs.getString("taskId"), rs.getString("submitId"));
+//				return submit;
+//			}		
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		} finally {
+//			jdbcUtil.close();		
+//		}
+//		return null;
+//	}
+	public Submit getSubmit(String taskId, String userId) {
+		String sql = "SELECT * FROM SUBMIT WHERE taskId = ? and userId = ? ";                        
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {taskId, userId});
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();	
@@ -132,6 +153,32 @@ public class TaskDAO {
 		}
 		return null;
 	}
+	//과제 리스트 가져오기
+		public List<Submit> getSubmitList(String taskId){
+			String sql = "SELECT * FROM Submit WHERE taskId = ? ";                        
+			jdbcUtil.setSqlAndParameters(sql, new Object[]{taskId});	
 
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();		
+				List<Submit> submitList = new ArrayList<Submit>();	
+				while (rs.next()) {
+					Submit submit = new Submit(
+							rs.getString("userId"),
+							rs.getString("filePath"),
+							rs.getString("submitContents"),
+							rs.getString("submitDate"),
+							taskId,
+							rs.getString("submitId")
+							);
+					submitList.add(submit);	
+				}		
+				return submitList;					
 
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();		// resource 반환
+			}
+			return null;
+		}
 }

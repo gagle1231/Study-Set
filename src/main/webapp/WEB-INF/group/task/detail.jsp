@@ -1,12 +1,22 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="model.dao.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/task.css' />"
 	type="text/css">
+<style>
+.submitBtn {
+	background-color: #79D997;
+	width: 81%;
+	height: 40%;
+	align-self: center;
+	border-radius: 20px;
+}
+</style>
 <title>과제 상세</title>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
@@ -54,5 +64,6 @@
 
 	</div>
 	<!-- <a href="<c:url value='/group/task/view' />">제출한 과제 보기</a>-->
+
 </body>
 </html>
