@@ -16,7 +16,7 @@ public class SearchMemberController implements Controller{
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//HttpSession session = request.getSession();
+		// HttpSession session = request.getSession(); 
 		
 		if (request.getMethod().equals("POST")) {	// GET request: 그룹원 검색
 			GroupManager manager = GroupManager.getInstance();

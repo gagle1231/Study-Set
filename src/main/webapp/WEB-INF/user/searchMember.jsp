@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> 스터디 가입 모달창 </title>
+<title>스터디 가입 모달창</title>
 <style>
 .title {
    width:400px; 
