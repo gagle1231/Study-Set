@@ -61,7 +61,7 @@
 							</button>
 							</form> <br></td>
 						<td width="50%" align="right" style="padding: 50px">
-							<a href="#modal1" rel="modal:open" type="button" class="btn">입력하기</a>>
+							<a href="#modal1" rel="modal:open" type="button" class="btn">입력하기</a>
 						</td>
 					</tr>
 					<tr>
