@@ -49,7 +49,7 @@ function gc2(){
       form2.code.focus();
       return false;
    }
-   //alert(form2.groupName.value + "그룹에 가입이 완료되었습니다.");
+   alert(form2.groupName.value + "그룹에 가입이 완료되었습니다.");
    form2.submit();
 }
 </script>
@@ -60,7 +60,7 @@ function gc2(){
             <p>가입할 그룹 이름</p>
             <input type="text" id="formInput" name="groupName"/>
             <p>그룹 코드</p>
-            <input type="text" id="formInput" name="code" style="background-color:#E6E6E6;" placeholder="가입 시 필요한 숫자 코드"/>
+            <input type="text" id="formInput" name="code" style="background-color:#E6E6E6;" placeholder="가입 시 필요한 6자리 숫자 코드" maxlength="6"/>
             <br/><br/>
             <input type="button" onClick="gc2()" id="submitBtn" value="가입"></input>                                                      
       </div>

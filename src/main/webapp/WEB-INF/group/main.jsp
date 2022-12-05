@@ -10,17 +10,49 @@
 	type="text/css">
 <title>StudySet: ${studyGroup.groupName}</title>
 <style>
+.btn {
+   background-color: rgba(255, 255, 255, 0.8);
+   color: white;
+   width: 120px;
+   height: 50px;
+   border-radius: 10px;
+   font-size: 18px;
+   border:0;
+}
+.btn1{
+   background-color: #FFFFFF;
+   color: black;
+   font-family: Arial;
+   font-size: 16px;
+   font-style: bold;
+   height:30px;
+   width:120px;
+   border:1;
+   border-radius:5px;
+}
+.black_bg{
+    display: none;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 107%;
+    background-color:rgba(0, 0, 0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 1;
+}
 </style>
 <script>
     window.onload = function() {
  
     function onClick() {
         document.querySelector('.modal_wrap').style.display ='block';
+        document.querySelector('.black_bg').style.display ='block';
     }   
     function offClick() {
         document.querySelector('.modal_wrap').style.display ='none';
+        document.querySelector('.black_bg').style.display ='none';
         history.replaceState({}, null, '/StudySet/group/main');
-        
     }
  
     document.getElementById('modal_btn').addEventListener('click', onClick);
@@ -71,12 +103,18 @@
 					</tr>
 					<tr>
 						<td><h4>${studyGroup.groupDescription}</h4></td>
-						<td align="center"><input id="modal_btn" type="button"
-							value="그룹원 검색" class="btn1" style="font-size: 15px;" /><br></td>
+		                  <td>
+		                     <div style="float: right; margin-right: 120px; width: 20%;">
+		                        <p id="modal_btn" class="btn">
+		                           <a href="#modal" rel="modal:open" type="button" style="font-size:15px;">&nbsp;&nbsp;그룹원 검색</a>
+		                                 <div class="black_bg"></div>
+		                             </p>
+		                     </div>
+		                  </td>
 					</tr>
 					<tr>
-						<td><input type="button" value="가입 코드 보기" class="btn1"
-							onClick="alert('${studyGroup.code}')" /><br></td>
+	                  <td><input type="button" value="가입 코드 보기" style="font-size:15px; color:black; font-weight:bold;" class="btn"
+	                     onClick="alert('${studyGroup.code}')" /><br><br></td>
 					</tr>
 					<tr>
 						<td width="50%">

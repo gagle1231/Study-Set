@@ -10,7 +10,7 @@
 function search{
 	form.method="GET";		// member 검색
 	form.submit();
-}
+}    
 </script>
 </head>
 <body>
@@ -18,7 +18,7 @@ function search{
 	<form name="searchForm" method="GET"
 		action="<c:url value='/group/member' />">
 		<input name="srchMem" type="text" placeholder="그룹원 이름 입력">
-		<button onclick="searchMember()">검색</button>
+		<button>검색</button>
 	</form>
 	<br>
 
