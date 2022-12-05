@@ -52,13 +52,12 @@ public class ScheduleDAO {
 	public int create(Schedule schedule) throws SQLException, ParseException {
 		
 		// String sql = "insert into schedule values('1', 'tmp', '20011231', null, null, null,null, 'Y','s'||Sequence_scheduleId.nextval)";
-		String sql = "insert into schedule values(?, ?, ?, ?, ?, ?, ?, ?,"
-				+ "'s'||Sequence_scheduleId.nextval)";
+		String sql = "insert into schedule values(?, ?, ?, ?, ?, ?, 's'||Sequence_scheduleId.nextval, ?, ?)";
 
 		
 		Object[] param = new Object[] { 
-				schedule.getGroupId(), schedule.getTitle(),  schedule.getDate(), schedule.getStartTime(), schedule.getEndTime(), schedule.getLocation(),
-				schedule.getDescription(), schedule.getImportant()};				
+				schedule.getGroupId(), schedule.getTitle(),  schedule.getDate(), schedule.getLocation(),
+				schedule.getDescription(), schedule.getImportant(), schedule.getStartTime(), schedule.getEndTime()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 						
 		try {				
