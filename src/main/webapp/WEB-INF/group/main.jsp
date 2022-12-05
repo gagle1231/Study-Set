@@ -19,7 +19,7 @@
     }   
     function offClick() {
         document.querySelector('.modal_wrap').style.display ='none';
-        history.replaceState({}, null, location.pathname);
+        history.replaceState({}, null, '/StudySet/group/main');
         
     }
  

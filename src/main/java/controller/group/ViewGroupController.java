@@ -31,12 +31,12 @@ public class ViewGroupController implements Controller{
 		else //그룹 검색
 			userJoinList =  groupManager.getGroupList(groupName, member.getUserId());
 		
-		if(memberName!=null && !memberName.equals("")) //회원 이름 검색
-		for(Join j: userJoinList){
-			srchMemberList.addAll(groupManager.search(memberName, j.getGroupId()));
-		}
+//		if(memberName!=null && !memberName.equals("")) //회원 이름 검색
+//		for(Join j: userJoinList){
+//			srchMemberList.addAll(groupManager.search(memberName, j.getGroupId()));
+//		}
+//		
 		request.setAttribute("joinList", userJoinList);
-		request.setAttribute("srchMemberList", srchMemberList);
 		return "/user/main.jsp";
 	}
 
