@@ -40,7 +40,9 @@
 	<br>
 	<table style="width: 100%; border-collapse: collapse">
 		<tr>
-			<td style="text-align: left; width: 130px;"><img
+			<td style="text-align: left; width: 130px;">
+				<a href="<c:url value='http://localhost:8080/StudySet/user/group/list' />">
+				<img
 				src="<c:url value='/images/studysetlogo.png'/>" width="100%" /></td>
 			<td style="text-align: left"><br> <br> <br>
 				<h2>&nbsp;&nbsp;&nbsp;&nbsp;${task.name}_${userName}</h2></td>
