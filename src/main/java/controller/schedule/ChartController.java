@@ -20,7 +20,7 @@ public class ChartController implements Controller{
 		StudyGroup studyGroup = (StudyGroup) session.getAttribute("studyGroup");
 		ChartManager manager = ChartManager.getInstance();
 		List<TimeSlot> timeSlotList =  manager.getChart(studyGroup.getGroupId());
-		//ArrayList<Integer>[] chart = new ArrayList[7];
+		
 		int[][] chart = new int[24][7];
 		
 		for(TimeSlot t: timeSlotList) {
