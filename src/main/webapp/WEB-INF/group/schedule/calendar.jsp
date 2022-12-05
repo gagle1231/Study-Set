@@ -28,9 +28,14 @@ function offClick() {
 var eventsArray = [ 
 	<%
 	List<Schedule> slist = (List<Schedule>)request.getAttribute("scheduleList");
-	for(Schedule s: slist){
-	%>
-	{ date: '<%=s.getDate()%>', title: '<%=s.getTitle()%>', id: '<%=s.getScheduleId()%>'},
+	for(Schedule s: slist){%>
+	{ date: '<%=s.getDate()%>', title: '<%=s.getTitle()%>', id: '<%=s.getScheduleId()%>', textColor: 'black',
+		<%if(s.getImportant()=='Y'){%>
+		color : "#F2673B"
+		<%}else{%>
+		color: "#F2E03B"
+		<%}%>
+	},
 	<%}%>
  ];
  
@@ -47,9 +52,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     	      return year + "년 " + month + "월";
     	    },
+    	    
     	    lang: 'ko',
     	    firstDay: 1,
     	    navLinks: true,
+    	    displayEventTime: false, 
     	    
        dateClick: function(info) {
         onClick();
@@ -70,8 +77,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
-.fc-day-number.fc-sat.fc-past { color:#0000FF; }
-    .fc-day-number.fc-sun.fc-past { color:#FF0000; }
+.fc-today{
+color:white;
+
+}
+
+.fc-head .fc-day-header{color: white; background-color: #3d2d2b; height: 35px;}
+
 </style>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
