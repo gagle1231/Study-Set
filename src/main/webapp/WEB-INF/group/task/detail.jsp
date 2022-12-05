@@ -23,8 +23,10 @@
 	<br>
 	<table style="width: 100%; border-collapse: collapse">
 		<tr>
-			<td style="text-align: left; width: 130px;"><img
-				src="<c:url value='/images/studysetlogo.png'/>" width="100%" /></td>
+			<td style="text-align: left; width: 130px;"><a
+				href="<c:url value='/user/group/list' />">
+					<img src="<c:url value='/images/studysetlogo.png'/>" width="100%" />
+			</a></td>
 			<td style="text-align: left"><br> <br> <br>
 				<h2>&nbsp;&nbsp;&nbsp;&nbsp;${task.name}</h2></td>
 		</tr>
@@ -47,34 +49,21 @@
 			style="border-collapse: collapse; border-spacing: 0; width: 90%; margin-left: 58px; margin-top: 15px;">
 			<c:forEach var="member" items="${list}">
 				<tr valign="top">
-					<td class="contents2"
-						style="margin-bottom: 10px; vertical-align: middle;"><a
-						href="<c:url value='/group/task/submit'>
-						<c:param name="userId" value="${member.userId}" />
-						<c:param name="userName" value="${member.userName}" />
-						<c:param name="taskId" value="${task.taskId}" />
-					</c:url>">&nbsp;&nbsp;${member.userName}
-					</a></td>
-					<td class="contentsTime"
-						style="vertical-align: middle; text-align: -webkit-center;">
-						&nbsp;&nbsp;&nbsp;&nbsp;제출기한:&nbsp;&nbsp;<fmt:parseDate
-							value="${task.startDate}" pattern="yyyy-MM-dd"
-							var="parsedRegDate" type="date" /> <fmt:formatDate
-							value="${parsedRegDate}" pattern="yyyy/MM/dd" />&nbsp;&nbsp;~&nbsp;&nbsp;
-						<fmt:parseDate value="${submit.submitDate}" pattern="yyyy-MM-dd"
-							var="parsedRegDate" type="date" /> <fmt:formatDate
-							value="${parsedRegDate}" pattern="yyyy/MM/dd" />
-					</td>
-					<td class="contentsTime2" style="vertical-align: middle;"><a
-						type="button" class="submitBtn"
-						href="<c:url value='/group/task/submit/form' >
-					</c:url>">&nbsp;&nbsp;제출&nbsp;&nbsp;</a></td>
+					<td class="contents2" style="margin-bottom: 10px;"><a
+						href=<c:url value='/group/task/view'/>>&nbsp;&nbsp;${member.userName}</a></td>
+					<td class="contentsTime">과제 생성 시간</td>
+					<td class="contentsTime">제출 시간</td>
+					<td class="contentsTime2"><a type="button" class="submitBtn"
+						href="<c:url value='/group/task/submit'/>">제출</a></td>
 				</tr>
 				<tr style="height: 10px;">
 					<td></td>
 				</tr>
 			</c:forEach>
 		</table>
+
 	</div>
+	<!-- <a href="<c:url value='/group/task/view' />">제출한 과제 보기</a>-->
+
 </body>
 </html>
