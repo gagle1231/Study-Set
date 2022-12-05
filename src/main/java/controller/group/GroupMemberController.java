@@ -33,20 +33,23 @@ public class GroupMemberController implements Controller{
 			return "/group/main.jsp";   
 		}	
 
-		if (request.getMethod().equals("POST")) {
+		if (request.getMethod().equals("POST")) { //POST: 그룹 가입 처리
 			request.setCharacterEncoding("utf-8");
 			String groupName = request.getParameter("groupName");
 			String code = request.getParameter("code");
 			GroupManager manager = GroupManager.getInstance();
-			StudyGroup newGroup = manager.check(groupName, code);
+			String gId = manager.check(groupName, code); //그룹 이름-코드에 매칭되는 그룹이 있는지 체크
 			try {
-				if(newGroup!=null) {
+				if(gId!=null) { //존재하는 그룹 처리
 					Member m = (Member) session.getAttribute("loginmember");
-					Join join = new Join(m.getUserId(), newGroup.getGroupId(), groupName);
-					manager.addMember(join);
-					return "redirect:/user/group/list?joinGroupSuccess=true&joinGroup="+groupName;
+					Join join = new Join(m.getUserId(), gId, groupName);
+					
+					if(manager.addMember(join) == 0) //이미 가입한 그룹이라면
+						return "redirect:/user/group/list?alreadyJoinGroup=true";
+					else
+						return "redirect:/user/group/list?joinGroupSuccess=true&joinGroup="+groupName;
 				}else
-					return "redirect:/user/group/list?joinGroupSuccess=false";
+					return "redirect:/user/group/list?joinGroupSuccess=false"; //존재하지 않는 그룹 처리
 				
 			} catch(Exception e) {
 				e.printStackTrace();

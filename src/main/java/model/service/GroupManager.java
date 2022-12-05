@@ -34,25 +34,24 @@ public class GroupManager {
 	public int create(StudyGroup newGroup, String userId) throws SQLException, ExistingGroupException {
 		StudyGroup studyGroup = null;
 		
-		studyGroup = check(newGroup.getGroupName(), newGroup.getCode());
-		if(studyGroup != null)
+		String gid = check(newGroup.getGroupName(), newGroup.getCode());
+		if(gid != null)
 			throw new ExistingGroupException();
 		return groupDao.create(newGroup, userId);
 	}
 	
-	//그룹 가입
-	public void addMember(Join join) {
+	//이미 가입한 그룹인지 체크 + 그룹 가입 처리
+	public int addMember(Join join) {
 		try {
-			groupDao.addMember(join);
+			if(groupDao.alreadyJoin(join.getUserId(), join.getGroupId())) //이미 가입한 그룹일 경우 0 리턴
+				return 0;
+			else
+				return groupDao.addMember(join);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return 0;
 	}
-	
 	//회원이 가입한 그룹 리스트
 	public List<Join> getUserGroupList(String userId) throws SQLException {
 			List<Join> userGroupList = new ArrayList<>();
@@ -60,6 +59,7 @@ public class GroupManager {
 			return userGroupList;
 	}
 	
+	//그룹이름으로 회원이 가입한 그룹 검색(그룹 이름이 같은 경우를 고려하여 List 타입으로 반환)
 	public List<Join> getGroupList(String groupName, String userId) throws SQLException {
 		List<Join> joinList = new ArrayList<>();
 		joinList = groupDao.getGroupList(groupName, userId);
@@ -90,13 +90,20 @@ public class GroupManager {
 		return memberList;
 	}
 	
+	//그룹 이름과 그룹원 이름으로 검색
+//	public List<Member> searchByName(String memberName, String groupName) throws SQLException{
+//		List<Member> memberList = new ArrayList<>();
+//		try {
+//			memberList = groupDao.getMemberList(memberName, groupName);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return memberList;
+//	}
 	//그룹에 가입시 해당하는 코드가 맞는지 체크
-	public StudyGroup check(String groupName, String code) throws SQLException{
-		StudyGroup group = getGroup(groupName);
-		if(group!=null && group.getCode().equals(code))
-			return group;
-		else
-			return null;
+	public String check(String groupName, String code) throws SQLException{
+		return groupDao.check(groupName, code);
 	}
 	
 	//그룹원 리스트->과제 제출 연결

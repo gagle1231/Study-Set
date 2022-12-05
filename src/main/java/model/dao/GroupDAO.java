@@ -17,6 +17,7 @@ public class GroupDAO {
 		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
 	}
 
+	
 	// 스터디 그룹 생성과 그룹 생성자 그룹에 가입 처리 트랜잭션
 	public int create(StudyGroup studyGroup, String userId) throws SQLException {
 		
@@ -45,7 +46,7 @@ public class GroupDAO {
 		return 0;	
 	}
 
-	// 그룹이름으로 검색
+	// 그룹 이름으로 검색
 	public StudyGroup search(String groupName) throws SQLException {
 		String sql = "SELECT * " + "FROM STUDYGROUP " + "WHERE groupName = ? ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { groupName }); // JDBCUtil에 query문과 매개 변수 설정
@@ -66,7 +67,7 @@ public class GroupDAO {
 		return null;
 	}
 	
-	// 그룹 아이디로 검색
+	//그룹 아이디로 그룹 검색
 	public StudyGroup searchById(String groupId) throws SQLException {
 		String sql = "SELECT * " + "FROM STUDYGROUP " + "WHERE groupId = ? ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId }); // JDBCUtil에 query문과 매개 변수 설정
@@ -130,27 +131,27 @@ public class GroupDAO {
 		return null;
 	}
 
-	// 그룹 이름, 코드로 가입 -> 일치 true반환/ 불일치 false반환
-	public boolean check(String groupName, String code) throws SQLException {
-		String sql = "SELECT count(*) " + "FROM STUDYGROUP WHERE groupName = ? and code = ? ";
+	// 그룹 이름, 코드가 일치하는 그룹이 있는지 체크-> 일치 groupId반환/ 불일치 null반환
+	public String check(String groupName, String code) throws SQLException {
+		String sql = "SELECT groupId " + "FROM STUDYGROUP WHERE groupName = ? and code = ? ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { groupName, code }); // JDBCUtil에 query문과 매개 변수 설정
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
 			if (rs.next()) {
-				int count = rs.getInt(1);
-				return (count == 1 ? true : false);
+				String gId = rs.getString(1);
+				return gId;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.close(); // resource 반환
 		}
-		return false;
+		return null;
 	}
 
 	//그룹 가입
-	public int addMember(Join join) throws SQLException, ParseException {
+	public int addMember(Join join) throws SQLException {
 		String sql = "INSERT INTO JOIN (userId, groupId, groupName) VALUES(?, ?, ?)";
 		Object[] param = new Object[] { join.getUserId(), join.getGroupId(), join.getGroupName() };
 		jdbcUtil.setSqlAndParameters(sql, param);
@@ -168,15 +169,33 @@ public class GroupDAO {
 		return 0;
 	}
 	
-	// 이름으로 멤버 검색하기
+	//해당 그룹에 이미 가입했는지 체크
+	public boolean alreadyJoin(String userId, String groupId) throws SQLException {
+		String sql = "SELECT count(*) FROM JOIN WHERE userId=? and groupId = ?";      
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId, groupId});	// JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				return (count == 1 ? true : false);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return false;
+	}
+	
 	public List<Member> searchMemberByName(String memberName, String groupId)throws SQLException {
 		String sql = "SELECT * FROM JOIN j, MEMBER m WHERE j.userId = m.userId and m.userName = ? and j.groupId = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { memberName, groupId }); // JDBCUtil에 query문과 매개 변수 설정
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			ResultSet rs = jdbcUtil.executeQuery();
 			List<Member> findMembers = new ArrayList<>();
-			while (rs.next()) { // 학생 정보 발견
+			while (rs.next()) { 
 				Member member = new Member(		
 						rs.getString("userId"),
 						rs.getString("userName"),
@@ -190,20 +209,19 @@ public class GroupDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close();
 		}
 		return null;
 	}
 
-	// 해당하는 그룹아이디의 모든 멤버 리스트 가져오기
 	public List<Member> getMember(String groupId)throws SQLException {
 		String sql = "SELECT * FROM JOIN j, MEMBER m WHERE j.userId = m.userId and j.groupId = ?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId }); // JDBCUtil에 query문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId });
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			ResultSet rs = jdbcUtil.executeQuery(); 
 			List<Member> groupMembers = new ArrayList<>();
-			while (rs.next()) { // 학생 정보 발견
+			while (rs.next()) { 
 				Member member = new Member(		
 						rs.getString("userId"),
 						rs.getString("userName"),
@@ -243,4 +261,25 @@ public class GroupDAO {
 		}
 		return null;
 	}
+	
+//	public List<Member> getMemberList(String memberName, String groupName) throws SQLException  {
+//		String sql = "select distinct phone, email from member, join where member.userid = join.userid and userName = ? and groupName= ?";
+//		jdbcUtil.setSqlAndParameters(sql, new Object[] {memberName,  groupName}); // JDBCUtil에 query문과 매개 변수 설정
+//
+//		try {
+//			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+//			List<Member> memberList = new ArrayList<Member>();
+//			while (rs.next()) {
+//				Member mem = new Member(null, null, null, rs.getString("phone"), null, rs.getString("email"));
+//				memberList.add(mem);
+//			}
+//			return memberList;
+//
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		} finally {
+//			jdbcUtil.close(); // resource 반환
+//		}
+//		return null;
+//	}
 }

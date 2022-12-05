@@ -1,10 +1,9 @@
 <%@page contentType="text/html; charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- 
 <!DOCTYPE html>
 <html>
 <head>
-<title>스터디 가입 모달창</title>
+<title> 스터디 가입 모달창 </title>
 <style>
 .title {
    width:400px; 

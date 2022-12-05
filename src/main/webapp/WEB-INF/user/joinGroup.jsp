@@ -49,7 +49,7 @@ function gc2(){
       form2.code.focus();
       return false;
    }
-   //alert(form2.groupName.value + "그룹에 가입이 완료되었습니다.");
+   alert(form2.groupName.value + "그룹에 가입이 완료되었습니다.");
    form2.submit();
 }
 </script>
