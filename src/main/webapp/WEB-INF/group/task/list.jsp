@@ -84,8 +84,8 @@
 			</td>
 		</tr>
 	</table>
-	<div style="display: none; height: 460px;" class="modal_wrap">
-		<!--스터디생성 모달창 영역-->
+	<div style="display: none; height: 550px;" class="modal_wrap">
+		<!--과제 생성 모달창 영역-->
 		<div class="modal_close">
 			<a href="#">close</a>
 		</div>
