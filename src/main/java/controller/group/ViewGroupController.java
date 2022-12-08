@@ -22,8 +22,6 @@ public class ViewGroupController implements Controller{
 		Member member = (Member) session.getAttribute("loginmember");
 		GroupManager groupManager = GroupManager.getInstance();
 		String groupName = request.getParameter("studyName");
-		String memberName = request.getParameter("memberName");
-		List<Member> srchMemberList= new ArrayList<>();
 		List <Join> userJoinList;
 		
 		if(groupName == null || groupName.equals(""))  
@@ -31,11 +29,6 @@ public class ViewGroupController implements Controller{
 		else //그룹 검색
 			userJoinList =  groupManager.getGroupList(groupName, member.getUserId());
 		
-//		if(memberName!=null && !memberName.equals("")) //회원 이름 검색
-//		for(Join j: userJoinList){
-//			srchMemberList.addAll(groupManager.search(memberName, j.getGroupId()));
-//		}
-//		
 		request.setAttribute("joinList", userJoinList);
 		return "/user/main.jsp";
 	}
