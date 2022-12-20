@@ -26,10 +26,11 @@ public class DuesDAO {
 			while (rs.next()) {
 				Dues dues = new Dues(		
 						rs.getString("duesId"),
-						rs.getString("userId"),
 						gid,
 						rs.getString("duesDate"),
-						rs.getInt("price"));
+						rs.getInt("price"),
+						rs.getString("userName")
+						);
 				duesList.add(dues);			// List에 Dues 객체 저장
 			}		
 			return duesList;					
@@ -45,12 +46,10 @@ public class DuesDAO {
 	//새로운 회비 납부내역 작성
 	public int add(Dues dues) throws SQLException, ParseException {
 
-		String sql = "insert into payment values('d'||LPAD(Sequence_duesId.nextval, 7, '0'), ?, ?, ?, ?)";
-
+		String sql = "insert into dues values('d'||LPAD(Sequence_duesId.nextval, 7, '0'), ?, ?, ?, ?)";
 
 		Object[] param = new Object[] { 
-				dues.getDuesId(), dues.getUserId(), dues.getGroupId(),
-				dues.getDuesDate(), dues.getPrice() };				
+				dues.getGroupId(), dues.getDuesDate(), dues.getPrice(), dues.getUserName() };				
 
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 

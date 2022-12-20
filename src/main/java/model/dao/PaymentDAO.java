@@ -45,12 +45,13 @@ public class PaymentDAO {
 	//회비 지출내역 작성
 	public int add(Payment payment) throws SQLException, ParseException {
 		
-		String sql = "insert into payment values(?, ?, ?, ?, 'p'||LPAD(Sequence_paymentId.nextval, 7, '0')";
+		//그룹아이디, 날짜, 가격, description, paymentID
+		String sql = "insert into payment values(?, ?, ?, ?, 'p'||LPAD(Sequence_paymentId.nextval, 7, '0'))";
 
 		
 		Object[] param = new Object[] { 
 				payment.getGroupId(), payment.getPaymentDate(), payment.getPrice(),
-				payment.getPaymentDescription(), payment.getPaymentId() };				
+				payment.getPaymentDescription() };				
 		
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 						

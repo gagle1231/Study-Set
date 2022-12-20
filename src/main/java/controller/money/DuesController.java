@@ -19,15 +19,14 @@ public class DuesController implements Controller{
    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
       if (request.getMethod().equals("POST")) {
     	  HttpSession session = request.getSession();
-    	  Member member = (Member) session.getAttribute("loginmember");
     	  StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
     	  request.setCharacterEncoding("utf-8");
     	  Dues dues = new Dues(
     			  null,
-    			  member.getUserId(),
     			  group.getGroupId(),
     			  request.getParameter("duesDate"),
-    			  Integer.parseInt(request.getParameter("price"))
+    			  Integer.parseInt(request.getParameter("price")),
+    			  request.getParameter("userName")
     			  );
     	  try {
     		  session = request.getSession();
