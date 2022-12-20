@@ -27,7 +27,7 @@
 	border-radius: 10px;
 	font-size: 25px;
 	height: 45px;
-	left: 1665px;
+	left: 90%;
 	top: 180px;
 	width: 100px;
 	text-align:center;
