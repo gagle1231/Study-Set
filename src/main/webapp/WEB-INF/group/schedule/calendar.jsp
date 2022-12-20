@@ -14,13 +14,35 @@
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.2.0/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.min.css" rel="stylesheet"/>
+<style>
+.fc-today{
+color:white;
+
+}
+
+.fc-head .fc-day-header{color: white; background-color: #3d2d2b; height: 35px;}
+
+.black_bg{
+    display: none;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 107%;
+    background-color:rgba(0, 0, 0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 1;
+}
+</style>
 <script type="text/javascript">
 function onClick() {
     document.querySelector('.modal_wrap').style.display ='block';
+    document.querySelector('.black_bg').style.display ='block';
 }   
 
 function offClick() {
     document.querySelector('.modal_wrap').style.display ='none';
+    document.querySelector('.black_bg').style.display ='none';
     history.replaceState({}, null, location.pathname);
 }
 
@@ -75,16 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
    calendar.render();
  });
 </script>
-
-<style>
-.fc-today{
-color:white;
-
-}
-
-.fc-head .fc-day-header{color: white; background-color: #3d2d2b; height: 35px;}
-
-</style>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
 	<br>
@@ -119,6 +131,7 @@ color:white;
 					<tr>
 						<td><form name="form" action="<c:url value='/schedule/chart'/>">
 						<input type="button" name="newScheduleButton" value="새 스캐줄 생성" onClick="onClick()">
+						<div class="black_bg"></div>
 						<button  onClick="chkChart(<c:url value='/schedule/chart'/>)">일정 조율표 확인하기</button>
 					</form></td>
 					</tr>

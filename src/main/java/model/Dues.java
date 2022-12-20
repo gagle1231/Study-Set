@@ -5,16 +5,15 @@ import java.io.Serializable;
 public class Dues implements Serializable{
 	
 	private String duesId;
-	private String userId;
 	private String groupId;
 	private String duesDate;
 	private int price;
+	private String userName;
 	
-	
-	public Dues(String duesId, String userId, String groupId, String duesDate, int price) {
+	public Dues(String duesId, String groupId, String duesDate, int price, String userName) {
 		super();
 		this.duesId = duesId;
-		this.userId = userId;
+		this.userName = userName;
 		this.groupId = groupId;
 		this.duesDate = duesDate;
 		this.price = price;
@@ -26,11 +25,11 @@ public class Dues implements Serializable{
 	public void setDuesId(String duesId) {
 		this.duesId = duesId;
 	}
-	public String getUserId() {
-		return userId;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserId(String userName) {
+		this.userName = userName;
 	}
 	public String getGroupId() {
 		return groupId;
