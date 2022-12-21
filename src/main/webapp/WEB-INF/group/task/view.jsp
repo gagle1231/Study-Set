@@ -14,25 +14,37 @@
 	function gc() {
 		form1.submit();
 	}
+	function remove() {
+		var cmId = document.getElementById("comment_id").value;
+		//alert('${userId}' + cmId + '${userName}');
+		$.ajax({
+			url: "/group/task/remove",
+			data : {
+				userId : '${userId}',
+				userName : '${userName}',
+				commentId : cmId,
+			}, 
+			type: "GET",
+		});
+	}
 </script>
 <style>
 .comm {
-	width: 23%;
+	width: 98.5%;
 	background: rgba(179, 224, 143, 0.4);
 	border-radius: 10px;
 	height: 52px;
 }
 
 .comm_con {
-	position: relative;
-	width: 90%;
-	left: 4%;
-	top: 19%;
-	background: #FFFFFF;
+	margin-top: 0.5%;
+	margin-left: 2%;
+	margin-bottom: 0.3%;
+	width: 75%;
+	background: white;
 	border-radius: 8px;
 	height: 35px;
 }
-
 .scroll {
 	overflow: auto;
 	height: 600px;
@@ -97,6 +109,17 @@
 		<table>
 			<c:forEach var="comment" items="${list}">
 				<tr valign="top">
+					<td class="comm">
+						<div class="comm_con">
+							&nbsp;&nbsp;${comment.userId}&nbsp;|&nbsp;&nbsp;${comment.commentContents} 
+						</div>
+					</td>
+					<td>
+						<c:if test='${comment.userId eq loginmember.userId}'>
+						<input type="hidden" id="comment_id" value="${comment.commentId}" />
+						<input type="button" onClick="remove()" class="comment_remove" value="X">
+						</c:if>	
+					</td>
 					<td class="comm"><div class="comm_con">
 							&nbsp;&nbsp;
 							<c:if test="${comment.annonymous eq 'Y'}"> 익명 </c:if>

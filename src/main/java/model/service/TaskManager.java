@@ -52,7 +52,11 @@ public class TaskManager {
 //		return submit;
 //	}
 	public Submit getSubmit(String taskId, String userId)  throws SQLException {
+		
 		Submit submit = taskDao.getSubmit(taskId, userId);
+		if (submit == null) {
+			return null;
+		}
 		return submit;
 	}
 //	public List<Submit> getSubmitList(String taskId) throws SQLException {
