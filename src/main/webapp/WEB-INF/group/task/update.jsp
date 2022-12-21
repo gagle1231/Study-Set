@@ -15,7 +15,7 @@
 			form1.submitContents.focus();
 			return false;
 		}
-		alert("과제가 제출되었습니다.");
+		alert("과제가 수정되었습니다.");
 		form1.submit();
 	}
 	var now_utc = Date.now()
@@ -91,6 +91,7 @@
 </style>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
+
 	<br>
 	<table style="width: 100%; border-collapse: collapse">
 		<tr>
@@ -111,7 +112,7 @@
 			</td>
 			<td style="vertical-align: top">
 				<form name="form1" method="POST" autocomplete="off"
-					action="<c:url value = '/group/task/submit/form'>
+					action="<c:url value = '/group/task/submit/update'>
 					<c:param name="submitId" value="${submit.submitId}" />
 					<c:param name="userId" value="${loginmember.userId}" />
 					</c:url>">
@@ -120,17 +121,18 @@
 							<td>
 								<h2>&nbsp;&nbsp;&nbsp;&nbsp;${task.name}:
 									${loginmember.getUserName()}</h2> <input type="button"
-								onClick="gc()" id="submitBtn" value="제출하기"></input>
+								onClick="gc()" id="submitBtn" value="수정하기"></input>
 								<div class="task_submit_back2">
 									&nbsp;&nbsp;&nbsp;&nbsp;<input type="datetime-local"
-										id="DateLocal" name="submitDate"
+										id="DateLocal" name="submitDate" value="${submit.submitDate}"
 										style="width: 15%; text-align: center;" />
 									<hr>
-									<h3>&nbsp;&nbsp;&nbsp;&nbsp;과제 작성란</h3>
+									<h3>&nbsp;&nbsp;&nbsp;&nbsp;과제를 수정하세요.</h3>
 									&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
-										name="submitContents" id="formInput" placeholder="과제를 작성해주세요.">
+										name="submitContents" id="formInput"
+										value="${submit.submitContents}">
 									<br> <br> <br> <input type="file"
-										name="filePath" class="file_btn" value="파일첨부"
+										name="filePath" class="file_btn" value="${submit.filePath}"
 										multiple="multiple" />
 								</div>
 							</td>
