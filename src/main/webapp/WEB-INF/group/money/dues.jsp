@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,7 +110,12 @@
 												<tr class="individualBack">
 													<td>${dues.userName}</td>
 													<td>${dues.price}</td>
-													<td>${dues.duesDate}</td>
+													<td>
+													<fmt:parseDate
+							                           value="${dues.duesDate}" pattern="yyyy-MM-dd"
+							                           var="parsedRegDate" type="date" /> <fmt:formatDate
+							                           value="${parsedRegDate}" pattern="yyyy/MM/dd" />
+													</td>
 												</tr>
 												<tr><td></td></tr>
 											</c:forEach>
