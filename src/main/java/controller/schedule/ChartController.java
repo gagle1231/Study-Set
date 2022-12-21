@@ -1,7 +1,13 @@
 package controller.schedule;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.tomcat.util.json.JSONParser;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +25,10 @@ public class ChartController implements Controller{
 		HttpSession session = request.getSession();
 		StudyGroup studyGroup = (StudyGroup) session.getAttribute("studyGroup");
 		ChartManager manager = ChartManager.getInstance();
+		
+		
+		
+		
 		List<TimeSlot> timeSlotList =  manager.getChart(studyGroup.getGroupId());
 		
 		int[][] chart = new int[24][7];

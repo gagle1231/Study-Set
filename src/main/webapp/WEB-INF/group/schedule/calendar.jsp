@@ -7,54 +7,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/group.css' />"
 	type="text/css">
-<link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
+<link rel=stylesheet href="<c:url value='/css/modal.css' />"
+	type="text/css">
 <title>StudySet: ${studyGroup.groupName}</title>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.2.0/main.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.2.0/main.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.min.css" rel="stylesheet"/>
-<style>
-.fc-today{
-color:white;
-
-}
-
-.fc-head .fc-day-header{color: white; background-color: #3d2d2b; height: 35px;}
-
-.black_bg{
-    display: none;
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 107%;
-    background-color:rgba(0, 0, 0, 0.5);
-    top:0;
-    left: 0;
-    z-index: 1;
-}
-</style>
+<script
+	src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.2.0/main.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.2.0/main.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.min.css"
+	rel="stylesheet" />
 <script type="text/javascript">
 function onClick() {
     document.querySelector('.modal_wrap').style.display ='block';
-    document.querySelector('.black_bg').style.display ='block';
 }   
 
 function offClick() {
-    document.querySelector('.modal_wrap').style.display ='none';
-    document.querySelector('.black_bg').style.display ='none';
+    document.querySelector('#modal1').style.display ='none';
+    document.querySelector('#modal2').style.display ='none';
     history.replaceState({}, null, location.pathname);
 }
 
 
 var eventsArray = [ 
-	<%
-	List<Schedule> slist = (List<Schedule>)request.getAttribute("scheduleList");
-	for(Schedule s: slist){%>
+	<%List<Schedule> slist = (List<Schedule>) request.getAttribute("scheduleList");
+for (Schedule s : slist) {%>
 	{ date: '<%=s.getDate()%>', title: '<%=s.getTitle()%>', id: '<%=s.getScheduleId()%>', textColor: 'black',
-		<%if(s.getImportant()=='Y'){%>
+		<%if (s.getImportant() == 'Y') {%>
 		color : "#F2673B"
-		<%}else{%>
+		<%} else {%>
 		color: "#F2E03B"
 		<%}%>
 	},
@@ -87,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
      
        eventClick: function(info) {
          alert(info.event.title)
+         document.querySelector('#modal2').style.display ='block'
        },
      
        events: function(info, successCallback, failureCallback) {
@@ -97,6 +83,36 @@ document.addEventListener('DOMContentLoaded', function() {
    calendar.render();
  });
 </script>
+
+<style>
+.fc-today {
+	color: white;
+}
+
+.fc-head .fc-day-header {
+	color: white;
+	background-color: #3d2d2b;
+	height: 35px;
+}
+
+.fc-past{
+background-color:#D6D6D6;
+}
+.fc-day:hover{
+border: 2px solid black;
+background-color:#FFFFFF;
+}
+.fc-future{
+background-color:#EDEDED;
+}
+.fc-today{
+background-color:#FFFFFF;
+}
+.fc-view-container{
+border: 1px solid #3d2d2b;
+padding: 0px;
+}
+</style>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
 	<br>
@@ -106,11 +122,12 @@ document.addEventListener('DOMContentLoaded', function() {
 				<!-- 왼쪽 사이드(로고, 메뉴) 구성 -->
 				<table>
 					<tr>
-						<td>
-							<a href="<c:url value='http://localhost:8080/StudySet/user/group/list' />">
-							<img src="<c:url value='/images/studysetlogo.png'/>" width="130px" /></a>
-                     		<br><br>
-                     	</td>
+						<td><a
+							href="<c:url value='http://localhost:8080/StudySet/user/group/list' />">
+								<img src="<c:url value='/images/studysetlogo.png'/>"
+								width="130px" />
+						</a> <br>
+						<br></td>
 					</tr>
 					<tr>
 						<td><jsp:include page="../menu.jsp" flush="false" /></td>
@@ -123,17 +140,17 @@ document.addEventListener('DOMContentLoaded', function() {
 					<tr>
 						<td colspan="2">
 							<h2>&nbsp;&nbsp;${studyGroup.groupName}</h2>
-							<h4 style="color: gray">
-								일정
-							</h4>
+							<h4 style="color: gray">일정</h4>
 						</td>
 					</tr>
 					<tr>
-						<td><form name="form" action="<c:url value='/schedule/chart'/>">
-						<input type="button" name="newScheduleButton" value="새 스캐줄 생성" onClick="onClick()">
-						<div class="black_bg"></div>
-						<button  onClick="chkChart(<c:url value='/schedule/chart'/>)">일정 조율표 확인하기</button>
-					</form></td>
+						<td><form name="form"
+								action="<c:url value='/schedule/chart'/>">
+								<input type="button" name="newScheduleButton" value="새 스캐줄 생성"
+									onClick="onClick()">
+								<button onClick="chkChart(<c:url value='/schedule/chart'/>)">일정
+									조율표 확인하기</button>
+							</form></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -144,12 +161,20 @@ document.addEventListener('DOMContentLoaded', function() {
 			</td>
 		</tr>
 	</table>
-<div style="display: none; height: 600px;" class="modal_wrap">
+	<div style="display: none; height: 600px;" class="modal_wrap" id="modal1">
 		<div class="modal_close" onclick="offClick()">
 			<a href="#" onClick="offClick()">close</a>
 		</div>
 		<div align="center">
 			<jsp:include page="addSchedule.jsp"></jsp:include>
+		</div>
+	</div>
+	<div style="display: none; height: 600px;" class="modal_wrap" id="modal2">
+		<div class="modal_close" onclick="offClick()">
+			<a href="#" onClick="offClick()">close</a>
+		</div>
+		<div align="center">
+		스캐줄 상세보기
 		</div>
 	</div>
 </body>
