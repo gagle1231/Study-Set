@@ -15,7 +15,6 @@
 			form1.submitContents.focus();
 			return false;
 		}
-
 		alert("과제가 제출되었습니다.");
 		form1.submit();
 	}
@@ -130,8 +129,9 @@
 									<h3>&nbsp;&nbsp;&nbsp;&nbsp;과제 작성란</h3>
 									&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
 										name="submitContents" id="formInput" placeholder="과제를 작성해주세요.">
-									<br> <br> <br> <input type="button"
-										name="filePath" class="file_btn" value="파일첨부"></input>
+									<br> <br> <br> <input type="file"
+										name="filePath" class="file_btn" value="파일첨부"
+										multiple="multiple" />
 								</div>
 							</td>
 						</tr>

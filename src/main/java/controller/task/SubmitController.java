@@ -1,18 +1,13 @@
 package controller.task;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.Member;
-import model.StudyGroup;
 import model.Submit;
 import model.Task;
-import model.service.GroupManager;
 import model.service.TaskManager;
 
 public class SubmitController implements Controller {
