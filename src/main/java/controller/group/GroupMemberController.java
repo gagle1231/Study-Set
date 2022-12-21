@@ -49,7 +49,6 @@ public class GroupMemberController implements Controller{
 					else
 						return "redirect:/user/group/list?joinGroupSuccess=true&joinGroup="+groupName;
 				}else
-					request.setAttribute("joinGroupSuccess", false);
 					return "redirect:/user/group/list?joinGroupSuccess=false"; //존재하지 않는 그룹 처리
 				
 			} catch(Exception e) {

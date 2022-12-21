@@ -1,6 +1,5 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
@@ -25,12 +24,29 @@ table td.highlighted {
 	background-color: rgba(0, 0, 0, 0.1);
 }
 </style>
+<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
 <script>
 function addChart(){
-	$(".highlighted").each( function(index, item){
-		alert('d');
-	}
-	
+	  var select = document.querySelectorAll('.highlighted');
+	 
+	  var timelist ={"list":[]};
+	  for(var i=0; i<select.length; i++ ){
+		  //alert(select[0].parentNode.rowIndex);
+			var time = select[i].parentNode.rowIndex;
+			var day = select[i].cellIndex;
+			var listdata = {"day" : day, "time" : time};
+			timelist.list.push(listdata);
+		};
+		
+		timelist.list.sort(function(a,b) {
+			return a.day - b.day;
+
+		});
+
+        var stringJson = JSON.stringify(timelist);
+		//alert(stringJson);
+	  	form.editTime.value=stringJson;
+	    submit();
 } 
 </script>
 </head>
@@ -60,7 +76,7 @@ function addChart(){
 						</td>
 					</tr>
 					<tr><td><h2>※안 되는 시간에 색칠해주세요</h2></td>
-					<td><form name="form" action="">
+					<td><form name="form" action="" method="POST">
 						<button onClick="addChart()">제출하기</button>
 						<input type="hidden" name="editTime">
 					</form></td></tr>
@@ -94,9 +110,6 @@ function addChart(){
 			</td>
 		</tr>
 	</table>
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"
-		type="text/javascript"></script>
 	<script type="text/javascript" charset="utf-8">
 		$(function() {
 			var isMouseDown = false;
