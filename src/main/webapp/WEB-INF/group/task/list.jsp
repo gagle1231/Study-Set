@@ -11,19 +11,33 @@
 <link rel=stylesheet href="<c:url value='/css/modal.css' />"
 	type="text/css">
 <title>StudySet: ${studyGroup.groupName}_과제 홈</title>
+<style>
+.black_bg{
+    display: none;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 107%;
+    background-color:rgba(0, 0, 0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 1;
+}
+</style>
 <script>
 	window.onload = function() {
 
 		function onClick() {
 			document.querySelector('.modal_wrap').style.display = 'block';
+			document.querySelector('.black_bg').style.display ='block';
 		}
 		function offClick() {
 			document.querySelector('.modal_wrap').style.display = 'none';
+			document.querySelector('.black_bg').style.display ='none';
 		}
 
 		document.getElementById('modal_btn').addEventListener('click', onClick);
-		document.querySelector('.modal_close').addEventListener('click',
-				offClick);
+		document.querySelector('.modal_close').addEventListener('click', offClick);
 	};
 </script>
 </head>
@@ -45,6 +59,7 @@
 				<p id="modal_btn" class="btn">
 					<a href="#modal1" rel="modal:open" type="button"
 						style="color: white;">과제 생성</a>
+					<div class="black_bg"></div>
 				</p>
 			</td>
 		</tr>
@@ -84,7 +99,7 @@
 			</td>
 		</tr>
 	</table>
-	<div style="display: none; height: 460px;" class="modal_wrap">
+	<div style="display: none; height: 550px;" class="modal_wrap">
 		<!--스터디생성 모달창 영역-->
 		<div class="modal_close">
 			<a href="#">close</a>

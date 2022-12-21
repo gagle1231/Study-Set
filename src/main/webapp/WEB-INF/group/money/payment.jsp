@@ -4,11 +4,51 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=stylesheet href="<c:url value='/css/money.css' />"
-	type="text/css">
-<link rel=stylesheet href="<c:url value='/css/modal.css' />"
-	type="text/css">
+<link rel=stylesheet href="<c:url value='/css/money.css' />" type="text/css">
+<link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
 <title>StudySet: ${studyGroup.groupName}</title>
+<style>
+.black_bg{
+    display: none;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 1;
+}	
+.test {
+	border: 6px;
+	background-color: #F2673B;
+	color: white;
+	position: absolute;
+	border-radius: 10px;
+	font-size: 25px;
+	height: 45px;
+	left: 90%;
+	top: 180px;
+	width: 100px;
+	text-align:center;
+}
+</style>
+<script>
+	window.onload = function() {
+
+		function onClick() {
+			document.querySelector('.modal_wrap').style.display = 'block';
+	        document.querySelector('.black_bg').style.display ='block';
+		}
+		function offClick() {
+			document.querySelector('.modal_wrap').style.display = 'none';
+			document.querySelector('.black_bg').style.display ='none';
+		}
+
+		document.getElementById('modal_btn').addEventListener('click', onClick);
+		document.querySelector('.modal_close').addEventListener('click', offClick);
+	};
+</script>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
 	<br>
@@ -45,8 +85,11 @@
 								<b>납부내역 확인하기</b>
 							</button>
 							</form> <br></td>
-						<td width="50%" align="right" style="padding: 50px"><button
-								class="btn">입력하기</button></td>
+						<td width="50%" align="right" style="padding: 50px">
+							<p id="modal_btn" class="test">
+								<a href="#modal1" rel="modal:open" type="button" style="color:white">입력하기</a>
+								<div class="black_bg"></div>
+							</p>
 					</tr>
 					<tr>
 						<td colspan="2" width="100%" align="left">
@@ -78,6 +121,14 @@
 			</td>
 		</tr>
 	</table>
-
+<div style="display: none; height: 550px;" class="modal_wrap">
+	<!--모달창 영역-->
+	<div class="modal_close">
+		<a href="#">close</a>
+	</div>
+	<div align="center">
+		<jsp:include page="addPayment.jsp"></jsp:include>
+	</div>
+</div>
 </body>
 </html>

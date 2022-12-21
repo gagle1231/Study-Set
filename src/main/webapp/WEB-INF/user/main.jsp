@@ -18,17 +18,17 @@
 		function onClick() {
 			const item = modal.item(0);
 			item.style.display = 'block';
-	         document.querySelector('.black_bg').style.display ='block';
+	        document.querySelector('.black_bg').style.display ='block';
 		}
 		function onClick2() {
 			const item = modal.item(1);
 			item.style.display = 'block';
-	         document.querySelector('.black_bg').style.display ='block';
+	        document.querySelector('.black_bg').style.display ='block';
 		}
 	    function onClick3() {
 	        const item = modal.item(2);
 	        item.style.display = 'block';
-	         document.querySelector('.black_bg').style.display ='block';
+	        document.querySelector('.black_bg').style.display ='block';
 	      }
 		function offClick() {
 			const item = modal.item(0);
@@ -63,6 +63,16 @@
 <style>
 .item:hover{background-color: powderblue;
 border: 3px solid black;
+.black_bg{
+    display: none;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 1;
 }
 </style>
 </head>
