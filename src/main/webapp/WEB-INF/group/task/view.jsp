@@ -36,6 +36,7 @@
 	border-radius: 8px;
 	height: 35px;
 }
+
 .scroll {
 	overflow: auto;
 	height: 600px;
@@ -63,14 +64,15 @@
 	<br>
 	<table style="width: 100%; border-collapse: collapse">
 		<tr>
-			<td style="text-align: left; width: 130px;">
-			<a
+			<td style="text-align: left; width: 130px;"><a
 				href="<c:url value='http://localhost:8080/StudySet/user/group/list' />">
 					<img src="<c:url value='/images/studysetlogo.png'/>" width="130px" />
 			</a></td>
 			<td style="text-align: left"><br> <br> <br>
 				<h2>&nbsp;&nbsp;&nbsp;&nbsp;${task.name}_${userName}</h2></td>
-			<td>
+			<td><a href="<c:url value='/group/task/submit/update' />"
+				style="border: 6px; background-color: #F2673B; color: white; position: absolute; border-radius: 10px; font-size: 25px; height: 45px; left: 85%; top: 20%; width: 103px;">
+					수정하기</a></td>
 		</tr>
 		<tr>
 			<td style="height: 30px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -103,19 +105,18 @@
 				<tr valign="top">
 					<td class="comm">
 						<div class="comm_con">
-							&nbsp;&nbsp;${comment.userId}&nbsp;|&nbsp;&nbsp;${comment.commentContents} 
+							&nbsp;&nbsp;${comment.userId}&nbsp;|&nbsp;&nbsp;${comment.commentContents}
 						</div>
 					</td>
-					<td>
-						<c:if test='${comment.userId eq loginmember.userId}'>
-							<a href="<c:url value='/group/comment/remove'>
+					<td><c:if test='${comment.userId eq loginmember.userId}'>
+							<a
+								href="<c:url value='/group/comment/remove'>
 								<c:param name='userId' value='${userId}' />
 								<c:param name='userName' value='${userName }' />
 								<c:param name='commentId' value='${comment.commentId}' /></c:url> ">
-							<img src="<c:url value='/images/remove.png'/>"/>
-						</a> 
-						</c:if>	
-					</td>
+								<img src="<c:url value='/images/remove.png'/>" />
+							</a>
+						</c:if></td>
 				</tr>
 			</c:forEach>
 		</table>
