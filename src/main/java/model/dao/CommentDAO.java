@@ -89,6 +89,26 @@ public class CommentDAO {
 		}
 		return 0;
 	}
+	
+	// submit 댓글 삭제
+	public int removeMemoComment(String commentId) throws SQLException, ParseException {
+		String sql = "DELETE FROM SUBMITCOMMENT WHERE COMMENTID = ?";
+		Object[] param = new Object[] {	commentId };
+		jdbcUtil.setSqlAndParameters(sql, param);
+		
+      try {            
+          int result = jdbcUtil.executeUpdate();   // delete 문 실행
+          return result;
+       } catch (Exception ex) {
+          jdbcUtil.rollback();
+          ex.printStackTrace();
+       }
+       finally {
+          jdbcUtil.commit();
+          jdbcUtil.close();   // resource 반환
+       }      
+       return 0;
+	}
 
 	// submit댓글 리스트 가져오기
 	public List<SubmitComment> getSubmitCommentList(String submitId) {

@@ -48,6 +48,21 @@
    border-radius: 20px;
    text-align: center;
 }
+.modal_close3 {
+	width: 26px;
+	height: 26px;
+	position: absolute;
+	top: -30px;
+	right: 0;
+}
+.modal_close3>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: url(https://img.icons8.com/metro/26/000000/close-window.png);
+	background-repeat: no-repeat;
+	text-indent: -9999px;
+}
 </style>
 <script>
 function searchMember(){

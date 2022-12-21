@@ -41,6 +41,13 @@
 	top: -30px;
 	right: 0;
 }
+.modal_close3 {
+	width: 26px;
+	height: 26px;
+	position: absolute;
+	top: -30px;
+	right: 0;
+}
 
 .modal_close>a {
 	display: block;

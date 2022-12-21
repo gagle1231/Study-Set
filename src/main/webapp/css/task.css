@@ -331,3 +331,21 @@ a {
 	border: none;
 	resize: none;
 }
+
+.comment_remove {
+	width: 21px;
+	height: 21px;
+	margin-top:20px;
+	background: black;
+	border-radius: 50%;
+	color: white;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 800;
+	font-size: 12px;
+	line-height: 20px;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+}
+

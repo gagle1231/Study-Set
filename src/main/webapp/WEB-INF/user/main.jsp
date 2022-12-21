@@ -203,15 +203,15 @@ border: 3px solid black;
 			<jsp:include page="joinGroup.jsp"></jsp:include>
 		</div>
 	</div>
-	<div style="<c:if test='${searching eq null}'>display: none;</c:if>
-   <c:if test='${searching eq true}'>display: block;</c:if> height: 450px;" class="modal_wrap">
+	<div class="modal_wrap" style="<c:if test='${searching eq null}'>display: none;</c:if>
+   	<c:if test='${searching eq true}'>display: block;</c:if> height: 450px;">
       <!--그룹원 검색 모달창 영역-->
       <div class="modal_close3">
-         <a>close</a>
+         <a href="#">close</a>
       </div>
       <div align="center">
          <jsp:include page="searchMember.jsp"></jsp:include> 
       </div>
-</div>
+	</div>
 </body>
 </html>
