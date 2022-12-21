@@ -51,7 +51,8 @@ public class RequestMapping {
 		mappings.put("/schedule/addchart", new AddChartController());
 		mappings.put("/schedule/calendar", new ViewScheduleController());
 		mappings.put("/schedule/calendar/detail", new ScheduleController());
-
+		mappings.put("/schedule/calendar/update", new ScheduleController());
+		
 		// 과제
 		mappings.put("/group/task/main", new ViewTaskController());
 		mappings.put("/group/task/form", new TaskController());
@@ -68,9 +69,9 @@ public class RequestMapping {
 		mappings.put("/group/money/addDues", new DuesController());
 
 		// 진행상황
-		mappings.put("/group/memo/memo", new MemoController());
-		mappings.put("/group/memo/memo", new UploadMemoController());
-		mappings.put("/group/memo/detail", new MemoDetailController());
+		mappings.put("/group/memo", new MemoController());
+//		mappings.put("/group/memo/memo", new UploadMemoController());
+//		mappings.put("/group/memo/detail", new MemoDetailController());
 		// 댓글
 		//mappings.put("/group/memo/detail", new CommentController());
 	}

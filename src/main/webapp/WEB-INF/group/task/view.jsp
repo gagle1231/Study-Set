@@ -120,6 +120,12 @@
 						<input type="button" onClick="remove()" class="comment_remove" value="X">
 						</c:if>	
 					</td>
+					<td class="comm"><div class="comm_con">
+							&nbsp;&nbsp;
+							<c:if test="${comment.annonymous eq 'Y'}"> 익명 </c:if>
+							<c:if test="${comment.annonymous eq 'N'}">${comment.userId}</c:if>
+							&nbsp;|&nbsp;&nbsp;${comment.commentContents}
+						</div></td>
 				</tr>
 			</c:forEach>
 		</table>

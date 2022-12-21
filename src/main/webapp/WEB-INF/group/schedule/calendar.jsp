@@ -25,14 +25,11 @@
 function onClick() {
     document.querySelector('.modal_wrap').style.display ='block';
 }   
-
 function offClick() {
     document.querySelector('#modal1').style.display ='none';
     document.querySelector('#modal2').style.display ='none';
     history.replaceState({}, null, location.pathname);
 }
-
-
 var eventsArray = [ 
 	<%List<Schedule> slist = (List<Schedule>) request.getAttribute("scheduleList");
 for (Schedule s : slist) {%>
@@ -49,17 +46,14 @@ for (Schedule s : slist) {%>
 	<%}%>
  ];
  
-
 document.addEventListener('DOMContentLoaded', function() {
    var calendarEl = document.getElementById('calendar');
-
    var calendar = new FullCalendar.Calendar(calendarEl, {
        height: 700,
        plugins: [ 'dayGrid', 'interaction' ],
        titleFormat: function (date) {
     	      year = date.date.year;
     	      month = date.date.month + 1;
-
     	      return year + "년 " + month + "월";
     	    },
     	    
@@ -74,34 +68,31 @@ document.addEventListener('DOMContentLoaded', function() {
        },
      
        eventClick: function(info) {
-         alert(info.event.id);
-         document.querySelector('#modal2').style.display ='block'
-         editSchedulefrm.startTime.value=info.event.title;
-         editSchedulefrm.sTitle.value=info.event.title;
-         editSchedulefrm.sTitle.value=info.event.title;
-         editSchedulefrm.sTitle.value=info.event.title;
+         //alert(info.event.id);
+         
+         document.querySelector('#modal2').style.display ='block'   
        },
      
        events: function(info, successCallback, failureCallback) {
          successCallback(eventsArray);
        }
    });
-
    calendar.render();
  });
 </script>
 <link rel=stylesheet href="<c:url value='/css/group.css' />" type="text/css">
 <style>
+body{
+	font-family: 'Hahmlet', serif;
+}
 .fc-today {
 	color: white;
 }
-
 .fc-head .fc-day-header {
 	color: white;
 	background-color: #3d2d2b;
 	height: 35px;
 }
-
 .fc-past{
 background-color:#D6D6D6;
 }
@@ -157,6 +148,7 @@ padding: 0px;
 									onClick="onClick()">
 								<button onClick="chkChart(<c:url value='/schedule/chart'/>)">일정
 									조율표 확인하기</button>
+									<input type="hidden" name="sid">
 							</form></td>
 					</tr>
 					<tr>
@@ -182,7 +174,7 @@ padding: 0px;
 		</div>
 		<div align="center">
 		<div align="center">
-			<jsp:include page="scheduleDetail.jsp"></jsp:include>
+			<jsp:include page="editSchedule.jsp"></jsp:include>
 		</div>
 		</div>
 	</div>

@@ -23,6 +23,10 @@ public class ScheduleManager {
 		return scheduleManager;
 	}
 	
+	public Schedule getSchedule(String scheduleId) {
+		Schedule schedule = scheduleDao.getSchedule(scheduleId);
+		return schedule;
+	}
 	public List<Schedule> find(String groupId){
 		List<Schedule> scheduleList = scheduleDao.getList(groupId);
 		return scheduleList;

@@ -1,6 +1,6 @@
 package controller.schedule;
-
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +14,12 @@ public class ScheduleController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		if(request.getMethod().equals("POST")) {
-			HttpSession session = request.getSession();
-			StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
+		HttpSession session = request.getSession();
+		StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
+		ScheduleManager manager = ScheduleManager.getInstance();
+		
+		if(request.getMethod().equals("POST")) { //스캐줄 생성
+			
 			String title = request.getParameter("sTitle");
 			String date = request.getParameter("sDate");
 			String startTime = request.getParameter("statTime");
@@ -28,7 +31,6 @@ public class ScheduleController implements Controller {
 			char imp = i==null ? 'N' : 'Y';
 			Schedule newSchedule = new Schedule(null, group.getGroupId(), title, date, startTime, endTime, location, description, imp);
 			
-			ScheduleManager manager = ScheduleManager.getInstance();
 			try{
 				manager.create(newSchedule);
 				return "redirect:/schedule/calendar";
@@ -38,7 +40,10 @@ public class ScheduleController implements Controller {
 		}
 		
 		
-		return "/schedule/calendar/detail.jsp";
+		String sid = (String) request.getAttribute("sid");
+		Schedule s = manager.getSchedule(sid);
+		request.setAttribute("schedule", s);
+        return "/group/schedule/calendar.jsp";	
 	}
 
 }
