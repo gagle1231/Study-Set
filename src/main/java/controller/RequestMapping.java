@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.*;
+import controller.group.DeleteGroupController;
 import controller.group.GroupController;
 import controller.group.GroupMemberController;
 import controller.group.ViewGroupController;
@@ -45,6 +46,7 @@ public class RequestMapping {
 		mappings.put("/group/register", new GroupController());
 		mappings.put("/group/main", new ForwardController("/group/main.jsp"));
 		mappings.put("/group/member", new GroupMemberController());
+		mappings.put("/group/leave", new DeleteGroupController());
 
 		// 스캐줄
 		mappings.put("/schedule/chart", new ChartController());
@@ -59,9 +61,9 @@ public class RequestMapping {
 		mappings.put("/group/task/detail", new TaskDetailController());
 		mappings.put("/group/task/submit", new ViewSubmitController());
 		mappings.put("/group/task/submit/form", new SubmitController());
-		// 댓글
-//		mappings.put("/group/task/submit", new CommentController());
-		// mappings.put("/group/task/submit", new ViewSubmitController());
+		//댓글
+		mappings.put("/group/comment/remove", new CommentController());
+
 		// 회비
 		mappings.put("/group/money/dues", new DuesController());
 		mappings.put("/group/money/payment", new PaymentController());
