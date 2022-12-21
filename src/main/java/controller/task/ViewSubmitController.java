@@ -1,5 +1,6 @@
 package controller.task;
 
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -38,8 +39,17 @@ public class ViewSubmitController implements Controller {
 		request.setAttribute("userName", userName);
 
 //comment 불러오기
-		List<SubmitComment> list = cmanager.getSubmitCommentList(submit.getSubmitId());
-		request.setAttribute("list", list);
+		List<SubmitComment> list = null;
+	      try {
+	         list = cmanager.getSubmitCommentList(submit.getSubmitId());
+	         request.setAttribute("list", list);
+	      } catch (Exception e) {
+	         response.setContentType("text/html; charset=UTF-8");
+	         PrintWriter out = response.getWriter();
+	         out.println("<script>alert('과제를 제출하시길 바랍니다.'); location.href='/StudySet/group/task/detail?taskId=" + task.getTaskId()+"';</script>");
+	         out.flush();
+	         return "redirect:group/task/detail";
+	      }
 
 //comment 작성
 		if (request.getMethod().equals("POST")) {
