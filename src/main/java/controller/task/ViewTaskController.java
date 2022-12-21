@@ -15,6 +15,7 @@ public class ViewTaskController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("utf-8");
 		StudyGroup group = (StudyGroup) session.getAttribute("studyGroup");
 		TaskManager manager = TaskManager.getInstance();
 		List<Task> list = (List<Task>)manager.getList(group.getGroupId());
