@@ -61,6 +61,7 @@ public class RequestMapping {
 		mappings.put("/group/task/detail", new TaskDetailController());
 		mappings.put("/group/task/submit", new ViewSubmitController());
 		mappings.put("/group/task/submit/form", new SubmitController());
+		mappings.put("/group/task/submit/update", new UpdateSubmitController());
 		//댓글
 		mappings.put("/group/comment/remove", new CommentController());
 
