@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/money.css' />" type="text/css">
 <link rel=stylesheet href="<c:url value='/css/modal.css' />" type="text/css">
+<link rel=stylesheet href="<c:url value='/css/font.css'/>" type="text/css">
 <title>StudySet: ${studyGroup.groupName}</title>
 <style>
 .black_bg{
