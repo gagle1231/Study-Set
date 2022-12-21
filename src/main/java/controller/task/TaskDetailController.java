@@ -24,10 +24,8 @@ public class TaskDetailController implements Controller{
 		GroupManager gmanager = GroupManager.getInstance();
 		Task task = manager.getTask(request.getParameter("taskId"));
 		List<Member> list = gmanager.getMember(group.getGroupId());
-		//List<Submit> list = manager.getSubmitList(task.getTaskId());
 		request.setAttribute("group", group);
 		session.setAttribute("task", task);
-		//session.setAttribute("list", list);
 		session.setAttribute("list", list);
 		return "/group/task/detail.jsp";
 	}

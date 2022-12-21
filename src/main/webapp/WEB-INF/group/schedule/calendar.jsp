@@ -36,7 +36,10 @@ function offClick() {
 var eventsArray = [ 
 	<%List<Schedule> slist = (List<Schedule>) request.getAttribute("scheduleList");
 for (Schedule s : slist) {%>
-	{ date: '<%=s.getDate()%>', title: '<%=s.getTitle()%>', id: '<%=s.getScheduleId()%>', textColor: 'black',
+	{  date: '<%=s.getDate()%>', 
+	   title: '<%=s.getTitle()%>',
+	   id: '<%=s.getScheduleId()%>',
+	   textColor: 'black', 
 		<%if (s.getImportant() == 'Y') {%>
 		color : "#F2673B"
 		<%} else {%>
@@ -71,8 +74,12 @@ document.addEventListener('DOMContentLoaded', function() {
        },
      
        eventClick: function(info) {
-         alert(info.event.title)
+         alert(info.event.id);
          document.querySelector('#modal2').style.display ='block'
+         editSchedulefrm.startTime.value=info.event.title;
+         editSchedulefrm.sTitle.value=info.event.title;
+         editSchedulefrm.sTitle.value=info.event.title;
+         editSchedulefrm.sTitle.value=info.event.title;
        },
      
        events: function(info, successCallback, failureCallback) {
@@ -83,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
    calendar.render();
  });
 </script>
-
+<link rel=stylesheet href="<c:url value='/css/group.css' />" type="text/css">
 <style>
 .fc-today {
 	color: white;
@@ -174,7 +181,9 @@ padding: 0px;
 			<a href="#" onClick="offClick()">close</a>
 		</div>
 		<div align="center">
-		스캐줄 상세보기
+		<div align="center">
+			<jsp:include page="scheduleDetail.jsp"></jsp:include>
+		</div>
 		</div>
 	</div>
 </body>

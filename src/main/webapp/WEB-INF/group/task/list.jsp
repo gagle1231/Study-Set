@@ -12,16 +12,44 @@
 	type="text/css">
 <title>StudySet: ${studyGroup.groupName}_과제 홈</title>
 <style>
-.black_bg{
-    display: none;
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 107%;
-    background-color:rgba(0, 0, 0, 0.5);
-    top:0;
-    left: 0;
-    z-index: 1;
+.black_bg {
+	display: none;
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 107%;
+	background-color: rgba(0, 0, 0, 0.5);
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.scroll {
+	position: absolute;
+	width: 80%;
+	height: 70%;
+	left: 221px;
+	top: 309px;
+	bottom: -154px;
+	background: #CBD1CA;
+	border-radius: 20px;
+	overflow: auto;
+	scrollbar-width: thin;
+}
+
+.scroll::-webkit-scrollbar {
+	width: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+	background-color: #2f3542;
+	border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-track {
+	background-color: grey;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
 }
 </style>
 <script>
@@ -29,15 +57,16 @@
 
 		function onClick() {
 			document.querySelector('.modal_wrap').style.display = 'block';
-			document.querySelector('.black_bg').style.display ='block';
+			document.querySelector('.black_bg').style.display = 'block';
 		}
 		function offClick() {
 			document.querySelector('.modal_wrap').style.display = 'none';
-			document.querySelector('.black_bg').style.display ='none';
+			document.querySelector('.black_bg').style.display = 'none';
 		}
 
 		document.getElementById('modal_btn').addEventListener('click', onClick);
-		document.querySelector('.modal_close').addEventListener('click', offClick);
+		document.querySelector('.modal_close').addEventListener('click',
+				offClick);
 	};
 </script>
 </head>
@@ -59,7 +88,7 @@
 				<p id="modal_btn" class="btn">
 					<a href="#modal1" rel="modal:open" type="button"
 						style="color: white;">과제 생성</a>
-					<div class="black_bg"></div>
+				<div class="black_bg"></div>
 				</p>
 			</td>
 		</tr>
@@ -70,7 +99,7 @@
 			<td colspan="3"><jsp:include page="../menu.jsp" flush="false" /></td>
 		</tr>
 		<tr>
-			<td class="back">
+			<td style="overflow: auto;" class="scroll">
 				<table
 					style="border-collapse: collapse; border-spacing: 0; width: 90%; margin-left: 58px; margin-top: 15px;">
 					<c:forEach var="task" items="${list}">
