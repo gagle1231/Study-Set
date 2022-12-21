@@ -31,7 +31,7 @@ public class UploadMemoController implements Controller {
                request.getParameter("submitContents"));
 
          MemoManager manager = MemoManager.getInstance();
-         manager.addMemo(memo, group.getGroupId(), userId);
+         manager.addMemo(memo);
          return "redirect:/group/memo";
       }
       MemoManager manager = MemoManager.getInstance();

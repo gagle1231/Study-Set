@@ -14,9 +14,10 @@ import model.Memo;
 import model.dao.mapper.MemoMapper;
 
 public class MemoDAO {
-	private SqlSessionFactory sqlSessionFactory;
+	private String namespace = "model/dao/mapper/MemoMapper";
+	private SqlSessionFactory sqlSessionFactory = createSqlSessionFactory();
 
-	public MemoDAO() {
+	private SqlSessionFactory createSqlSessionFactory() {
 		String resource = "mybatis-config.xml";
 		InputStream inputStream;
 		
@@ -25,13 +26,15 @@ public class MemoDAO {
 		} catch (IOException e) {
 			throw new IllegalArgumentException(e);
 		}
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		
+		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	public int addMemo(Memo memo, String userId, String groupId) {
+	public int addMemo(Memo memo) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.getMapper(MemoMapper.class).addMemo(memo, userId, groupId);
+			// mapped statement에 parameter setting, 질의 실행, 결과 객체 생성, 반환
+			int result = sqlSession.insert(namespace+".addMemo", memo);
 			if (result > 0) {
 				sqlSession.commit();
 			} 
@@ -44,16 +47,18 @@ public class MemoDAO {
 	public Memo getMemo(String memoId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.getMapper(MemoMapper.class).getMemo(memoId);			
+			// return sqlSession.getMapper(MemoMapper.class).getMemo(memoId);	
+			return sqlSession.selectOne(namespace+".getMemo", memoId);
 		} finally {
 			sqlSession.close();
 		}
 	}
-	
+	s
 	public List<Memo> getList(String groupId, String userId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.getMapper(MemoMapper.class).getList(groupId, userId);			
+			// return sqlSession.getMapper(MemoMapper.class).getList(groupId, userId);		
+			return sqlSession.selectList(namespace+".getList",groupId, userId);
 		} finally {
 			sqlSession.close();
 		}
