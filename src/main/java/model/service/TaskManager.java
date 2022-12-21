@@ -36,7 +36,7 @@ public class TaskManager {
 		return taskList;
 	}
 
-	//task DAO수정하기
+	// task DAO수정하기
 	public Task getTask(String taskId) throws SQLException {
 		Task task = taskDao.getTask(taskId);
 		return task;
@@ -44,15 +44,21 @@ public class TaskManager {
 
 	public int submitTask(String taskId, Submit submit) throws SQLException, ParseException {
 		return taskDao.submitTask(taskId, submit);
-		
+
 	}
-	
+
+//	public int update(Submit submit) throws SQLException, ParseException {
+//		return taskDao.update(submit);
+//	}
+	public int update(String submitContents, String submitId) throws SQLException, ParseException {
+		return taskDao.update(submitContents, submitId);
+	}
 //	public Submit getSubmit(String submitId)  throws SQLException {
 //		Submit submit = taskDao.getSubmit(submitId);
 //		return submit;
 //	}
-	public Submit getSubmit(String taskId, String userId)  throws SQLException {
-		
+	public Submit getSubmit(String taskId, String userId) throws SQLException {
+
 		Submit submit = taskDao.getSubmit(taskId, userId);
 		if (submit == null) {
 			return null;
