@@ -69,9 +69,9 @@ public class RequestMapping {
 		mappings.put("/group/money/addDues", new DuesController());
 
 		// 진행상황
-		mappings.put("/group/memo/memo", new MemoController());
-		mappings.put("/group/memo/memo", new UploadMemoController());
-		mappings.put("/group/memo/detail", new MemoDetailController());
+		mappings.put("/group/memo", new MemoController());
+//		mappings.put("/group/memo/memo", new UploadMemoController());
+//		mappings.put("/group/memo/detail", new MemoDetailController());
 		// 댓글
 		//mappings.put("/group/memo/detail", new CommentController());
 	}

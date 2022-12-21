@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.dao.mapper.MemoMapper">
+<cache />
+	<resultMap id="memoResultMap" type="Memo">
+		<id column="memoId" jdbcType="VARCHAR" property="id" />
+		<result column="memoContents" jdbcType="VARCHAR" property="memoContents" />
+		<result column="userId" jdbcType="VARCHAR" property="memoContents" />
+		<association column="userId" property="member" javaType="Member">
+			<id column="userId" jdbcType="VARCHAR" property="userId" />
+			<result column="userName" jdbcType="VARCHAR" property="userName" />
+		</association>
+	</resultMap>
+	<select id="getList" parameterType="String" resultMap="memoResultMap"> 
+		SELECT memoId, memoContents, u.userId, userName
+        FROM MEMO m  left outer JOIN Member u
+        ON m.userid = u.userid 
+        where m.groupid = #{param1}	
+        ORDER BY userName;
+	</select>
+</mapper>
