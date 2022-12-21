@@ -53,14 +53,8 @@ public class DispatcherServlet extends HttpServlet {
                 rd.forward(request, response);		// forward to the view page
             }                   
         } catch (Exception e) {
-        	// 과제에서 404 에러 뜨면 강제 url 이동되게 함.. (DispatcherServlet NULL EXCEPTION)
-        	response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('과제를 제출하시길 바랍니다.'); location.href='/StudySet/group/task/main';</script>");
-            out.flush();
-        	response.sendRedirect("redirect:group/task/detail");
-            //logger.error("여기서 오류나는 거임", e);
-            //throw new ServletException(e.getMessage());
+            logger.error("Except: {}", e);
+            throw new ServletException(e.getMessage());
         }
     }
 }

@@ -11,11 +11,7 @@
 	height: 140px;
 	text-align: center;
 }
-.menuItem:hover{
-	height: 200px;
-	background-color: white;
-	color:white;
-}
+
 .menuItem a{
 	color:black;
 	font-size: 1.2rem;

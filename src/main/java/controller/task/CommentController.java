@@ -1,5 +1,7 @@
 package controller.task;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,21 +18,18 @@ public class CommentController implements Controller {
    @Override
    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
       HttpSession session = request.getSession();
-      
+		
       Task task = (Task) session.getAttribute("task");
+      String taskId = task.getTaskId();
       String userId = request.getParameter("userId");
       String userName = request.getParameter("userName");
       String submitCommentId = request.getParameter("commentId");
+      System.out.println(taskId + userId + userName + submitCommentId);
       
-      // 댓글 삭제하기
-      if (request.getMethod().equals("GET")) {
-         request.setCharacterEncoding("utf-8");
-         CommentManager manager = CommentManager.getInstance();
-         manager.removeMemoComment(submitCommentId);
-         return "redirect:/group/task/submit?userId=" + userId + 
-        		 "&userName=" + userName + "&taskId=" + task.getTaskId();
-      }
-
-      return "/group/task/submit.jsp";
+     request.setCharacterEncoding("utf-8");
+     CommentManager manager = CommentManager.getInstance();
+     manager.removeMemoComment(submitCommentId);
+     
+     return "redirect:/group/task/submit?userId=" + userId + "&userName=" + userName + "&taskId=" + taskId;
    }
 }
