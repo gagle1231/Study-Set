@@ -20,12 +20,12 @@
 			</tr>
 			<tr>
 				<td><br>
-				<h4>날짜</h4> <input type="date" name="sDate" class="inputField2" style="width: 500px; height: 30px;" 
-				<c:if test='${param.date ne null}'>value="{param.date}"</c:if>></td>
+				<h4>날짜</h4> <input type="text" name="sDate" class="inputField2" style="width: 500px; height: 30px;">
+				</td>
 			</tr>
 			<tr>
 				<td>
-					<h4>시간</h4> <input class="inputField" type="time" name="startTime" style="width: 200px; height: 30px;">
+					<h4>시간</h4> <input class="inputField" type="text" name="startTime" style="width: 200px; height: 30px;">
 					~ <input type="time" class="inputField" name="endTime" style="width: 200px; height: 30px;">
 				</td>
 			</tr>

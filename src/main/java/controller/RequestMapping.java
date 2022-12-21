@@ -48,7 +48,8 @@ public class RequestMapping {
 		mappings.put("/schedule/addchart", new AddChartController());
 		mappings.put("/schedule/calendar", new ViewScheduleController());
 		mappings.put("/schedule/calendar/detail", new ScheduleController());
-
+		mappings.put("/schedule/calendar/update", new ScheduleController());
+		
 		// 과제
 		mappings.put("/group/task/main", new ViewTaskController());
 		mappings.put("/group/task/form", new TaskController());
