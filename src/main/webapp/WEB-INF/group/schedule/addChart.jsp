@@ -23,7 +23,9 @@ th {
 table td.highlighted {
 	background-color: rgba(0, 0, 0, 0.1);
 }
+
 </style>
+<link rel=stylesheet href="<c:url value='/css/group.css' />" type="text/css">
 <script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
 <script>
 function addChart(){
@@ -45,6 +47,7 @@ function addChart(){
 
         var stringJson = JSON.stringify(timelist);
 		//alert(stringJson);
+		
 	  	form.editTime.value=stringJson;
 	    submit();
 } 
@@ -68,16 +71,15 @@ function addChart(){
 			</td>
 			<td style="vertical-align: top">
 				<table style="width: 100%; height: 100%; padding: 60px;">
-					<!-- 이 테이블 안에 메인 화면 구성하면 될듯 -->
 					<tr>
 						<td colspan="2">
 							<h1>${studyGroup.groupName}</h1>
 							<h2 style="color: gray">일정</h2>
 						</td>
 					</tr>
-					<tr><td><h2>※안 되는 시간에 색칠해주세요</h2></td>
+					<tr><td  width="70%"><h2>※안 되는 시간에 색칠해주세요</h2></td>
 					<td><form name="form" action="" method="POST">
-						<button onClick="addChart()">제출하기</button>
+						<button class="btn1" onClick="addChart()">제출하기</button>
 						<input type="hidden" name="editTime">
 					</form></td></tr>
 					<tr>

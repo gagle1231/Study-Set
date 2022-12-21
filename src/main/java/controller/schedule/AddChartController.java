@@ -29,9 +29,9 @@ public class AddChartController implements Controller {
 
 		if(request.getMethod().equals("POST"))  
 		{
-			
+			manager.deleteUserTimeSlot(studyGroup.getGroupId(), member.getUserId());
 			String stringJson = (String) request.getParameter("editTime"); 
-			manager.deleteUserTimeSlot(member.getUserId(), studyGroup.getGroupId());
+			
 			JSONObject obj = null;
 			JSONParser parser = new JSONParser();
 			if(stringJson!=null)
@@ -44,8 +44,6 @@ public class AddChartController implements Controller {
 			int startTime=-1, endTime=-1;
 			int time=-1;
 			for(int i=0; i<list.size(); i++) {
-			//TimeSlot t = new TimeSlot(null, member.getUserId(), 1, 1, 3, studyGroup.getGroupId());
-			//manager.setTimeSlot(t, member.getUserId(), studyGroup.getGroupId()); 
 				JSONObject timeCell = (JSONObject) list.get(i);
 				Long cellDay = (Long) (timeCell.get("day"))-1;
 				Long cellTime = (Long) timeCell.get("time")-1;

@@ -98,12 +98,17 @@ public class TimeSlotDAO {
 	public int deleteTimeSlot(String groupId, String userId) {
 		String sql = "DELETE FROM TIMESLOT WHERE groupId = ? AND userId = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId, userId });
+		
 		try {
-			return jdbcUtil.executeUpdate();
+			jdbcUtil.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}		
 		return 0;
 	}
 }

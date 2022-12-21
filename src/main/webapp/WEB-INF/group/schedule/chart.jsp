@@ -25,6 +25,7 @@ table td.highlighted {
 	background-color: rgba(0, 0, 0, 0.1);
 }
 </style>
+<link rel=stylesheet href="<c:url value='/css/group.css' />" type="text/css">
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
 	<br>
@@ -46,15 +47,17 @@ table td.highlighted {
 			</td>
 			<td style="vertical-align: top">
 				<table style="width: 100%; height: 100%; padding: 60px;">
-					<!-- 이 테이블 안에 메인 화면 구성하면 될듯 -->
 					<tr>
 						<td colspan="2">
 							<h1>${studyGroup.groupName}</h1>
 							<h2 style="color: gray">일정</h2>
 						</td>
 					</tr>
-					<tr><td><h2>스캐줄 조정 표</h2></td>
-					<td><form action="<c:url value='/schedule/addchart'/>"><button>추가하기</button></form></td></tr>
+				
+					<tr><td width="70%"><h2>스캐줄 조정 표&nbsp;&nbsp;&nbsp;&nbsp;</h2></td>
+					<td><form action="<c:url value='/schedule/addchart'/>"><button class="btn1">추가하기</button></form></td>
+					
+					</tr>
 					<tr>
 						<td colspan="2">
 							<table border="1" style="border-collapse: collapse"
