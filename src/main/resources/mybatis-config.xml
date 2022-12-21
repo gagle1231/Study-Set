@@ -7,8 +7,9 @@
 		<setting name="cacheEnabled" value="false" />
 	</settings>
 	<typeAliases>
-		<typeAlias type="model.Community" alias="Community" />
-		<typeAlias type="model.User" alias="User" />
+		<typeAlias type="model.Memo" alias="Memo" />
+		<typeAlias type="model.Member" alias="Member" />	
+		<typeAlias type="model.StudyGroup" alias="StudyGroup" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -25,6 +26,5 @@
 	</environments>
 	<mappers>
 		<mapper resource="model/dao/mapper/MemoMapper.xml" />
-		<mapper class="model/dao/mapper/MemoMapper" />
 	</mappers>
 </configuration>
