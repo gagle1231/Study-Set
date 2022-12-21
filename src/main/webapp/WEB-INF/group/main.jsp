@@ -43,6 +43,16 @@
 }
 </style>
 <script>
+function leave() {
+	var result = confirm("정말 " + '${studyGroup.groupName}' + "을 탈퇴하시겠습니까?");
+	if(result){
+	    alert("수고하셨어요! 2023년에도 화이팅!!");
+	    leaveGroup.submit();
+	    
+	}else{
+	    alert("정말 감사합니다. 앞으로도 열심히 공부해요~");
+	}
+};
     window.onload = function() {
  
     function onClick() {
@@ -103,18 +113,25 @@
 					</tr>
 					<tr>
 						<td><h4>${studyGroup.groupDescription}</h4></td>
-		                  <td>
-		                     <div style="float: right; margin-right: 120px; width: 20%;">
-		                        <p id="modal_btn" class="btn">
-		                           <a href="#modal" rel="modal:open" type="button" style="font-size:15px;">&nbsp;&nbsp;그룹원 검색</a>
-		                                 <div class="black_bg"></div>
-		                             </p>
-		                     </div>
-		                  </td>
+						<td style="text-align:right; padding-right:10%;">
+		                  <form name="leaveGroup" action="<c:url value='/group/leave' />"> 
+			                  <input type="button" value="그룹 탈퇴 하기" style="font-size:15px; color:black; font-weight:bold;" class="btn"
+			                     onClick="leave()" />
+		                   </form>
+						</td>
 					</tr>
 					<tr>
 	                  <td><input type="button" value="가입 코드 보기" style="font-size:15px; color:black; font-weight:bold;" class="btn"
 	                     onClick="alert('${studyGroup.code}')" /><br><br></td>
+	                  <td>
+	                     <div style="float: right; margin-right: 120px; width: 20%;">
+	                        <p id="modal_btn" class="btn">
+	                           <a href="#modal" rel="modal:open" type="button" style="font-size:15px;">&nbsp;&nbsp;그룹원 검색</a>
+	                                 <div class="black_bg"></div>
+	                             </p>
+	                     </div>
+	                     <br><br>
+	                  </td>
 					</tr>
 					<tr>
 						<td width="50%">

@@ -16,21 +16,12 @@
 	}
 	function remove() {
 		var cmId = document.getElementById("comment_id").value;
-		//alert('${userId}' + cmId + '${userName}');
-		$.ajax({
-			url: "/group/task/remove",
-			data : {
-				userId : '${userId}',
-				userName : '${userName}',
-				commentId : cmId,
-			}, 
-			type: "GET",
-		});
+		alert('${userId}' + cmId + '${userName}');
 	}
 </script>
 <style>
 .comm {
-	width: 98.5%;
+	width: 97.6%;
 	background: rgba(179, 224, 143, 0.4);
 	border-radius: 10px;
 	height: 52px;
@@ -39,8 +30,8 @@
 .comm_con {
 	margin-top: 0.5%;
 	margin-left: 2%;
+	margin-right: 10%;
 	margin-bottom: 0.3%;
-	width: 75%;
 	background: white;
 	border-radius: 8px;
 	height: 35px;
@@ -72,7 +63,8 @@
 	<br>
 	<table style="width: 100%; border-collapse: collapse">
 		<tr>
-			<td style="text-align: left; width: 130px;"><a
+			<td style="text-align: left; width: 130px;">
+			<a
 				href="<c:url value='http://localhost:8080/StudySet/user/group/list' />">
 					<img src="<c:url value='/images/studysetlogo.png'/>" width="130px" />
 			</a></td>
@@ -116,16 +108,14 @@
 					</td>
 					<td>
 						<c:if test='${comment.userId eq loginmember.userId}'>
-						<input type="hidden" id="comment_id" value="${comment.commentId}" />
-						<input type="button" onClick="remove()" class="comment_remove" value="X">
+							<a href="<c:url value='/group/comment/remove'>
+								<c:param name='userId' value='${userId}' />
+								<c:param name='userName' value='${userName }' />
+								<c:param name='commentId' value='${comment.commentId}' /></c:url> ">
+							<img src="<c:url value='/images/remove.png'/>"/>
+						</a> 
 						</c:if>	
 					</td>
-					<td class="comm"><div class="comm_con">
-							&nbsp;&nbsp;
-							<c:if test="${comment.annonymous eq 'Y'}"> 익명 </c:if>
-							<c:if test="${comment.annonymous eq 'N'}">${comment.userId}</c:if>
-							&nbsp;|&nbsp;&nbsp;${comment.commentContents}
-						</div></td>
 				</tr>
 			</c:forEach>
 		</table>

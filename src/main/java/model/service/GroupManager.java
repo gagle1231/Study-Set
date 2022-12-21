@@ -39,6 +39,11 @@ public class GroupManager {
 			throw new ExistingGroupException();
 		return groupDao.create(newGroup, userId);
 	}
+	
+	// 그룹 탈퇴
+	public int leave(String userId, String groupId) throws SQLException {
+		return groupDao.leaveGroup(userId, groupId);
+	}
 
 	// 이미 가입한 그룹인지 체크 + 그룹 가입 처리
 	public int addMember(Join join) {

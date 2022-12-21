@@ -279,6 +279,25 @@ public class GroupDAO {
 		return -1;
 	}
 	
+	//그룹 탈퇴
+	   public int leaveGroup(String userId, String groupId) throws SQLException {
+	      String sql = "DELETE FROM JOIN WHERE USERID = ? AND GROUPID = ?";
+	      Object[] param = new Object[] { userId, groupId};
+	      jdbcUtil.setSqlAndParameters(sql, param);   
+
+	      try {
+	         int result = jdbcUtil.executeUpdate();
+	         return result;
+	      } catch (Exception ex) {
+	         jdbcUtil.rollback();
+	         ex.printStackTrace();
+	      } finally {
+	         jdbcUtil.commit();
+	         jdbcUtil.close();
+	      }
+	      return 0;
+	   }
+	
 //	public List<Member> getMemberList(String memberName, String groupName) throws SQLException  {
 //		String sql = "select distinct phone, email from member, join where member.userid = join.userid and userName = ? and groupName= ?";
 //		jdbcUtil.setSqlAndParameters(sql, new Object[] {memberName,  groupName}); // JDBCUtil에 query문과 매개 변수 설정
