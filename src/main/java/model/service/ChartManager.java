@@ -38,9 +38,10 @@ public class ChartManager {
 			return list;
 	}
 	
-	public void deleteUserTimeSlot(String userId, String groupId) {
+	public void deleteUserTimeSlot(String groupId, String userId) {
 		timeDao.deleteTimeSlot(groupId, userId);
 	}
+	
 	public void setTimeSlot(TimeSlot t, String userId, String groupId) {
 		try {
 			
