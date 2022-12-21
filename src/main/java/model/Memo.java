@@ -16,13 +16,6 @@ public class Memo {
 		this.memoId = memoId;
 		this.memoContents = memoContents;
 	}
-	
-	public Memo(String userId, String groupId, String memoContents) {
-		super();
-		this.userId = userId;
-		this.groupId = groupId;
-		this.memoContents = memoContents;
-	}
 
 	public Memo(String memoId, String userId, String groupId, String memoContents) {
 		super();

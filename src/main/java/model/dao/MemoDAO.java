@@ -1,82 +1,20 @@
 package model.dao;
-// MyBatis
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
 import model.Memo;
-import model.dao.mapper.MemoMapper;
 
 public class MemoDAO {
-	private SqlSessionFactory sqlSessionFactory;
+	private JDBCUtil jdbcUtil = null;
 
 	public MemoDAO() {
-		String resource = "mybatis-config.xml";
-		InputStream inputStream;
-		
-		try {
-			inputStream = Resources.getResourceAsStream(resource);
-		} catch (IOException e) {
-			throw new IllegalArgumentException(e);
-		}
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-	}
-	
-	public int addMemo(Memo memo, String userId, String groupId) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			int result = sqlSession.getMapper(MemoMapper.class).addMemo(memo, userId, groupId);
-			if (result > 0) {
-				sqlSession.commit();
-			} 
-			return 0;
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public Memo getMemo(String memoId) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			return sqlSession.getMapper(MemoMapper.class).getMemo(memoId);			
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public List<Memo> getList(String groupId, String userId) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			return sqlSession.getMapper(MemoMapper.class).getList(groupId, userId);			
-		} finally {
-			sqlSession.close();
-		}
+		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
 	}
 
-	
-	/**
-	
-	import java.sql.ResultSet;
-	import java.sql.SQLException;
-	import java.text.ParseException;
-	import java.text.SimpleDateFormat;
-	import java.util.ArrayList;
-	import java.util.List;
-	
-	public class MemoDAO {
-	
-	private JDBCUtil jdbcUtil = null;
-	
-	public ScheduleDAO() {			
-		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
-	}
-	
 	// 메모 작성
 	public int addMemo(Memo memo, String userId, String groupId) throws SQLException, ParseException {
 		String sql = "INSERT INTO MEMO VALUES( 'm'||SEQUENCE_MEMOID.NEXTVAL, ?, ?, ? )";
@@ -100,7 +38,7 @@ public class MemoDAO {
 	}
 	
 	// 메모리스트 가져오기 (모든 원소 다 가져오나?) + 매개변수 userId
-	public List<Memo> getList(String groupId, String userId) {
+	public List<Memo> getMemoList(String groupId, String userId) {
 		String sql = "SELECT * FROM MEMO WHERE groupId = ? AND userId = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId, userId });
 		
@@ -149,9 +87,8 @@ public class MemoDAO {
 		return null;
 	}
 	
-	
 	// 메모 삭제
 	
 	// 메모 수정
-	**/
+	
 }
