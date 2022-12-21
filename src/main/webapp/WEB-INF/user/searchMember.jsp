@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>스터디 가입 모달창</title>
+<title>스터디/멤버 검색 모달창</title>
 <style>
 .title {
    width:400px; 
@@ -70,7 +70,7 @@ function searchMember(){
 <body>
    <form name="searchMemberForm" method="POST" autocomplete="off" 
    		action="<c:url value = '/user/search/member'/> " onsubmit="return false;">
-      <p class="title"> 스터디 선택 후 이름을 검색하세요 </p>    
+      <h2> 스터디 선택 후 이름을 검색하세요 </h2>    
       <div style="text-align:center; align:center;">
       <br>
       	<div style="padding-right:60px;">

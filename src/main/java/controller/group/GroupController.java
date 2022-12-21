@@ -38,8 +38,6 @@ public class GroupController implements Controller{
          }catch(ExistingGroupException e) {
              return "redirect:/user/group/list?registerSuccess=false";
          }
-         
-        
       }
       
       //GET: 그룹 선택 후 그룹 메인으로 리다이렉트

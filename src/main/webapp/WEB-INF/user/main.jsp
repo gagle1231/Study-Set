@@ -61,13 +61,15 @@
 	}
 </script>
 <style>
+.item:hover{background-color: powderblue;
+border: 3px solid black;
 .black_bg{
     display: none;
     position: absolute;
     content: "";
     width: 100%;
     height: 100%;
-    background-color:rgba(0, 0, 0, 0.5);
+    background-color:rgba(0, 0, 0, 0.35);
     top:0;
     left: 0;
     z-index: 1;
@@ -93,15 +95,15 @@
 			history.replaceState({}, null, location.pathname);
 		</script>
 	</c:if>
-	<c:if test="${ param.joinGroupSuccess eq true}">
-		<script>
-			alert('그룹 가입이 완료되었습니다.');
-			history.replaceState({}, null, location.pathname);
-		</script>
-	</c:if>
 	<c:if test="${ param.alreadyJoinGroup eq true}">
 		<script>
 			alert('이미 가입한 그룹입니다.');
+			history.replaceState({}, null, location.pathname);
+		</script>
+	</c:if>
+	<c:if test="${ param.joinGroupSuccess eq true}">
+		<script>
+			alert('그룹 가입이 완료되었습니다.');
 			history.replaceState({}, null, location.pathname);
 		</script>
 	</c:if>
@@ -114,8 +116,11 @@
 							<img height="100px"
 							src="<c:url value='/images/studysetlogo.png' />" />
 						</td>
-						<td align="right"><img height="100px"
-							src="<c:url value='/images/userIcon.jpg' />" /></td>
+						<td align="right">
+						<a href="<c:url value='http://localhost:8080/StudySet' />">
+								<img src="<c:url value='/images/logout.png'/>" />
+						</a> 
+						</td>
 					</tr>
 					<tr>
 						<td></td>
@@ -199,10 +204,10 @@
 		</div>
 	</div>
 	<div style="<c:if test='${searching eq null}'>display: none;</c:if>
-   <c:if test='${searching eq true}'>display: block;</c:if> height: 500px;" class="modal_wrap">
+   <c:if test='${searching eq true}'>display: block;</c:if> height: 450px;" class="modal_wrap">
       <!--그룹원 검색 모달창 영역-->
       <div class="modal_close3">
-         <a href="#">close</a>
+         <a>close</a>
       </div>
       <div align="center">
          <jsp:include page="searchMember.jsp"></jsp:include> 

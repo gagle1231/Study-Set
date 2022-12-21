@@ -24,7 +24,7 @@ public class ScheduleDAO {
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
-			List<Schedule> scheduleList = new ArrayList<Schedule>();	// member들의 리스트 생성
+			List<Schedule> scheduleList = new ArrayList<Schedule>();	// Schedule의 리스트 생성
 			while (rs.next()) {
 				Schedule schedule = new Schedule(		
 						rs.getString("scheduleId"), 
@@ -36,14 +36,14 @@ public class ScheduleDAO {
 						rs.getString("scheduleLocation"),
 						null,
 						rs.getString("important").charAt(0));
-				scheduleList.add(schedule);			// List에 Community 객체 저장
+				scheduleList.add(schedule);			
 			}		
 			return scheduleList;					
 				
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource 반환
+			jdbcUtil.close();		
 		}
 		return null;
 	}

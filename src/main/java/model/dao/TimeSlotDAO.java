@@ -95,5 +95,15 @@ public class TimeSlotDAO {
 	
 	
 	// 타임슬롯 삭제
-	
+	public int deleteTimeSlot(String groupId, String userId) {
+		String sql = "DELETE FROM TIMESLOT WHERE groupId = ? AND userId = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId, userId });
+		try {
+			return jdbcUtil.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }

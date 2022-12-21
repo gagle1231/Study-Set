@@ -52,6 +52,7 @@ public class GroupManager {
 		}
 		return 0;
 	}
+	
 	//회원이 가입한 그룹 리스트
 	public List<Join> getUserGroupList(String userId) throws SQLException {
 			List<Join> userGroupList = new ArrayList<>();
