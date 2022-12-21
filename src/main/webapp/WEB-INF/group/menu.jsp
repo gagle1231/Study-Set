@@ -11,10 +11,22 @@
 	height: 140px;
 	text-align: center;
 }
-a{
+.menuItem:hover{
+	height: 200px;
+	background-color: white;
+	color:white;
+}
+.menuItem a{
 	color:black;
 	font-size: 1.2rem;
 	font-weight: bold;
+	text-decoration:none;
+}
+.menuItem a::after:hover{
+	color:blue;
+	font-size: 1.2rem;
+	font-weight: bold;
+	text-decoration:underline;
 }
 </style>
 </head>

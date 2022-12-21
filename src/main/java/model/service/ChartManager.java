@@ -1,6 +1,7 @@
 package model.service;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 import model.TimeSlot;
@@ -35,5 +36,18 @@ public class ChartManager {
 			throw new Exception();
 		else
 			return list;
+	}
+	
+	public void deleteUserTimeSlot(String userId, String groupId) {
+		timeDao.deleteTimeSlot(groupId, userId);
+	}
+	public void setTimeSlot(TimeSlot t, String userId, String groupId) {
+		try {
+			
+			timeDao.addTimeSlot(t, userId, groupId);
+		} catch (SQLException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

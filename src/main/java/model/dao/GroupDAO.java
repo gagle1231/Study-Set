@@ -242,8 +242,8 @@ public class GroupDAO {
 
 	// 이름에 해당하는 모든 그룹 리스트 가져오기
 	public List<Join> getGroupList(String groupName, String userId) {
-		String sql = "SELECT * FROM Join where groupName = ? and userId = ?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {groupName,  userId}); // JDBCUtil에 query문과 매개 변수 설정
+		String sql = "SELECT * FROM Join where groupName like ? and userId = ?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {"%"+groupName+"%",  userId}); // JDBCUtil에 query문과 매개 변수 설정
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
