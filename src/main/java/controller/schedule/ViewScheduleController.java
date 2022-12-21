@@ -22,10 +22,10 @@ public class ViewScheduleController implements Controller{
 				ScheduleManager manager = ScheduleManager.getInstance();
 				List<Schedule> scheduleList = manager.find(studyGroup.getGroupId());
 				request.setAttribute("scheduleList", scheduleList);
-		        return "/group/schedule/calendar.jsp";	// 성공 시 커뮤니티 리스트 화면으로 redirect
+		        return "/group/schedule/calendar.jsp";	
 		        
-			} catch (Exception e) {		// 예외 발생 시 입력 form으로 forwarding
-	            
+			} catch (Exception e) {	
+	            e.printStackTrace();
 			}
 			return null;
 	}

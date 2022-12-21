@@ -61,6 +61,8 @@
 	}
 </script>
 <style>
+.item:hover{background-color: powderblue;
+border: 3px solid black;
 .black_bg{
     display: none;
     position: absolute;
@@ -93,15 +95,15 @@
 			history.replaceState({}, null, location.pathname);
 		</script>
 	</c:if>
-	<c:if test="${ param.joinGroupSuccess eq true}">
-		<script>
-			alert('그룹 가입이 완료되었습니다.');
-			history.replaceState({}, null, location.pathname);
-		</script>
-	</c:if>
 	<c:if test="${ param.alreadyJoinGroup eq true}">
 		<script>
 			alert('이미 가입한 그룹입니다.');
+			history.replaceState({}, null, location.pathname);
+		</script>
+	</c:if>
+	<c:if test="${ param.joinGroupSuccess eq true}">
+		<script>
+			alert('그룹 가입이 완료되었습니다.');
 			history.replaceState({}, null, location.pathname);
 		</script>
 	</c:if>
