@@ -18,6 +18,36 @@ public class ScheduleDAO {
 		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
 	}
 	
+	//scheduleId로 스캐줄 검색
+	public Schedule getSchedule(String sid) {
+		String sql = "SELECT * FROM SCHEDULE WHERE scheduleId = ? ";                        
+		jdbcUtil.setSqlAndParameters(sql, new Object[]{sid});	// JDBCUtil에 query문과 매개 변수 설정
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			Schedule s = null;	// Schedule의 리스트 생성
+			if (rs.next()) {
+				s = new Schedule(		
+						rs.getString("scheduleId"), 
+						rs.getString("groupId"),
+						rs.getString("title"),
+						rs.getString("scheduleDate"),
+						rs.getString("startTime"),
+						rs.getString("endTime"),					
+						rs.getString("scheduleLocation"),
+						rs.getString("userId"),
+						rs.getString("important").charAt(0));		
+			}		
+			return s;					
+				
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		
+		}
+		return null;
+	}	
+	
 	public List<Schedule> getList(String gid){
 		String sql = "SELECT * FROM SCHEDULE WHERE groupId = ? ";                        
 		jdbcUtil.setSqlAndParameters(sql, new Object[]{gid});	// JDBCUtil에 query문과 매개 변수 설정

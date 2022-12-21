@@ -69,10 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
      
        eventClick: function(info) {
          //alert(info.event.id);
-         form.action='<c:url value="/schedule/calendar/update"/>';
-         form.submit();
-         document.querySelector('#modal2').style.display ='block'
          
+         document.querySelector('#modal2').style.display ='block'   
        },
      
        events: function(info, successCallback, failureCallback) {
@@ -84,6 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <link rel=stylesheet href="<c:url value='/css/group.css' />" type="text/css">
 <style>
+body{
+	font-family: 'Hahmlet', serif;
+}
 .fc-today {
 	color: white;
 }
@@ -147,6 +148,7 @@ padding: 0px;
 									onClick="onClick()">
 								<button onClick="chkChart(<c:url value='/schedule/chart'/>)">일정
 									조율표 확인하기</button>
+									<input type="hidden" name="sid">
 							</form></td>
 					</tr>
 					<tr>

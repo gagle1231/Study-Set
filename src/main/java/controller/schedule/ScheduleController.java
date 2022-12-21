@@ -1,6 +1,6 @@
 package controller.schedule;
-
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +39,11 @@ public class ScheduleController implements Controller {
 			}
 		}
 		
-		return "/group/schedule/calendar.jsp";
+		
+		String sid = (String) request.getAttribute("sid");
+		Schedule s = manager.getSchedule(sid);
+		request.setAttribute("schedule", s);
+        return "/group/schedule/calendar.jsp";	
 	}
 
 }
