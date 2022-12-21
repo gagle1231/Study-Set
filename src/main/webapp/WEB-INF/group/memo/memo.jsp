@@ -7,12 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/memo.css' />"
    type="text/css">
+   <link rel=stylesheet href="<c:url value='/css/font.css' />"
+   type="text/css">
 <title>진행상황</title>
 <style>
 .tb{
    background-color: #c0c0c0;
    border-radius: 20px;
-   width:80%;
+   width:400px;
    height:600px;
    text-align: top;
 }
@@ -57,6 +59,7 @@ String[] colorArr = { "#ff8080", "orange", "yellow", "blue", "purple"};
                   <td colspan="${count}">
                      <h2>&nbsp;&nbsp;${studyGroup.groupName}</h2>
                      <h4 style="color: gray">&nbsp;&nbsp; 진행상황</h4>
+                     <br><br>
                   </td>
                </tr>
                
@@ -68,149 +71,213 @@ String[] colorArr = { "#ff8080", "orange", "yellow", "blue", "purple"};
                   %>
                   <tr>
                   <td>
-                  <div style="min-width:100pt; maxwidth:100pt;">
-                     <table style="border-spacing:5px;" class="tb">
-                  <tr><td><h4>이름</h4></td></tr>
-                  <tr><td bgcolor="ivory" style="border-radius: 15px;"><h6>최근 제출한 과제</h6></td></tr>
+                  <div>
+                     <table style="border-spacing:5px;table-layout:fixed" class="tb">
+                  <tr><td><h2>이름</h2></td></tr>
+                  <tr><td bgcolor="ivory" style="border-radius: 15px;"><h4>최근 제출한 과제</h4></td></tr>
                   <tr><td>
-                     <div style="overflow: auto;" class="scroll">
-                        <table style="padding:5px">
-                           <tr><td class="notice"><b>새로운 메모</b><br><br>
-                           <textarea style="background-color:transparent;" name="memoContents" rows="5" cols="50" placeholder="add a new note.." onfocus="this.placeholder=''" onblur="this.placeholder='add a new notes..'"></textarea>
-                                    <br><br></td></tr>
-                                    <tr>
-                                    <td class="notice" style="background-color:orange">
-                                       <b>JDBC란?</b><br><br>
-                                       Java DataBase Connectivity의 약어로, Java Application과 DBMS를 연동하기 위한 API이다. JDBC 드라이버를 사용하면 DBMS에 독립적인 프로그래밍이 가능하다.
-                                    </td>
-                                 </tr>
-                        </table>
-                     </div>
+                     <div style="height:520px; overflow-y: scroll;">
+                        <table style="padding:5px; table-layout:fixed; width:370px;"  >
+                           <tr><td class="notice">
+	                           <div spellcheck="true" placeholder="add a new note.." data-content-editable-leaf="true" contenteditable="true" style="max-width: 100%; width: auto; white-space:pre-wrap; word-break: break-word; caret-color: rgb(55, 53, 47); font-size: 14px; line-height: 1.5; min-height: 21px; font-weight: 500; flex-grow: 1; padding: 2px; cursor: text;">
+	                           </div><br><br>
+	                       </td></tr>
+	                       <tr>
+	                           <td class="notice" style="overflow-y:auto">
+	                               <b>JDBC란?</b><br><br>
+	                                Java DataBase Connectivity의 약어로, Java Application과 DBMS를 연동하기 위한 API이다. JDBC 드라이버를 사용하면 DBMS에 독립적인 프로그래밍이 가능하다.
+	                            </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="overflow-y:auto">
+	                                 <b>JSP란?</b><br><br>
+	                                  동적 페이지임
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="overflow-y:auto">
+	                               <b>[1주차 강의]</b><br><br>
+	                                 오리엔테이션 했음
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="overflow-y:auto">
+	                               <b>to do list</b><br><br>
+	                                       1. 데베프 과제 <br>
+	                                       2. 알고리즘 복습 <br>
+	                                       3. 강의 다시 듣기
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="overflow-y:auto">
+	                             <b>으라라아ㅏ아</b><br><br>
+	                             어려워
+	                            </td>
+		                   </tr>                                 
+		             </table>
+		             </div>
                   </td></tr>                 
                      </table>
                      </div>
                   </td>
                   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                   <td>
-                  <div style="min-width:100pt; maxwidth:100pt;">
-                     <table style="border-spacing:5px;" class="tb">
-                  <tr><td><h4>이름</h4></td></tr>
-                  <tr><td bgcolor="ivory" style="border-radius: 15px;"><h6>최근 제출한 과제</h6></td></tr>
-                  <tr><td>
-                     <div style="overflow: auto;" class="scroll">
-                        <table style="padding:5px">
-                           <tr><td class="notice"><b>새로운 메모</b><br><br>
-                           <textarea style="background-color:transparent;" name="memoContents" rows="5" cols="50" placeholder="add a new note.." onfocus="this.placeholder=''" onblur="this.placeholder='add a new notes..'"></textarea>
-                                    <br><br></td></tr>
-                                    <tr>
-                                    <td class="notice" style="background-color:orange">
-                                       <b>JDBC란?</b><br><br>
-                                       Java DataBase Connectivity의 약어로, Java Application과 DBMS를 연동하기 위한 API이다. JDBC 드라이버를 사용하면 DBMS에 독립적인 프로그래밍이 가능하다.
-                                    </td>
-                                 </tr>
-                        </table>
-                     </div>
-                  </td></tr>                 
-                     </table>
-                     </div>
-                  </td>
-                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  
                   <td>
-                  <div style="min-width:100pt; maxwidth:100pt;">
-                     <table style="border-spacing:5px;" class="tb">
-                  <tr><td><h4>이름</h4></td></tr>
-                  <tr><td bgcolor="ivory" style="border-radius: 15px;"><h6>최근 제출한 과제</h6></td></tr>
+                  <div>
+                     <table style="border-spacing:5px;table-layout:fixed" class="tb">
+                  <tr><td><h2>이름</h2></td></tr>
+                  <tr><td bgcolor="ivory" style="border-radius: 15px;"><h4>최근 제출한 과제</h4></td></tr>
                   <tr><td>
-                     <div style="overflow: auto;" class="scroll">
-                        <table style="padding:5px">
-                           <tr><td class="notice"><b>새로운 메모</b><br><br>
-                           <textarea style="background-color:transparent;" name="memoContents" rows="5" cols="50" placeholder="add a new note.." onfocus="this.placeholder=''" onblur="this.placeholder='add a new notes..'"></textarea>
-                                    <br><br></td></tr>
-                                    <tr>
-                                    <td class="notice" style="background-color:orange">
-                                       <b>JDBC란?</b><br><br>
-                                       Java DataBase Connectivity의 약어로, Java Application과 DBMS를 연동하기 위한 API이다. JDBC 드라이버를 사용하면 DBMS에 독립적인 프로그래밍이 가능하다.
-                                    </td>
-                                 </tr>
-                        </table>
-                     </div>
+                     <div style="height:520px; overflow-y: scroll;">
+                        <table style="padding:5px; table-layout:fixed; width:370px;"  >
+                           <tr><td class="notice" style="background-color:orange">
+	                           <div spellcheck="true" placeholder="add a new note.." data-content-editable-leaf="true" contenteditable="true" style="max-width: 100%; width: auto; white-space:pre-wrap; word-break: break-word; caret-color: rgb(55, 53, 47); font-size: 14px; line-height: 1.5; min-height: 21px; font-weight: 500; flex-grow: 1; padding: 2px; cursor: text;">
+	                           </div><br><br>
+	                       </td></tr>
+	                       <tr>
+	                           <td class="notice" style="background-color:orange; overflow-y:auto">
+	                               <b>JDBC란?</b><br><br>
+	                                Java DataBase Connectivity의 약어로, Java Application과 DBMS를 연동하기 위한 API이다. JDBC 드라이버를 사용하면 DBMS에 독립적인 프로그래밍이 가능하다.
+	                            </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="background-color:orange; overflow-y:auto">
+	                                 <b>JSP란?</b><br><br>
+	                                  동적 페이지임
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="background-color:orange; overflow-y:auto">
+	                               <b>[1주차 강의]</b><br><br>
+	                                 오리엔테이션 했음
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="background-color:orange; overflow-y:auto">
+	                               <b>to do list</b><br><br>
+	                                       1. 데베프 과제 <br>
+	                                       2. 알고리즘 복습 <br>
+	                                       3. 강의 다시 듣기
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="background-color:orange; overflow-y:auto">
+	                             <b>으라라아ㅏ아</b><br><br>
+	                             어려워
+	                            </td>
+		                   </tr>                                 
+		             </table>
+		             </div>
                   </td></tr>                 
                      </table>
                      </div>
                   </td>
                   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  
                   <td>
-                  <div style="min-width:100pt; maxwidth:100pt;">
-                     <table style="border-spacing:5px;" class="tb">
-                  <tr><td><h4>이름</h4></td></tr>
-                  <tr><td bgcolor="ivory" style="border-radius: 15px;"><h6>최근 제출한 과제</h6></td></tr>
+                  <div>
+                     <table style="border-spacing:5px;table-layout:fixed" class="tb">
+                  <tr><td><h2>이름</h2></td></tr>
+                  <tr><td bgcolor="ivory" style="border-radius: 15px;"><h4>최근 제출한 과제</h4></td></tr>
                   <tr><td>
-                     <div style="overflow: auto;" class="scroll">
-                        <table style="padding:5px">
-                           <tr><td class="notice"><b>새로운 메모</b><br><br>
-                           <textarea style="background-color:transparent;" name="memoContents" rows="5" cols="50" placeholder="add a new note.." onfocus="this.placeholder=''" onblur="this.placeholder='add a new notes..'"></textarea>
-                                    <br><br></td></tr>
-                                    <tr>
-                                    <td class="notice" style="background-color:orange">
-                                       <b>JDBC란?</b><br><br>
-                                       Java DataBase Connectivity의 약어로, Java Application과 DBMS를 연동하기 위한 API이다. JDBC 드라이버를 사용하면 DBMS에 독립적인 프로그래밍이 가능하다.
-                                    </td>
-                                 </tr>
-                        </table>
-                     </div>
+                     <div style="height:520px; overflow-y: scroll;">
+                        <table style="padding:5px; table-layout:fixed; width:370px;"  >
+                           <tr><td class="notice"  style="background-color:yellow"; overflow-y:auto">
+	                           <div spellcheck="true" placeholder="add a new note.." data-content-editable-leaf="true" contenteditable="true" style="max-width: 100%; width: auto; white-space:pre-wrap; word-break: break-word; caret-color: rgb(55, 53, 47); font-size: 14px; line-height: 1.5; min-height: 21px; font-weight: 500; flex-grow: 1; padding: 2px; cursor: text;">
+	                           </div><br><br>
+	                       </td></tr>
+	                       <tr>
+	                           <td class="notice" style="background-color:yellow"; overflow-y:auto">
+	                               <b>JDBC란?</b><br><br>
+	                                Java DataBase Connectivity의 약어로, Java Application과 DBMS를 연동하기 위한 API이다. JDBC 드라이버를 사용하면 DBMS에 독립적인 프로그래밍이 가능하다.
+	                            </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="background-color:yellow"; overflow-y:auto">
+	                                 <b>JSP란?</b><br><br>
+	                                  동적 페이지임
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="background-color:yellow"; overflow-y:auto">
+	                               <b>[1주차 강의]</b><br><br>
+	                                 오리엔테이션 했음
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="background-color:yellow"; overflow-y:auto">
+	                               <b>to do list</b><br><br>
+	                                       1. 데베프 과제 <br>
+	                                       2. 알고리즘 복습 <br>
+	                                       3. 강의 다시 듣기
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice" style="background-color:yellow"; overflow-y:auto">
+	                             <b>으라라아ㅏ아</b><br><br>
+	                             어려워
+	                            </td>
+		                   </tr>                                 
+		             </table>
+		             </div>
                   </td></tr>                 
                      </table>
                      </div>
                   </td>
                   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  
                   <td>
-                  <div style="min-width:100pt; maxwidth:100pt;">
-                     <table style="border-spacing:5px;" class="tb">
-                  <tr><td><h4>이름</h4></td></tr>
-                  <tr><td bgcolor="ivory" style="border-radius: 15px;"><h6>최근 제출한 과제</h6></td></tr>
+                  <div>
+                     <table style="border-spacing:5px;table-layout:fixed" class="tb">
+                  <tr><td><h2>이름</h2></td></tr>
+                  <tr><td bgcolor="ivory" style="border-radius: 15px;"><h4>최근 제출한 과제</h4></td></tr>
                   <tr><td>
-                     <div style="overflow: auto;" class="scroll">
-                        <table style="padding:5px">
-                           <tr><td class="notice"><b>새로운 메모</b><br><br>
-                           <textarea style="background-color:transparent;" name="memoContents" rows="5" cols="50" placeholder="add a new note.." onfocus="this.placeholder=''" onblur="this.placeholder='add a new notes..'"></textarea>
-                                    <br><br></td></tr>
-                                    <tr>
-                                    <td class="notice" style="background-color:orange">
-                                       <b>JDBC란?</b><br><br>
-                                       Java DataBase Connectivity의 약어로, Java Application과 DBMS를 연동하기 위한 API이다. JDBC 드라이버를 사용하면 DBMS에 독립적인 프로그래밍이 가능하다.
-                                    </td>
-                                 </tr>
-                        </table>
-                     </div>
+                     <div style="height:520px; overflow-y: scroll;">
+                        <table style="padding:5px; table-layout:fixed; width:370px;"  >
+                           <tr><td class="notice"  style="background-color:skyblue"; overflow-y:auto">
+	                           <div spellcheck="true" placeholder="add a new note.." data-content-editable-leaf="true" contenteditable="true" style="max-width: 100%; width: auto; white-space:pre-wrap; word-break: break-word; caret-color: rgb(55, 53, 47); font-size: 14px; line-height: 1.5; min-height: 21px; font-weight: 500; flex-grow: 1; padding: 2px; cursor: text;">
+	                           </div><br><br>
+	                       </td></tr>
+	                       <tr>
+	                           <td class="notice" style="background-color:skyblue"; overflow-y:auto">
+	                               <b>JDBC란?</b><br><br>
+	                                Java DataBase Connectivity의 약어로, Java Application과 DBMS를 연동하기 위한 API이다. JDBC 드라이버를 사용하면 DBMS에 독립적인 프로그래밍이 가능하다.
+	                            </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice"  style="background-color:skyblue"; overflow-y:auto">
+	                                 <b>JSP란?</b><br><br>
+	                                  동적 페이지임
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice"  style="background-color:skyblue"; overflow-y:auto">
+	                               <b>[1주차 강의]</b><br><br>
+	                                 오리엔테이션 했음
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice"  style="background-color:skyblue"; overflow-y:auto">
+	                               <b>to do list</b><br><br>
+	                                       1. 데베프 과제 <br>
+	                                       2. 알고리즘 복습 <br>
+	                                       3. 강의 다시 듣기
+	                           </td>
+	                       </tr>
+	                       <tr>
+	                           <td class="notice"  style="background-color:skyblue"; overflow-y:auto">
+	                             <b>으라라아ㅏ아</b><br><br>
+	                             어려워
+	                            </td>
+		                   </tr>                                 
+		             </table>
+		             </div>
                   </td></tr>                 
                      </table>
                      </div>
                   </td>
                   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                  <td>
-                  <div style="min-width:100pt; maxwidth:100pt;">
-                     <table style="border-spacing:5px;" class="tb">
-                  <tr><td><h4>이름</h4></td></tr>
-                  <tr><td bgcolor="ivory" style="border-radius: 15px;"><h6>최근 제출한 과제</h6></td></tr>
-                  <tr><td>
-                     <div style="overflow: auto;" class="scroll">
-                        <table style="padding:5px">
-                           <tr><td class="notice"><b>새로운 메모</b><br><br>
-                           <textarea style="background-color:transparent;" name="memoContents" rows="5" cols="50" placeholder="add a new note.." onfocus="this.placeholder=''" onblur="this.placeholder='add a new notes..'"></textarea>
-                                    <br><br></td></tr>
-                                    <tr>
-                                    <td class="notice" style="background-color:orange">
-                                       <b>JDBC란?</b><br><br>
-                                       Java DataBase Connectivity의 약어로, Java Application과 DBMS를 연동하기 위한 API이다. JDBC 드라이버를 사용하면 DBMS에 독립적인 프로그래밍이 가능하다.
-                                    </td>
-                                 </tr>
-                        </table>
-                     </div>
-                  </td></tr>                 
-                     </table>
-                     </div>
-                  </td>
-                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  
                 </tr>
                
                </table>
