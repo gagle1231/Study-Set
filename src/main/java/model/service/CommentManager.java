@@ -46,5 +46,9 @@ public class CommentManager {
 		List<MemoComment> commentList = commentDao.getMemoCommentList(memoId);
 		return commentList;
 	}
+	
+	public int removeMemoComment(String commentId) throws SQLException, ParseException{
+		return commentDao.removeMemoComment(commentId);
+	}
 
 }
