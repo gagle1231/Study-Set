@@ -105,10 +105,12 @@
 				<tr valign="top">
 					<td class="comm">
 						<div class="comm_con">
-							&nbsp;&nbsp;${comment.userId}&nbsp;|&nbsp;&nbsp;${comment.commentContents}
+							<c:if test="${comment.annonymous eq 'Y'.charAt(0)}">&nbsp;&nbsp;익명</c:if>
+							<c:if test="${comment.annonymous eq 'N'.charAt(0)}">&nbsp;&nbsp;${comment.userId}</c:if>	
+							&nbsp;|&nbsp;&nbsp;${comment.commentContents}
 						</div>
 					</td>
-					<td><c:if test='${comment.userId eq loginmember.userId}'>
+					<td width="34px"><c:if test='${comment.userId eq loginmember.userId}'>
 							<a
 								href="<c:url value='/group/comment/remove'>
 								<c:param name='userId' value='${userId}' />
