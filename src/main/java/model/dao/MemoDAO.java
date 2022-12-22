@@ -38,9 +38,9 @@ public class MemoDAO {
       return 0;
    }
    //그룹 메모 리스트 가져오기
-   public List<Memo> getGroupMemoList(String groupId) {
-	      String sql = "SELECT * FROM MEMO WHERE groupId = ?";
-	      jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId });
+   public List<Memo> getGroupMemoList(String groupId, String userId) {
+	      String sql = "SELECT * FROM MEMO WHERE groupId = ? and userId = ?";
+	      jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId, userId });
 	      
 	      try {
 	         ResultSet rs = jdbcUtil.executeQuery(); // query 실행
@@ -63,9 +63,9 @@ public class MemoDAO {
 	      return null;
 	   }
    // 메모리스트 가져오기 (모든 원소 다 가져오나?) + 매개변수 userId
-   public List<Memo> getList(String groupId, String userId) {
-      String sql = "SELECT * FROM MEMO WHERE groupId = ? AND userId = ?";
-      jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId, userId });
+   public List<Memo> getList(String groupId) {
+      String sql = "SELECT * FROM MEMO WHERE groupId = ? ";
+      jdbcUtil.setSqlAndParameters(sql, new Object[] { groupId });
       
       try {
          ResultSet rs = jdbcUtil.executeQuery(); // query 실행
