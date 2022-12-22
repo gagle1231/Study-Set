@@ -67,9 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
        },
      
        eventClick: function(info) {
-         alert(info.event.id);
-         location.href="?sid="+info.event.id;
-         document.querySelector('#modal2').style.display ='block'   
+         //location.href="?sid="+info.event.id;
+         //document.querySelector('#modal2').style.display ='block'   
        },
      
        events: function(info, successCallback, failureCallback) {
