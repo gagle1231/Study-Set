@@ -19,20 +19,29 @@ public class MemoController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		StudyGroup studyGroup = (StudyGroup) session.getAttribute("studyGroup");
+		Member member = (Member) session.getAttribute("loginmember");
 		GroupManager gmanager = GroupManager.getInstance();
 		MemoManager manager = MemoManager.getInstance();
-		
+		Memo memo = null;
+
 		String[] colorArr = { "#ff8080", "orange", "skyblue", "#F974DA", "#EDCBF5" };
 		request.setAttribute("colorArr", colorArr);
-		
+
 		List<Member> memberList = gmanager.getMember(studyGroup.getGroupId());
 		request.setAttribute("groupMemberList", memberList);
-		
+
 		List<Memo> memoList = manager.getList(studyGroup.getGroupId());
-		System.out.println(memoList);
-		
+
 		request.setAttribute("memoList", memoList);
-		
+		request.setAttribute("loginmember", member);
+
+		if (request.getMethod().equals("POST")) {
+			request.setCharacterEncoding("utf-8");
+			memo = new Memo(member.getUserId(), studyGroup.getGroupId(), request.getParameter("memoContents"));
+			manager.addMemo(memo, member.getUserId(), studyGroup.getGroupId());
+			return "redirect:/group/memo";
+		}
+
 		return "/group/memo/memo.jsp";
 	}
 
