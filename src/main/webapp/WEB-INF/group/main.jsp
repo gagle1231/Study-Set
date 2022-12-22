@@ -126,7 +126,7 @@ function leave() {
 	                  <td>
 	                     <div style="float: right; margin-right: 120px; width: 20%;">
 	                        <p id="modal_btn" class="btn">
-	                           <a href="#modal" rel="modal:open" type="button" style="font-size:15px;">&nbsp;&nbsp;그룹원 검색</a>
+	                           <a href="#modal" rel="modal:open" type="button" style="font-size:17px; font-weight:bold;">&nbsp;&nbsp;그룹원 검색</a>
 	                                 <div class="black_bg"></div>
 	                             </p>
 	                     </div>
