@@ -54,7 +54,7 @@ public class RequestMapping {
 		mappings.put("/schedule/calendar", new ViewScheduleController());
 		mappings.put("/schedule/calendar/detail", new ScheduleController());
 		mappings.put("/schedule/calendar/update", new ScheduleController());
-		
+
 		// 과제
 		mappings.put("/group/task/main", new ViewTaskController());
 		mappings.put("/group/task/form", new TaskController());
@@ -62,7 +62,7 @@ public class RequestMapping {
 		mappings.put("/group/task/submit", new ViewSubmitController());
 		mappings.put("/group/task/submit/form", new SubmitController());
 		mappings.put("/group/task/submit/update", new UpdateSubmitController());
-		//댓글
+		// 댓글
 		mappings.put("/group/comment/remove", new CommentController());
 
 		// 회비
@@ -76,7 +76,7 @@ public class RequestMapping {
 //		mappings.put("/group/memo/memo", new UploadMemoController());
 //		mappings.put("/group/memo/detail", new MemoDetailController());
 		// 댓글
-		//mappings.put("/group/memo/detail", new CommentController());
+		// mappings.put("/group/memo/detail", new CommentController());
 	}
 
 	public Controller findController(String uri) {
