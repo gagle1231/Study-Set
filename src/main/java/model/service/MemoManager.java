@@ -26,12 +26,12 @@ public class MemoManager {
 		return memoManager;
 	}
 
-	public int addMemo(Memo memo) throws SQLException, ParseException {
-		return memoDao.addMemo(memo);
+	public int addMemo(Memo memo, String userId, String groupId) throws SQLException, ParseException {
+		return memoDao.addMemo(memo, userId, groupId);
 	}
 
-	public List<Memo> getList(String groupId, String userId) throws SQLException {
-		List<Memo> memoList = memoDao.getList(groupId, userId);
+	public List<Memo> getList(String groupId) throws SQLException {
+		List<Memo> memoList = memoDao.getList(groupId);
 		return memoList;
 	}
 
