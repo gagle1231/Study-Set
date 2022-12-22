@@ -39,6 +39,11 @@ div[contenteditable=true] {
 	padding: 5px;
 }
 </style>
+<script>
+	function gc() {
+		form1.submit();
+	}
+</script>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
 
@@ -69,55 +74,71 @@ div[contenteditable=true] {
 							<h4 style="color: gray">&nbsp;&nbsp; 진행상황</h4> <br> <br>
 						</td>
 					</tr>
-
 					<tr>
 						<td style="float: left; overflow-x: auto; white-space: nowrap;">
+						<form name="form1" method="POST" action="<c:url value='/group/memo'>
+						<c:param name="groupId" value="${group.groupId}" />
+						<c:param name="userId" value="${loginmember.userId}" />
+					</c:url>">
 							<table>
 								<tr>
 									<c:forEach items="${groupMemberList}" var="member">
-										<c:set var="i" value="${i+1}" />
-										<td>
-											<div>
-												<table style="border-spacing: 5px; table-layout: fixed"
-													class="tb">
-													<tr>
-														<td><h2>${member.userName}</h2></td>
-													</tr>
-													<tr>
-														<td>
-															<div style="height: 560px; overflow-y: scroll;">
-																<table
-																	style="padding: 5px; table-layout: fixed; width: 370px;">
-																	<tr>
-																		<td class="notice"
-																			style="background-color:${colorArr[i-1]}; overflow-y: auto; ">
-																			<div spellcheck="true" placeholder="add a new note.."
-																				data-content-editable-leaf="true"
-																				contenteditable="true"
-																				style="max-width: 100%; width: auto; white-space: pre-wrap; word-break: break-word; caret-color: rgb(55, 53, 47); font-size: 14px; line-height: 1.5; min-height: 21px; font-weight: 500; flex-grow: 1; padding: 2px; cursor: text;">
-																			</div> <br> <br>
-																		</td>
-																	</tr>
-																	<c:forEach items="${memoList}" var="memo">
-																	<c:if test="${memo.userId eq member.userId}">
+											<c:set var="i" value="${i+1}" />
+											<td>
+												<div>
+													<table style="border-spacing: 5px; table-layout: fixed"
+														class="tb">
+														<tr>
+															<td><h2>${member.userName}</h2></td>
+														</tr>
+														<c:if test="${member.userId eq loginmember.userId}">
+														<tr>
+															<td style="text-align:right;">
+															<input type="button" value="메모 등록" onClick="gc()"></td>
+														</tr>
+														</c:if>
+														<c:if test="${member.userId ne loginmember.userId}">
+														<tr>
+															<td style="text-align:right;">
+															<input type="button" value="등록 불가" onClick="gc()"></td>
+														</tr>
+														</c:if>
+														<tr>
+															<td>
+																<div style="height: 560px; overflow-y: scroll;">
+																	<table
+																		style="padding: 5px; table-layout: fixed; width: 370px;">
 																		<tr>
-																			<td class="notice" style="background-color:${colorArr[i-1]}; overflow-y: auto; ">
-																				${memo.memoContents}</td>
+																		<c:if test="${member.userId eq loginmember.userId}">
+																			<td class="notice"
+																				style="background-color:${colorArr[i-1]}; overflow-y: auto; ">
+																				
+																				<textarea style="background-color:transparent;" name="memoContents" rows="5" cols="40" placeholder="add a new note.." onfocus="this.placeholder=''" onblur="this.placeholder='add a new notes..'"></textarea> <br>
+																				
+																				<br>
+																			</td>
+																			</c:if>
 																		</tr>
-																	</c:if>
-																	</c:forEach>
-																</table>
-															</div>
-														</td>
-													</tr>
-												</table>
-											</div>
-										</td>
-										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+																		<c:forEach items="${memoList}" var="memo">
+																			<c:if test="${memo.userId eq member.userId}">
+																				<tr>
+																					<td class="notice"
+																						style="background-color:${colorArr[i-1]}; overflow-y: auto; ">
+																						${memo.memoContents}</td>
+																				</tr>
+																			</c:if>
+																		</c:forEach>
+																	</table>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</div>
+											</td>
+											<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 									</c:forEach>
 								</tr>
-
-							</table>
+							</table></form>
 						</td>
 					</tr>
 				</table>

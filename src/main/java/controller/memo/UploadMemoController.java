@@ -20,24 +20,20 @@ public class UploadMemoController implements Controller {
       HttpSession session = request.getSession();
       StudyGroup group = (StudyGroup) session.getAttribute("group");
       Member member = (Member) session.getAttribute("loginmember");
-      // Memo memo = (Memo) session.getAttribute("memo");
-      String userId = request.getParameter("userId");
       Memo memo = null;
       
       // 메모 작성
       if (request.getMethod().equals("POST")) {
          request.setCharacterEncoding("utf-8");
-         memo = new Memo( member.getUserId(), group.getGroupId(), 
-               request.getParameter("submitContents"));
-
+                
+         String groupId = request.getParameter("groupId");
+         String userId = request.getParameter("userId");
+         memo = new Memo(userId, groupId, request.getParameter("memoContents"));
          MemoManager manager = MemoManager.getInstance();
          manager.addMemo(memo, member.getUserId(), group.getGroupId());
-         return "redirect:/group/memo";
+         return "redirect:/group/memo/memo";
       }
-      MemoManager manager = MemoManager.getInstance();
 
-      memo = manager.getMemo(request.getParameter("memoId"));
-      session.setAttribute("memo", memo);
-      return "/group/memo.jsp";
+      return "/group/memo/memo.jsp";
    }
 }
