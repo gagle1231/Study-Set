@@ -118,7 +118,7 @@ border: 3px solid black;
 							src="<c:url value='/images/studysetlogo.png' />" />
 						</td>
 						<td align="right">
-						<a href="<c:url value='http://localhost:8080/StudySet' />">
+						<a href="<c:url value='/user/logout' />">
 								<img src="<c:url value='/images/logout.png'/>" />
 						</a> 
 						</td>
