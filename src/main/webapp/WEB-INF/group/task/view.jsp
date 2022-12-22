@@ -74,6 +74,13 @@
 <title>${task.name}_${userName}과제</title>
 </head>
 <body leftmargin="0" bgcolor="#DFE5DD">
+
+<c:if test="${ param.success eq 1}">
+<script>
+	alert('댓글이 삭제되었습니다.');
+	history.replaceState({}, null, location.pathname);
+</script>
+</c:if>
 	<br>
 	<table style="width: 100%; border-collapse: collapse">
 		<tr>
@@ -104,8 +111,7 @@
 						var="parsedRegDate" type="date" />
 					<fmt:formatDate value="${parsedRegDate}" pattern="yyyy/MM/dd" />
 					<hr>
-					<br>&nbsp;&nbsp;${submit.submitContents} <br>${submit.filePath}<br>
-					<img src="<c:url value='/upload/${filePath}'/>" /> <br />
+					 &nbsp;&nbsp;${submit.submitContents} <br><br><br><br><br><br><br><br><br><br><hr>파일경로:${submit.filePath}<br>     
 				</div>
 			</td>
 		</tr>
